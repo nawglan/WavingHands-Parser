@@ -1,4 +1,4 @@
 WavingHands-Parser
 ==================
 
-Parser plugin for WavingHands, mainly used to parse archived games from various implementations.
+Parser plugin for a WavingHands game. ( http://www.gamecabinet.com/rules/WavingHands.html )
