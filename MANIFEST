@@ -1,0 +1,13 @@
+Changes
+MANIFEST
+Makefile.PL
+README
+lib/WavingHands/Parser.pm
+lib/WavingHands/Parser/Grammar/Warlocks.pm
+t/data/testgames/101.txt
+t/data/testgames/81794.txt
+t/data/testgames/81891.txt
+t/00-load.t
+t/01-parse.t
+t/pod-coverage.t
+t/pod.t
