@@ -1,7 +1,13 @@
 #!perl -T
 
-use Test::More tests => 9;
+use Test::More;
 use File::Spec;
+
+# autoflush
+$| = 1;
+
+# num_tests counts the tests being run.  Starting with 2 to account for use_ok and new_ok.
+my $num_tests = 2;
 
 BEGIN {
     use_ok( 'WavingHands::Parser' );
@@ -9,17 +15,8 @@ BEGIN {
 
 my $directory = File::Spec->catdir('.', 't', 'data', 'testgames');
 
-my $filename = File::Spec->catfile($directory, '101.txt');
-is(-f $filename || 0, 1, 'Game 101 test file exists.');
-
-$filename = File::Spec->catfile($directory, '81794.txt');
-is(-f $filename || 0, 1, 'Game 81794 test file exists.');
-
-$filename = File::Spec->catfile($directory, '81891.txt');
-is(-f $filename || 0, 1, 'Game 81891 test file exists.');
-
 my $parser = new_ok('WavingHands::Parser' => [
-    trace => 0,
+    trace => $ENV{WHP_TRACE} || 0,
     usesort => 0,
     bail => 1,
     gametype => 'Warlocks'
@@ -27,13 +24,22 @@ my $parser = new_ok('WavingHands::Parser' => [
 
 $parser->load(directory => $directory);
 
-my ($total, $good) = $parser->parse();
-is ($total == $good, 1, 'Game parsed successfully.');
+diag("Checking " . $parser->queue_size() . " games.");
 
-($total, $good) = $parser->parse();
-is ($total == $good, 1, 'Game parsed successfully.');
+my $total_games = 0;
+my $total_good = 0;
 
-($total, $good) = $parser->parse();
-is ($total == $good, 1, 'Game parsed successfully.');
+while ($parser->queue_has_items()) {
+    $num_tests++;
+    $total_games++;
+    my $good = $parser->parse();
+    $total_good += $good;
+    is ($good == 1, 1, 'Game parsed successfuly.');
+    last unless $good == 1;
+}
 
-is ($total + $good, 6, 'All games parsed successfully.');
+$num_tests++;
+is ($total_good == $total_games, 1, 'All games parsed successfuly.');
+
+done_testing($num_tests);
+

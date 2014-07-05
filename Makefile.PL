@@ -13,6 +13,7 @@ WriteMakefile(
     PREREQ_PM => {
         'JSON' => 0,
         'File::Spec' => 0,
+        'List::Util' => 0,
         'Parse::RecDescent' => 0,
         'mop' => 0,
     },

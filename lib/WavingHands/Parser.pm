@@ -5,6 +5,7 @@ use warnings;
 
 use JSON;
 use File::Spec;
+use List::Util qw(shuffle);
 use mop;
 =head1 NAME
 
@@ -23,7 +24,6 @@ our $VERSION = '0.01';
 This module provides the main interface for parsing games for WavingHands games.
 ( http://www.gamecabinet.com/rules/WavingHands.html )
 
-Perhaps a little code snippet.
 
     use WavingHands::Parser;
 
@@ -44,15 +44,9 @@ Perhaps a little code snippet.
     $parser->load({filename => '1234.txt', dir => './games'});
 
     # parse game in the queue
-    my ($total_parsed, $number_successful) = $parser->parse();
+    my $success = $parser->parse();
 
     ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
 
 =head1 FUNCTIONS
 
@@ -89,25 +83,22 @@ class WavingHands::Parser {
     has $!usesort is rw = 0;
     has $!bail is rw = 1;
     has $!gametype is rw = do{die "Parameter 'gametype' is required.";};
-    my $parser;
-    my $total;
-    my $good;
-    my $data;
-    my @queue = ();
+    has $!queue is ro;
+    has $!parser is ro;
 
     method _resetParser {
-        $parser->reset_data() if $parser;
+        $!parser->reset_data() if $!parser;
 
         my $module = "WavingHands/Parser/Grammar/$!gametype.pm";
         my $classname = "WavingHands::Parser::Grammar::$!gametype";
         require $module;
 
-        $parser = $classname->new();
+        $!parser = $classname->new();
 
         if ($!trace) {
-            $parser->trace(1);
+            $!parser->trace(1);
         } else {
-            $parser->trace(0);
+            $!parser->trace(0);
         }
     }
 
@@ -120,15 +111,15 @@ class WavingHands::Parser {
             opendir(my $DIR, $options{directory});
             my @allfiles = readdir($DIR);
             closedir($DIR);
-            @queue = map { File::Spec->catfile($options{directory}, $_) } grep {$_ ne '.' && $_ ne '..'} @allfiles;
+            @{$!queue} = map { File::Spec->catfile($options{directory}, $_) } grep {$_ ne '.' && $_ ne '..'} @allfiles;
         }
 
         if (defined $options{filename}) {
-            push @queue, $options{filename};
+            push @{$!queue}, $options{filename};
         }
 
         if ($!usesort) {
-            @queue = sort {
+            @{$!queue} = sort {
                 my ($g1, undef) = split /\./, $a;
                 my ($g2, undef) = split /\./, $b;
                 if ($g1 =~ /\d+/ && $g2 =~ /\d+/) {
@@ -136,19 +127,19 @@ class WavingHands::Parser {
                 } else {
                    "$g1" cmp "$g2";
                 }
-            } @queue;
+            } @{$!queue};
+        } else {
+            @{$!queue} = shuffle @{$!queue};
         }
-
-        $total = 0;
-        $good = 0;
     }
 
     method parse {
         $self->_resetParser();
         my $result;
+        my $good = 0;
 
-        if (@queue) {
-            my $filename = shift @queue;
+        if (@{$!queue}) {
+            my $filename = shift @{$!queue};
 
             open my $INPUT, '<', $filename or die ("Unable to open $filename : $!\n");
             my $buffer;
@@ -158,31 +149,42 @@ class WavingHands::Parser {
             };
             close $INPUT;
 
+            my $TRACE;
             if ($!trace) {
-                open my $TRACE, '>>', File::Spec->catfile('/', 'tmp', 'trace.txt');
+                my $tracefile = File::Spec->catfile('/', 'tmp', 'trace.txt');
+                open $TRACE, '>', $tracefile;
                 local *STDERR = $TRACE;
-                $result = $parser->parse($buffer);
+                $result = $!parser->parse($buffer);
+                warn "$result\n";
                 close $TRACE;
             } else {
-                $result = $parser->parse($buffer);
+                $result = $!parser->parse($buffer);
             }
 
-            $good += $result ? 1 : 0;
-            $total++;
+            if (defined $result) {
+                $good = ($result == 1 ? 1 : 0);
+            }
 
-            @queue = qw() if $!bail && !$result;
+            @{$!queue} = qw() if $!bail && !$result;
         }
 
-        if ($result) {
-            $data = $parser->get_data();
+        if ($good) {
             #$self->dump();
         }
 
-        return ($total, $good);
+        return $good;
+    }
+
+    method queue_has_items() {
+        return (scalar @{$!queue} > 0);
+    }
+
+    method queue_size() {
+        return scalar @{$!queue};
     }
 
     method dump() {
-        print encode_json($data);
+        print encode_json($!parser->get_data());
     }
 }
 

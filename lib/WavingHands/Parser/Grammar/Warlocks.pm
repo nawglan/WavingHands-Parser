@@ -63,13 +63,6 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     INTEGER : /\d+/
 
     BOWNAME : /\b\w+\b/
-    {
-        if ($item[1] ne 'Turn') {
-          $item[1];
-        } else {
-          undef;
-        }
-    }
 
     PLAYERNAME : "__NoSuChPlAyEr__"
 
@@ -369,7 +362,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     DEAD : "Dead" PUNCT | #nothing
     TURNLIST : TURN COLON INTEGER(s)
 
-    PLAYERGESTURES : /\s*LH[:]B(.*?)\n\s*RH[:]B(.*?)\n+/s
+    #GESTURECHARACTER : "F" | "P" | "S" | "W" | "D" | "C" | ">" | "?" | "-" | " "
+    #LEFTHANDGESTURES : "LH:B" GESTURECHARACTER(s)
+    #RIGHTHANDGESTURES : "RH:B" GESTURECHARACTER(s)
+    #PLAYERGESTURES : LEFTHANDGESTURES RIGHTHANDGESTURES
+
+    PLAYERGESTURES : /\s*LH[:]B(.*?)RH[:]B(.*?)\n(\n|\z)/ms
 
     PARENDS : /[()]/ | #match either or nothing
 
@@ -399,12 +397,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         ($globals->{data}{$player}{gestures}{left}) = ($gestures =~ /LH[:]B(.*?)\n/s);
         ($globals->{data}{$player}{gestures}{right}) = ($gestures =~ /RH[:]B(.*?)\n+/s);
     }
-    playerlist : player(2..6)
 
-    eofile: /^\Z/
-    {
-        1;
-    }
+    listofplayers : "-ShOuLdNeVeRmAtCh-"
+    playerlist : listofplayers
 
     turnbody : TURNBODY | #nothing
 
@@ -414,6 +409,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         $globals->{data}{turn}[$turn]->{gametext} = $item{turnbody};
 
+        1;
+    }
+
+    eofile : /[\n\s]*/ms
+    {
         1;
     }
 
@@ -454,13 +454,21 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($turn == 1) {
             # create regex for matching playernames exactly and replace the generic one.
-            my @players =  sort{length "$b" <=> length "$a"} join '|', @{$globals->{data}{players}};
+            my @players =  sort{length "$b" <=> length "$a"} @{$globals->{data}{players}};
+            my $playercount = scalar @players;
             local ($1);
             my $rule = sprintf ("PLAYERNAME : /\\b\(%s\)\\b/", (join '|', @players));
+            my $rule2 = "listofplayers : player($playercount)";
             $rule =~ /^(.*)\z/s;
             eval {
                 $rule = $1;
                 $thisparser->Extend($rule);
+            };
+            die $@ if $@;
+            $rule2 =~ /^(.*)\z/s;
+            eval {
+                $rule2 = $1;
+                $thisparser->Extend($rule2);
             };
             die $@ if $@;
         }
@@ -503,7 +511,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     PLAYERBOWS : BOWNAME BOWS PUNCT
     {
-        my $player = $item{BOWNAME};
+        my $player = $item[1];
         push @{$globals->{data}{players}}, $player;
 
         $globals->{data}{turn}[0]->{$player}{gesture}{left} = 'B';
@@ -511,39 +519,45 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     }
 
     ANORA : AN | A
-    STORMRAGES : ANORA STORMTYPE STORM "rages" "through" THE "circle" PUNCT
+    STORMRAGES : ANORA STORMTYPE STORM "rages" "through" THE "circle"
 
-    WOUNDED : WOUNDS "appear" ALL OVER target APOSS "body" PUNCT
-    BOUNCEMISSILE : A MAGICMISSILE "bounces" "off" target APOSS SHIELD PUNCT
-    GOESPOOF : "There" IS A "flash" PUNCT AND PLAYERNAME "disappears" PUNCT
-    SPELLSFAIL : "All" MAGICAL "effects" ARE "erased!" "All" "other" SPELL "fail" PUNCT
-    REFLECTSPELL : THE SPELLNAME SPELL IS "reflected" FROM target APOSS MAGICMIRROR PUNCT
-    SCALESGROW : "Scales" "start" TO "grow" OVER PLAYERNAME APOSS "eyes" PUNCT
-    SCALESREMOVED : THE "scales" ARE "removed" FROM PLAYERNAME APOSS "eyes" PUNCT
-    HOLESOPEN : "Holes" "open" UP IN target APOSS SHIELD PUNCT BUT "then" "close" UP "again" PUNCT
-    MISSILEFLIES : A MAGICMISSILE "flies" "off" INTO THE "distance" PUNCT
-    HAZEENCHANT : THE "haze" OF AN "enchantment" SPELL "drifts" "aimlessly" OVER THE "circle" PUNCT AND "dissipates" PUNCT
-    LIGHTNINGARCS : A "bolt" OF "lightning" "arcs" TO THE "ground" PUNCT
-    SPELLDRIFTS : A SPELLNAME "drifts" "away" "aimlessly" PUNCT
-    TINYHOLES : "Tiny" "holes" IN target APOSS SHIELD ARE "sealed" UP PUNCT 
+    WOUNDED : WOUNDS "appear" ALL OVER target APOSS "body"
+    BOUNCEMISSILE : A MAGICMISSILE "bounces" "off" target APOSS SHIELD
+    GOESPOOF : "There" IS A "flash" PUNCT AND PLAYERNAME "disappears"
+    SPELLSFAIL : "All" MAGICAL "effects" ARE "erased!" "All" "other" SPELL "fail"
+    REFLECTSPELL : THE SPELLNAME SPELL IS "reflected" FROM target APOSS MAGICMIRROR
+    SCALESGROW : "Scales" "start" TO "grow" OVER PLAYERNAME APOSS "eyes"
+    SCALESREMOVED : THE "scales" ARE "removed" FROM PLAYERNAME APOSS "eyes"
+    HOLESOPEN : "Holes" "open" UP IN target APOSS SHIELD PUNCT BUT "then" "close" UP "again"
+    MISSILEFLIES : A MAGICMISSILE "flies" "off" INTO THE "distance"
+    HAZEENCHANT : THE "haze" OF AN "enchantment" SPELL "drifts" "aimlessly" OVER THE "circle" PUNCT AND "dissipates"
+    LIGHTNINGARCS : A "bolt" OF "lightning" "arcs" TO THE "ground"
+    SPELLDRIFTS : A SPELLNAME "drifts" "away" "aimlessly"
+    TINYHOLES : "Tiny" "holes" IN target APOSS SHIELD ARE "sealed" UP
 
     FASTGUYS : "players" | "warlocks"
     FASTPLAYERS : "Fast" FASTGUYS "sneak" IN AN "extra" "set" OF GESTURE 
 
-    TURNOUTSIDETIME : "This" "turn" "took" "place" "outside" OF "time" PUNCT
-    FIREBALLSTRIKE : A "fireball" "strikes" target PUNCT "burning" "him" FOR INTEGER DAMAGE PUNCT | A "fireball" "strikes" PUNCT AND "flames" "roar" ALL(?) "around" target APOSS(?) SHIELD(?) CALMINFERNO(?) | A "fireball" "flies" INTO THE "distance" AND "burns" "itself" "out" PUNCT
-    CALMINFERNO : "He" "stands" "calmly" "in" THE "inferno" PUNCT
-    LIGHTNINGSPARKS : LIGHTNING "sparks" ALL "around" target APOSS SHIELD PUNCT
-    PERMOVERRIDE : THE PERMANENT "enchantment" ON target "overrides" THE SPELLNAME "effect" PUNCT
-    MIRRORDISSIPATE : A MAGICMIRROR "dissipates" INTO THE "air" PUNCT
-    ELEMENTALDESTROY : "Opposing" ELEMENTAL "destroy" "each" "other!"
-    SHIMMERSHIELD : THE "shimmer" OF A SHIELD "briefly" "covers" THE "circle" PUNCT "then" "dissolves" PUNCT
-    ELEMENTALMERGE : "Two" STORMTYPE ELEMENTAL "merge" INTO "one" PUNCT
-    ELEMENTALCANCEL : "Fire" AND "Ice" "storms" "cancel" "each" "other" "out" PUNCT "leaving" "just" "a" "gentle" "breeze" PUNCT
+    TURNOUTSIDETIME : "This" "turn" "took" "place" "outside" OF "time"
+    FIREBALLSTRIKETYPE : PUNCT AND "flames" "roar" ALL(?) "around" target APOSS(?) SHIELD(?) CALMINFERNO(?) | target PUNCT "burning" "him" FOR INTEGER DAMAGE
+    FIREBALLSTRIKES : "strikes" FIREBALLSTRIKETYPE
+    FIREBALLFLIES : "flies" INTO THE "distance" AND "burns" "itself" "out"
+    FIREBALLOUTCOME : FIREBALLFLIES | FIREBALLSTRIKES
+    FIREBALLLANDS : A "fireball" FIREBALLOUTCOME
+    CALMINFERNO : "He" "stands" "calmly" "in" THE "inferno"
+    LIGHTNINGSPARKS : LIGHTNING "sparks" ALL "around" target APOSS SHIELD
+    PERMOVERRIDE : THE PERMANENT "enchantment" ON target "overrides" THE SPELLNAME "effect"
+    MIRRORDISSIPATE : A MAGICMIRROR "dissipates" INTO THE "air"
+    ELEMENTALDESTROY : "Opposing" ELEMENTAL "destroy" "each" "other"
+    SHIMMERSHIELD : THE "shimmer" OF A SHIELD "briefly" "covers" THE "circle" PUNCT "then" "dissolves"
+    ELEMENTALMERGE : "Two" STORMTYPE ELEMENTAL "merge" INTO "one"
+    ELEMENTALCANCEL : "Fire" AND "Ice" "storms" "cancel" "each" "other" "out" PUNCT "leaving" "just" "a" "gentle" "breeze"
     BURSTOFSPEED : IN A "burst" OF "speed" PUNCT | #nothing
-    NOMASTER : A SUMMONED "creature" PUNCT "finding" "no" "master" PUNCT "returns" "from" "whence" "it" "came" PUNCT
+    NOMASTER : A SUMMONED "creature" PUNCT "finding" "no" "master" PUNCT "returns" "from" "whence" "it" "came"
 
-    specialresult : NOMASTER | TURNOUTSIDETIME | ELEMENTALCANCEL | ELEMENTALMERGE | FIREBALLSTRIKE | SHIMMERSHIELD | ELEMENTALDESTROY | MIRRORDISSIPATE | PERMOVERRIDE | LIGHTNINGSPARKS | FASTPLAYERS | TINYHOLES | SPELLDRIFTS | LIGHTNINGARCS | HAZEENCHANT | MISSILEFLIES | SCALESGROW | SCALESREMOVED | HOLESOPEN | REFLECTSPELL | SPELLSFAIL | GOESPOOF | BOUNCEMISSILE | STORMRAGES | WOUNDED
+    specialtypes : NOMASTER | TURNOUTSIDETIME | ELEMENTALCANCEL | ELEMENTALMERGE | FIREBALLLANDS | SHIMMERSHIELD | ELEMENTALDESTROY | MIRRORDISSIPATE | PERMOVERRIDE | LIGHTNINGSPARKS | FASTPLAYERS | TINYHOLES | SPELLDRIFTS | LIGHTNINGARCS | HAZEENCHANT | MISSILEFLIES | SCALESGROW | SCALESREMOVED | HOLESOPEN | REFLECTSPELL | SPELLSFAIL | GOESPOOF | BOUNCEMISSILE | STORMRAGES | WOUNDED
+    specialresult : specialtypes PUNCT
+
     defaultresult : OUTSIDETIME BURSTOFSPEED target SPELLTEXT PUNCT
 
     spellresult : defaultresult | specialresult
@@ -703,9 +717,10 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
           HIT BY A "bolt" OF "lightning" PUNCT FOR INTEGER DAMAGE |
           HIT BY REMOVEENCHANTMENT PUNCT AND "starts" "coming" "apart" AT THE "seams" |
           HIT BY A "Fireball" AS THE ICESTORM "strikes" PUNCT AND IS "miraculously" LEFT "untouched" |
-          HIT BY ARTICLE SPELLNAME SPELL AND IS "annihilated" BY THE MAGICAL "overload" |
+          HIT BY ARTICLE SPELLNAME SPELL PUNCT AND IS "annihilated" BY THE MAGICAL "overload" |
           A "bit" "nauseous" |
           AT "maximum" "health" |
+          "absorbed" BY PLAYERNAME APOSS "counter" SPELL |
           "burnt" FOR INTEGER DAMAGE |
           "burnt" IN THE "raging" FIRESTORM PUNCT FOR INTEGER DAMAGE |
           "covered" BY A "warm" "glow" |
@@ -748,14 +763,15 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
           handed HAND IS "paralysed" |
           "half-done" SPELL "fizzle" AND "die" |
           "eyes" ARE "covered" WITH "scales" |
-          "absorbed" BY target "counter" SPELL |
+          "absorbed" BY target APOSS "counter" SPELL |
           "surrounding" MAGICAL "energies" ARE "grounded" |
           MONSTERNAME IS "absorbed" INTO A "Counterspell" "glow" |
+          SPELLNAME IS "absorbed" INTO A "glow" |
           DISEASE IS "fatal" |
           POISON IS "fatal"
 
     SPELLTEXT : IS ISSPELLTEXT | APOSS APOSSSPELLTEXT | LOOKS LOOKSSPELLTEXT |
-          APPEARS "unaffected" BY PLAYERNAME "intellectual" "charms" |
+          APPEARS "unaffected" BY PLAYERNAME APOSS "intellectual" "charms" |
           APPEARS IN A ELEMENTALENTRANCE |
           "attempts" TO "make" THE SPELL PERMANENT |
           "banks" A SPELL FOR "later" |
@@ -770,14 +786,13 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
           "flies" "away" WITH THE "storm" |
           "forgets" "what" "he" APOSS "doing" PUNCT AND "makes" THE "same" GESTURE AS "last" "round" |
           handed HAND "stab" IS "wasted" AT A "monster" "which" "wasn't" SUMMONED |
-          "ignores" target "appeal" TO HIS "baser" "instincts" |
-          "makes" A "confused" GESTURE BUT "luckily" "it" APOSS "what" "he" "intended" "anyway" |
+          "ignores" target APOSS "appeal" TO HIS "baser" "instincts" |
+          "makes" A "confused" GESTURE PUNCT BUT "luckily" "it" APOSS "what" "he" "intended" "anyway" |
           "makes" THE SPELL PERMANENT |
           "melts" ELEMENTALDESTROYED |
           "runs" ELEMENTALISWILD |
           "shakes" HIS "head" AND "regains" "control" PUNCT AS "enchantments" "cancel" "each" "other" "out" |
           "speeds" UP |
-          SPELLNAME IS "absorbed" INTO A "glow" |
           "staggers" "weakly" |
           "starts" "coughing" UP "blood" |
           "starts" TO "look" /blank|sick/ |
