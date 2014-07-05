@@ -1,0 +1,157 @@
+   Username: ____________
+   Password: ____________
+   Remember: [_]
+   Login
+     New User
+
+
+   Rules
+
+        Status
+
+              Challenges
+
+                        Players
+
+                               RavenBlack Games
+
+                                                           Spell Reference
+
+Turn 11 in Friendly (ParaFC) (Maladroit) Battle 68587
+
+   Turn 0
+
+     xigwa bows.
+     Blargfeld bows.
+
+   Turn 1
+
+     xigwa says "sup".
+     Blargfeld says "allo".
+     xigwa snaps the fingers of his left hand.
+     xigwa waves his right hand.
+     Blargfeld points the digit of his left hand.
+     Blargfeld points the digit of his right hand.
+
+   Turn 2
+
+     xigwa proffers the palm of his left hand.
+     xigwa waves his right hand.
+     xigwa casts Shield at himself.
+     Blargfeld snaps the fingers of his left hand.
+     Blargfeld waves his right hand.
+     xigwa is covered by a shimmering shield.
+
+   Turn 3
+
+     xigwa proffers the palm of his left hand.
+     xigwa wiggles the fingers of his right hand.
+     xigwa casts Shield at himself.
+     Blargfeld wiggles the fingers of his left hand.
+     Blargfeld waves his right hand.
+     Blargfeld casts Maladroitness at xigwa.
+     xigwa starts to lose coordination.
+     xigwa is covered by a shimmering shield.
+
+   Turn 4
+
+     xigwa is rendered maladroit!
+     xigwa wiggles the fingers of his left hand.
+     xigwa wiggles the fingers of his right hand.
+     Blargfeld waves his left hand.
+     Blargfeld wiggles the fingers of his right hand.
+     Blargfeld casts Summon Goblin at himself.
+     Smelly Goblin is summoned to serve Blargfeld.
+     Blargfeld directs Smelly Goblin to attack xigwa.
+     Smelly Goblin attacks xigwa for 1 damage.
+
+   Turn 5
+
+     xigwa snaps the fingers of his left hand.
+     xigwa wiggles the fingers of his right hand.
+     xigwa casts Paralysis at Blargfeld.
+     Blargfeld wiggles the fingers of his left hand.
+     Blargfeld proffers the palm of his right hand.
+     Blargfeld casts Cause Light Wounds at xigwa.
+     Blargfeld's hands start to stiffen.
+     Wounds appear all over xigwa's body!
+     Smelly Goblin attacks xigwa for 1 damage.
+
+   Turn 6
+
+     Blargfeld's right hand is paralysed.
+     xigwa points the digit of his left hand.
+     xigwa points the digit of his right hand.
+     xigwa casts Magic Missile at Smelly Goblin.
+     Blargfeld waves his left hand.
+     Blargfeld proffers the palm of his right hand.
+     Blargfeld casts Shield at himself.
+     Blargfeld is covered by a shimmering shield.
+     Smelly Goblin is hit by a Magic Missile, for 1 damage.
+     Smelly Goblin attacks xigwa for 1 damage.
+     Smelly Goblin dies.
+
+   Turn 7
+
+     xigwa wiggles the fingers of his left hand.
+     xigwa wiggles the fingers of his right hand.
+     Blargfeld proffers the palm of his left hand.
+     Blargfeld snaps the fingers of his right hand.
+     Blargfeld casts Shield at himself.
+     Blargfeld is covered by a shimmering shield.
+
+   Turn 8
+
+     xigwa wiggles the fingers of his left hand.
+     xigwa wiggles the fingers of his right hand.
+     Blargfeld wiggles the fingers of his left hand.
+     Blargfeld points the digit of his right hand.
+     Blargfeld casts Magic Missile at xigwa.
+     xigwa is hit by a Magic Missile, for 1 damage.
+
+   Turn 9
+
+     xigwa points the digit of his left hand.
+     xigwa points the digit of his right hand.
+     Blargfeld points the digit of his left hand.
+     Blargfeld wiggles the fingers of his right hand.
+     Blargfeld casts Cause Heavy Wounds at xigwa.
+     Blargfeld casts Charm Person at xigwa.
+     xigwa looks intrigued by Blargfeld.
+     Wounds appear all over xigwa's body!
+
+   Turn 10
+
+     xigwa is charmed into making the wrong gesture with his right hand.
+     xigwa says "Forced Turn".
+     xigwa proffers the palm of his left hand.
+     xigwa makes no gesture with his right hand.
+     xigwa casts Shield at himself.
+     Blargfeld wiggles the fingers of his left hand.
+     Blargfeld wiggles the fingers of his right hand.
+     xigwa is covered by a shimmering shield.
+
+   Turn 11
+
+     xigwa says "Forced Turn".
+     xigwa proffers the palm of his left hand.
+     xigwa proffers the palm of his right hand.
+     xigwa casts Amnesia at Blargfeld.
+     xigwa casts Shield at himself.
+     Blargfeld stabs with his left hand.
+     Blargfeld points the digit of his right hand.
+     Blargfeld starts to look blank.
+     xigwa is covered by a shimmering shield.
+     Blargfeld attacks xigwa, but is deflected by a shield.
+     xigwa surrenders.
+     Blargfeld is victorious!
+
+   xigwa(0) Surrendered. (Health: 6)
+   Turn:012345678901
+     LH:BSPPFSDFFDPP
+     RH:BWWFFFDFFD-P
+
+   Blargfeld(0) Health:15 - Forgetful(1)
+   Turn:012345678901
+     LH:BDSFWFWPFDF>
+     RH:BDWWFPPSDFFD

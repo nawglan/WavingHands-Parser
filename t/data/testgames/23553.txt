@@ -1,0 +1,193 @@
+
+   Username: ____________
+   Password: ____________
+   Remember: [_]
+   Login
+     New User
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 10 in Friendly Battle 23553
+
+   Turn 0
+
+     Caruthers bows.
+     Nikko bows.
+     modnareno bows.
+     Rashmi bows.
+
+   Turn 1
+
+     Rashmi says "Hello".
+     Caruthers snaps the fingers of his left hand.
+     Caruthers snaps the fingers of his right hand.
+     Nikko proffers the palm of his left hand.
+     Nikko snaps the fingers of his right hand.
+     Nikko casts Shield at himself.
+     modnareno waves his left hand.
+     modnareno waves his right hand.
+     Rashmi points the digit of his left hand.
+     Rashmi points the digit of his right hand.
+     Nikko is covered by a shimmering shield.
+
+   Turn 2
+
+     Nikko says "Hey".
+     Caruthers snaps the fingers of his left hand.
+     Caruthers waves his right hand.
+     Nikko waves his left hand.
+     Nikko proffers the palm of his right hand.
+     Nikko casts Shield at himself.
+     modnareno waves his left hand.
+     modnareno waves his right hand.
+     Rashmi claps.
+     Nikko is covered by a shimmering shield.
+
+   Turn 3
+
+     Caruthers wiggles the fingers of his left hand.
+     Caruthers waves his right hand.
+     Nikko waves his left hand.
+     Nikko wiggles the fingers of his right hand.
+     modnareno proffers the palm of his left hand.
+     modnareno wiggles the fingers of his right hand.
+     modnareno casts Protection at himself.
+     Rashmi stabs with his left hand.
+     Rashmi stabs with his right hand.
+     modnareno is surrounded by a thick shimmering shield.
+     Rashmi attacks modnareno, but is deflected by a shield.
+
+   Turn 4
+
+     Nikko says "Uhhhhh... do you know what you're doing Rashmi?".
+     modnareno says "Forced Turn".
+     Caruthers proffers the palm of his left hand.
+     Caruthers snaps the fingers of his right hand.
+     Caruthers casts Resist Cold at himself.
+     Caruthers casts Counter Spell at modnareno.
+     Nikko wiggles the fingers of his left hand.
+     Nikko proffers the palm of his right hand.
+     Nikko casts Anti-spell at Caruthers.
+     modnareno proffers the palm of his left hand.
+     modnareno proffers the palm of his right hand.
+     modnareno casts Counter Spell at himself.
+     modnareno casts Resist Heat at himself.
+     Rashmi wiggles the fingers of his left hand.
+     Rashmi wiggles the fingers of his right hand.
+     modnareno is covered by a magical glowing shield.
+     modnareno is covered by a magical glowing shield.
+     Caruthers is covered by a warm glow.
+     modnareno's shield looks thicker for a moment, then fades back.
+     Caruthers's half-done spells fizzle and die.
+     modnareno surrenders.
+
+   Turn 5
+
+     Rashmi says "Forced Turn".
+     Caruthers waves his left hand.
+     Caruthers proffers the palm of his right hand.
+     Caruthers casts Shield at himself.
+     Nikko proffers the palm of his left hand.
+     Nikko snaps the fingers of his right hand.
+     Nikko casts Resist Heat at himself.
+     Rashmi proffers the palm of his left hand.
+     Rashmi proffers the palm of his right hand.
+     Rashmi casts Shield at himself.
+     Rashmi casts Shield at himself.
+     Nikko is covered in a coat of sparkling frost.
+     Caruthers is covered by a shimmering shield.
+     Rashmi is covered by a shimmering shield.
+     Rashmi is covered by a shimmering shield.
+     Rashmi surrenders.
+
+   Turn 6
+
+     Caruthers proffers the palm of his left hand.
+     Caruthers snaps the fingers of his right hand.
+     Caruthers casts Shield at himself.
+     Nikko snaps the fingers of his left hand.
+     Nikko points the digit of his right hand.
+     Nikko casts Magic Missile at Caruthers.
+     Caruthers is covered by a shimmering shield.
+     A magic missile bounces off Caruthers's shield.
+
+   Turn 7
+
+     Caruthers says "Sorry for the long absence, work sent me on a course".
+     Caruthers proffers the palm of his left hand.
+     Caruthers points the digit of his right hand.
+     Caruthers casts Counter Spell at Nikko.
+     Caruthers casts Magic Missile at Nobody.
+     Nikko points the digit of his left hand.
+     Nikko wiggles the fingers of his right hand.
+     Nikko casts Magic Missile at Caruthers.
+     Nikko casts Charm Person at Caruthers.
+     Nikko is covered by a magical glowing shield.
+     Caruthers looks intrigued by Nikko.
+     A magic missile flies off into the distance.
+     Caruthers is hit by a Magic Missile, for 1 damage.
+
+   Turn 8
+
+     Caruthers is charmed into making the wrong gesture with his right hand.
+     Nikko says "same here".
+     Caruthers snaps the fingers of his left hand.
+     Caruthers makes no gesture with his right hand.
+     Nikko wiggles the fingers of his left hand.
+     Nikko waves his right hand.
+     Nikko casts Charm Person at Caruthers.
+     Nikko casts Cure Light Wounds at himself.
+     Caruthers looks intrigued by Nikko.
+     Nikko is healed.
+
+   Turn 9
+
+     Caruthers is charmed into making the wrong gesture with his left hand.
+     Caruthers makes no gesture with his left hand.
+     Caruthers waves his right hand.
+     Nikko wiggles the fingers of his left hand.
+     Nikko wiggles the fingers of his right hand.
+
+   Turn 10
+
+     Nikko says "Forced Turn".
+     Caruthers waves his left hand.
+     Caruthers waves his right hand.
+     Nikko proffers the palm of his left hand.
+     Nikko proffers the palm of his right hand.
+     Nikko casts Shield at himself.
+     Nikko casts Cause Light Wounds at Caruthers.
+     Nikko is covered by a shimmering shield.
+     Wounds appear all over Caruthers's body!
+     Nikko surrenders.
+     Caruthers is victorious!
+
+   Registered!  Caruthers(0) Health:12 - Coldproof(permanent)
+   Turn:01234567890
+     LH:BSSF-WPPS-W
+     RH:BSWW-PSD-WW
+
+   Nikko(0) Surrendered. (Health: 16) - Fireproof(permanent)
+   Turn:01234567890
+     LH:BPWWFPSDFFP
+     RH:BSPFPSDFWFP
+
+   modnareno(3) Surrendered. (Health: 15) - Shield(1)
+   Turn:01234567890
+     LH:BWWPP
+     RH:BWWFP
+
+   Rashmi(0) Surrendered. (Health: 15)
+   Turn:01234567890
+     LH:BDC>FP
+     RH:BDC>FP

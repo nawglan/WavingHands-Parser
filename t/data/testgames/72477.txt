@@ -1,0 +1,834 @@
+   Username: ____________
+   Password: ____________
+   Remember: [_]
+   Login
+     New User
+
+
+   Rules
+
+        Status
+
+              Challenges
+
+                        Players
+
+                               RavenBlack Games
+
+                                                           Spell Reference
+
+Turn 48 in Very Friendly Battle 72477
+
+   Turn 0
+
+     Shadowsin bows.
+     Dubber bows.
+     DellWizard bows.
+     Syd bows.
+     ihab bows.
+     chb bows.
+
+   Turn 1
+
+     Dubber says "Greetings, gents".
+     DellWizard says "Forced Turn".
+     Shadowsin waves his left hand.
+     Shadowsin waves his right hand.
+     Dubber snaps the fingers of his left hand.
+     Dubber waves his right hand.
+     DellWizard proffers the palm of his left hand.
+     DellWizard proffers the palm of his right hand.
+     DellWizard casts Shield at himself.
+     DellWizard casts Shield at himself.
+     Syd proffers the palm of his left hand.
+     Syd snaps the fingers of his right hand.
+     Syd casts Shield at himself.
+     ihab snaps the fingers of his left hand.
+     ihab snaps the fingers of his right hand.
+     chb wiggles the fingers of his left hand.
+     chb proffers the palm of his right hand.
+     chb casts Shield at himself.
+     DellWizard is covered by a shimmering shield.
+     DellWizard is covered by a shimmering shield.
+     Syd is covered by a shimmering shield.
+     chb is covered by a shimmering shield.
+     DellWizard surrenders.
+
+   Turn 2
+
+     Shadowsin wiggles the fingers of his left hand.
+     Shadowsin points the digit of his right hand.
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Shield at himself.
+     Syd snaps the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Shield at himself.
+     ihab waves his left hand.
+     ihab snaps the fingers of his right hand.
+     chb snaps the fingers of his left hand.
+     chb wiggles the fingers of his right hand.
+     Dubber is covered by a shimmering shield.
+     Syd is covered by a shimmering shield.
+
+   Turn 3
+
+     ihab says "Forced Turn".
+     Shadowsin proffers the palm of his left hand.
+     Shadowsin points the digit of his right hand.
+     Shadowsin casts Cause Light Wounds at chb.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Protection at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd wiggles the fingers of his right hand.
+     ihab proffers the palm of his left hand.
+     ihab proffers the palm of his right hand.
+     ihab casts Shield at himself.
+     ihab casts Shield at himself.
+     chb points the digit of his left hand.
+     chb snaps the fingers of his right hand.
+     chb casts Magic Missile at Dubber.
+     Dubber is surrounded by a thick shimmering shield.
+     ihab is covered by a shimmering shield.
+     ihab is covered by a shimmering shield.
+     A magic missile bounces off Dubber's shield.
+     Wounds appear all over chb's body!
+     ihab surrenders.
+
+   Turn 4
+
+     Shadowsin claps.
+     Shadowsin casts Clap of Lightning at chb.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Counter Spell at himself.
+     Syd waves his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Summon Ogre at himself.
+     Syd casts Anti-spell at Dubber.
+     chb proffers the palm of his left hand.
+     chb wiggles the fingers of his right hand.
+     chb casts Shield at himself.
+     Dubber is covered by a magical glowing shield.
+     Burnt Ogre is summoned to serve Syd.
+     Dubber's shield fizzles slightly.
+     chb is covered by a shimmering shield.
+     chb is hit by a bolt of lightning, for 5 damage.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 5
+
+     Shadowsin waves his left hand.
+     Shadowsin waves his right hand.
+     Shadowsin casts Magic Mirror at himself.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Paralysis at Syd.
+     Dubber casts Shield at himself.
+     Syd proffers the palm of his left hand.
+     Syd snaps the fingers of his right hand.
+     Syd casts Shield at himself.
+     chb proffers the palm of his left hand.
+     chb makes no gesture with his right hand.
+     chb casts Amnesia at Dubber.
+     Shadowsin is covered by a reflective shield.
+     Syd's hands start to stiffen.
+     Dubber starts to look blank.
+     Dubber is covered by a shimmering shield.
+     Syd is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 6
+
+     Dubber forgets what he's doing, and makes the same gestures as last
+     round!
+     Syd's right hand is paralysed.
+     Shadowsin waves his left hand.
+     Shadowsin proffers the palm of his right hand.
+     Shadowsin casts Shield at himself.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Paralysis at chb.
+     Dubber casts Shield at himself.
+     Syd proffers the palm of his left hand.
+     Syd points the digit of his right hand.
+     Syd casts Counter Spell at himself.
+     Syd casts Magic Missile at Shadowsin.
+     chb waves his left hand.
+     chb wiggles the fingers of his right hand.
+     Syd is covered by a magical glowing shield.
+     chb's hands start to stiffen.
+     Shadowsin is covered by a shimmering shield.
+     Dubber is covered by a shimmering shield.
+     A magic missile bounces off Shadowsin's shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 7
+
+     chb's right hand is paralysed.
+     Dubber says "I hate getting stuck in para strings :(".
+     chb says "Forced Turn".
+     Shadowsin wiggles the fingers of his left hand.
+     Shadowsin proffers the palm of his right hand.
+     Shadowsin casts Counter Spell at himself.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Paralysis at Syd.
+     Dubber casts Shield at himself.
+     Syd waves his left hand.
+     Syd waves his right hand.
+     Syd casts Permanency at himself.
+     chb proffers the palm of his left hand.
+     chb wiggles the fingers of his right hand.
+     chb casts Shield at himself.
+     Shadowsin is covered by a magical glowing shield.
+     Syd's hands start to stiffen.
+     Syd begins glowing faintly.
+     Dubber is covered by a shimmering shield.
+     chb is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 8
+
+     Syd's right hand is paralysed.
+     chb says "Forced Turn".
+     Shadowsin proffers the palm of his left hand.
+     Shadowsin snaps the fingers of his right hand.
+     Shadowsin casts Resist Heat at himself.
+     Dubber waves his left hand.
+     Dubber waves his right hand.
+     Syd wiggles the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Shield at himself.
+     chb proffers the palm of his left hand.
+     chb proffers the palm of his right hand.
+     chb casts Counter Spell at himself.
+     chb casts Shield at himself.
+     chb is covered by a magical glowing shield.
+     Shadowsin is covered in a coat of sparkling frost.
+     Syd is covered by a shimmering shield.
+     chb is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber for 2 damage.
+     chb surrenders.
+
+   Turn 9
+
+     Shadowsin snaps the fingers of his left hand.
+     Shadowsin waves his right hand.
+     Dubber waves his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Counter Spell at Dubber.
+     Dubber is covered by a magical glowing shield.
+     Dubber is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 10
+
+     Shadowsin points the digit of his left hand.
+     Shadowsin waves his right hand.
+     Shadowsin casts Magic Missile at Dubber.
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Protection at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd snaps the fingers of his right hand.
+     Syd casts Paralysis at Shadowsin.
+     Syd attempts to make the spell permanent!
+     Dubber is surrounded by a thick shimmering shield.
+     Shadowsin's hands start to stiffen.
+     A magic missile bounces off Dubber's shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 11
+
+     Shadowsin's right hand is paralysed.
+     Shadowsin wiggles the fingers of his left hand.
+     Shadowsin proffers the palm of his right hand.
+     Shadowsin casts Charm Person at Dubber.
+     Shadowsin casts Protection at himself.
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Counter Spell at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd points the digit of his right hand.
+     Syd casts Paralysis at Dubber.
+     Syd casts Magic Missile at Dubber.
+     Dubber is covered by a magical glowing shield.
+     Shadowsin is surrounded by a thick shimmering shield.
+     Dubber's shield blurs for a moment.
+     Dubber's shield blurs for a moment.
+     A magic missile bounces off Dubber's shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 12
+
+     Shadowsin's right hand is paralysed.
+     Shadowsin says "That's the second game I've been perma'd in. Augh.".
+     Shadowsin proffers the palm of his left hand.
+     Shadowsin proffers the palm of his right hand.
+     Shadowsin casts Shield at himself.
+     Shadowsin casts Counter Spell at himself.
+     Dubber snaps the fingers of his left hand.
+     Dubber snaps the fingers of his right hand.
+     Dubber casts Counter Spell at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Paralysis at Nobody.
+     Syd casts Charm Person at Dubber.
+     Shadowsin is covered by a magical glowing shield.
+     Dubber is covered by a magical glowing shield.
+     The haze of an enchantment spell drifts aimlessly over the circle,
+     and dissipates.
+     Dubber's shield blurs for a moment.
+     Shadowsin is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+     Shadowsin surrenders.
+
+   Turn 13
+
+     Syd says "i think i would have waited for a dispell. it was just
+     para after all.".
+     Dubber points the digit of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Magic Missile at Burnt Ogre.
+     Syd wiggles the fingers of his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Paralysis at Dubber.
+     Dubber's hands start to stiffen.
+     Burnt Ogre is hit by a Magic Missile, for 1 damage.
+     Burnt Ogre attacks Dubber for 2 damage.
+
+   Turn 14
+
+     Dubber's right hand is paralysed.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Charm Person at Syd.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd points the digit of his right hand.
+     Syd casts Paralysis at himself.
+     Syd looks intrigued by Dubber.
+     Syd's hands start to stiffen.
+     Syd shakes his head and regains control, as enchantments cancel each
+     other out.
+     Dubber is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 15
+
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Counter Spell at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd waves his right hand.
+     Syd casts Paralysis at Dubber.
+     Dubber is covered by a magical glowing shield.
+     Dubber's shield blurs for a moment.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 16
+
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Paralysis at Syd.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd waves his right hand.
+     Syd casts Paralysis at Dubber.
+     Syd's hands start to stiffen.
+     Dubber's hands start to stiffen.
+     Dubber is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 17
+
+     Dubber's left hand is paralysed.
+     Syd's left hand is paralysed.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Paralysis at Syd.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Paralysis at Dubber.
+     Syd's hands start to stiffen.
+     Dubber's hands start to stiffen.
+     Dubber is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 18
+
+     Dubber's left hand is paralysed.
+     Syd's left hand is paralysed.
+     Syd says "lol. not parafc )".
+     Dubber wiggles the fingers of his left hand.
+     Dubber points the digit of his right hand.
+     Dubber casts Paralysis at Syd.
+     Syd wiggles the fingers of his left hand.
+     Syd waves his right hand.
+     Syd casts Paralysis at Nobody.
+     Syd's hands start to stiffen.
+     The haze of an enchantment spell drifts aimlessly over the circle,
+     and dissipates.
+     Burnt Ogre attacks Dubber for 2 damage.
+
+   Turn 19
+
+     Syd's left hand is paralysed.
+     Dubber says "oh, crud... not parafc is right :)".
+     Dubber wiggles the fingers of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Paralysis at Burnt Ogre.
+     Syd wiggles the fingers of his left hand.
+     Syd waves his right hand.
+     Syd casts Paralysis at Dubber.
+     Burnt Ogre's hands start to stiffen.
+     Dubber's hands start to stiffen.
+     Burnt Ogre can't move to attack.
+
+   Turn 20
+
+     Dubber's right hand is paralysed.
+     Syd says "i laughed. we both para'd to f again".
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Paralysis at Burnt Ogre.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd snaps the fingers of his right hand.
+     Syd casts Paralysis at Dubber.
+     Syd casts Counter Spell at Burnt Ogre.
+     Burnt Ogre is covered by a magical glowing shield.
+     Burnt Ogre's shield blurs for a moment.
+     Dubber's hands start to stiffen.
+     Dubber is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 21
+
+     Dubber's right hand is paralysed.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Paralysis at Syd.
+     Dubber casts Counter Spell at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Paralysis at Dubber.
+     Syd casts Shield at himself.
+     Dubber is covered by a magical glowing shield.
+     Syd's hands start to stiffen.
+     Dubber's shield blurs for a moment.
+     Syd is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 22
+
+     Syd's right hand is paralysed.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Paralysis at Syd.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Paralysis at himself.
+     Syd casts Shield at Burnt Ogre.
+     Syd's hands start to stiffen.
+     Syd's hands start to stiffen.
+     Syd shakes his head and regains control, as enchantments cancel each
+     other out.
+     Dubber is covered by a shimmering shield.
+     Burnt Ogre is covered by a shimmering shield.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 23
+
+     Dubber proffers the palm of his left hand.
+     Dubber stabs with his right hand.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd snaps the fingers of his right hand.
+     Syd casts Paralysis at Dubber.
+     Dubber's hands start to stiffen.
+     Dubber is covered by a shimmering shield.
+     Dubber attacks Burnt Ogre for 1 damage.
+     Burnt Ogre attacks Dubber, but is deflected by a shield.
+     Burnt Ogre dies.
+
+   Turn 24
+
+     Dubber's left hand is paralysed.
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Paralysis at Dubber.
+     Dubber's hands start to stiffen.
+     Dubber is covered by a shimmering shield.
+
+   Turn 25
+
+     Dubber's left hand is paralysed.
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd waves his right hand.
+     Syd casts Paralysis at Nobody.
+     Syd casts Summon Ogre at himself.
+     Yellow Ogre is summoned to serve Syd.
+     The haze of an enchantment spell drifts aimlessly over the circle,
+     and dissipates.
+     Dubber is covered by a shimmering shield.
+     Yellow Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 26
+
+     Dubber snaps the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Protection at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd waves his right hand.
+     Syd casts Paralysis at Dubber.
+     Dubber is surrounded by a thick shimmering shield.
+     Dubber's hands start to stiffen.
+     Yellow Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 27
+
+     Dubber's right hand is paralysed.
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Counter Spell at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Paralysis at Dubber.
+     Syd casts Protection at himself.
+     Dubber is covered by a magical glowing shield.
+     Syd is surrounded by a thick shimmering shield.
+     Dubber's shield blurs for a moment.
+     Yellow Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 28
+
+     Dubber waves his left hand.
+     Dubber waves his right hand.
+     Dubber casts Summon Ogre at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Paralysis at Dubber.
+     Syd casts Counter Spell at Yellow Ogre.
+     Yellow Ogre is covered by a magical glowing shield.
+     Angry Ogre is summoned to serve Dubber.
+     Dubber's hands start to stiffen.
+     Syd directs Yellow Ogre to attack Angry Ogre.
+     Dubber directs Angry Ogre to attack Yellow Ogre.
+     Yellow Ogre attacks Angry Ogre for 2 damage.
+     Angry Ogre attacks Yellow Ogre, but is deflected by a shield.
+     Angry Ogre dies.
+
+   Turn 29
+
+     Dubber's left hand is paralysed.
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd waves his right hand.
+     Syd casts Paralysis at Dubber.
+     Dubber's hands start to stiffen.
+     Dubber is covered by a shimmering shield.
+     Syd directs Yellow Ogre to attack Dubber.
+     Yellow Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 30
+
+     Dubber's left hand is paralysed.
+     Dubber proffers the palm of his left hand.
+     Dubber wiggles the fingers of his right hand.
+     Dubber casts Counter Spell at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Paralysis at Dubber.
+     Syd casts Shield at himself.
+     Dubber is covered by a magical glowing shield.
+     Dubber's shield blurs for a moment.
+     Syd is covered by a shimmering shield.
+     Yellow Ogre attacks Dubber, but is deflected by a shield.
+
+   Turn 31
+
+     Syd says "i'm not good at big decision points... (".
+     Dubber snaps the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Cause Light Wounds at Yellow Ogre.
+     Syd wiggles the fingers of his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Paralysis at Dubber.
+     Dubber's hands start to stiffen.
+     Wounds appear all over Yellow Ogre's body!
+     Yellow Ogre attacks Dubber for 2 damage.
+     Yellow Ogre dies.
+
+   Turn 32
+
+     Dubber's left hand is paralysed.
+     Dubber points the digit of his left hand.
+     Dubber snaps the fingers of his right hand.
+     Dubber casts Magic Missile at Syd.
+     Syd wiggles the fingers of his left hand.
+     Syd snaps the fingers of his right hand.
+     Syd casts Paralysis at Dubber.
+     Dubber's hands start to stiffen.
+     Syd is hit by a Magic Missile, for 1 damage.
+
+   Turn 33
+
+     Dubber's left hand is paralysed.
+     Dubber says "here's your one 50/50 decision-point... FFF at me
+     hoping I Clap or FFF at you hoping I SWD you... may the best guesser
+     guess bester :)".
+     Syd says "i think that may be game...but i have been suprised
+     before".
+     Dubber points the digit of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Charm Monster at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd snaps the fingers of his right hand.
+     Syd casts Paralysis at Dubber.
+     Dubber ignores Dubber's appeal to his baser instincts.
+     Dubber's hands start to stiffen.
+     Dubber shakes his head and regains control, as enchantments cancel
+     each other out.
+
+   Turn 34
+
+     Syd says "and again...the triple S confuses me and mine so i just in
+     case it. also dr. seuss is awesome. )".
+     Dubber snaps the fingers of his left hand.
+     Dubber points the digit of his right hand.
+     Dubber casts Fear at Syd.
+     Syd wiggles the fingers of his left hand.
+     Syd points the digit of his right hand.
+     Syd casts Paralysis at Dubber.
+     Syd casts Magic Missile at Dubber.
+     Syd cringes in fear.
+     Dubber's hands start to stiffen.
+     Dubber is hit by a Magic Missile, for 1 damage.
+
+   Turn 35
+
+     Dubber's left hand is paralysed.
+     Syd quakes in fear!
+     Dubber points the digit of his left hand.
+     Dubber wiggles the fingers of his right hand.
+     Dubber casts Magic Missile at Syd.
+     Syd waves his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Shield at himself.
+     Syd is covered by a shimmering shield.
+     A magic missile bounces off Syd's shield.
+
+   Turn 36
+
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Shield at himself.
+     Dubber casts Cure Light Wounds at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Amnesia at Dubber.
+     Dubber starts to look blank.
+     Dubber is healed.
+     Dubber is covered by a shimmering shield.
+
+   Turn 37
+
+     Dubber forgets what he's doing, and makes the same gestures as last
+     round!
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Amnesia at Syd.
+     Syd proffers the palm of his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Cause Light Wounds at Dubber.
+     Syd starts to look blank.
+     Wounds appear all over Dubber's body!
+
+   Turn 38
+
+     Syd forgets what he's doing, and makes the same gestures as last
+     round!
+     Dubber waves his left hand.
+     Dubber waves his right hand.
+     Syd proffers the palm of his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Shield at himself.
+     Syd is covered by a shimmering shield.
+
+   Turn 39
+
+     Dubber proffers the palm of his left hand.
+     Dubber snaps the fingers of his right hand.
+     Dubber casts Shield at himself.
+     Dubber casts Counter Spell at himself.
+     Syd waves his left hand.
+     Syd waves his right hand.
+     Dubber is covered by a magical glowing shield.
+     Dubber is covered by a shimmering shield.
+
+   Turn 40
+
+     Dubber proffers the palm of his left hand.
+     Dubber points the digit of his right hand.
+     Dubber casts Counter Spell at himself.
+     Dubber casts Magic Missile at Syd.
+     Syd proffers the palm of his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Shield at himself.
+     Dubber is covered by a magical glowing shield.
+     Syd is covered by a shimmering shield.
+     A magic missile bounces off Syd's shield.
+
+   Turn 41
+
+     Dubber says "oh, yucko...".
+     Dubber proffers the palm of his left hand.
+     Dubber wiggles the fingers of his right hand.
+     Dubber casts Shield at himself.
+     Syd wiggles the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Cause Light Wounds at Dubber.
+     Dubber is covered by a shimmering shield.
+     Wounds appear all over Dubber's body!
+
+   Turn 42
+
+     Syd says "yep yep. i never see w/w as threatening until it's too
+     late either".
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Shield at himself.
+     Dubber casts Cure Light Wounds at himself.
+     Syd points the digit of his left hand.
+     Syd snaps the fingers of his right hand.
+     Syd casts Cause Heavy Wounds at Dubber.
+     Dubber is healed.
+     Dubber is covered by a shimmering shield.
+     Wounds appear all over Dubber's body!
+
+   Turn 43
+
+     Dubber waves his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Shield at himself.
+     Syd proffers the palm of his left hand.
+     Syd points the digit of his right hand.
+     Syd casts Shield at himself.
+     Syd casts Magic Missile at Dubber.
+     Dubber is covered by a shimmering shield.
+     Syd is covered by a shimmering shield.
+     A magic missile bounces off Dubber's shield.
+
+   Turn 44
+
+     Dubber waves his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Counter Spell at himself.
+     Syd proffers the palm of his left hand.
+     Syd snaps the fingers of his right hand.
+     Syd casts Amnesia at Dubber.
+     Dubber is covered by a magical glowing shield.
+     Dubber's shield blurs for a moment.
+
+   Turn 45
+
+     Dubber proffers the palm of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Protection at himself.
+     Syd waves his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Confusion at Dubber.
+     Dubber is surrounded by a thick shimmering shield.
+     Dubber looks a bit confused.
+
+   Turn 46
+
+     Dubber confusedly makes the wrong gesture with his left hand.
+     Syd says "lol i thought that was maladroit".
+     Dubber wiggles the fingers of his left hand.
+     Dubber waves his right hand.
+     Syd wiggles the fingers of his left hand.
+     Syd waves his right hand.
+     Syd casts Summon Goblin at himself.
+     Tricky Goblin is summoned to serve Syd.
+     Tricky Goblin attacks Dubber, but is deflected by a shield.
+
+   Turn 47
+
+     Dubber says "me too :)".
+     Syd says "gg".
+     Dubber points the digit of his left hand.
+     Dubber snaps the fingers of his right hand.
+     Dubber casts Cause Heavy Wounds at Syd.
+     Dubber casts Counter Spell at himself.
+     Syd proffers the palm of his left hand.
+     Syd wiggles the fingers of his right hand.
+     Syd casts Cause Light Wounds at Dubber.
+     Dubber is covered by a magical glowing shield.
+     Wounds appear all over Syd's body!
+     Holes open up in Dubber's shield, but then close up again.
+     Tricky Goblin attacks Dubber, but is deflected by a shield.
+
+   Turn 48
+
+     Dubber proffers the palm of his left hand.
+     Dubber points the digit of his right hand.
+     Dubber casts Shield at himself.
+     Dubber casts Magic Missile at Tricky Goblin.
+     Syd snaps the fingers of his left hand.
+     Syd proffers the palm of his right hand.
+     Syd casts Cause Light Wounds at Dubber.
+     Dubber is covered by a shimmering shield.
+     Tricky Goblin is hit by a Magic Missile, for 1 damage.
+     Wounds appear all over Dubber's body!
+     Tricky Goblin attacks Dubber, but is deflected by a shield.
+     Tricky Goblin dies.
+     Dubber dies.
+     Syd is victorious!
+
+   Shadowsin(0) Surrendered. (Health: 15) - Paralysed(permanent)
+                Fireproof(permanent) Shield(1)
+   Turn:0123456789012345678901234567890123456789012345678
+     LH:BWFPCWWFPSDFP
+     RH:BWDDCWPPSWWPP
+
+   Registered!  Dubber(21) Dead.
+   Turn:0123456789012345678901234567890123456789012345678
+     LH:BSPFFFFFWWPPSDFFFFFFFFFPPPSFWPPSDDSDPPWPPPPWWPFDP
+     RH:BWWPPPPPWPWWSWPPPPDWPPP>WWPPWWFPSWDFWWWSDFWPPWWSD
+
+   DellWizard(0) Surrendered. (Health: 15)
+   Turn:0123456789012345678901234567890123456789012345678
+     LH:BP
+     RH:BP
+
+   Syd(0) Health:11
+   Turn:0123456789012345678901234567890123456789012345678
+     LH:BPSFWPPWFFFFFFFFFFFFFFFFFFFFFFFFFFFWFPPWPFDPPWFPS
+     RH:BSPFPSDWPPSDFFDWWFWWSPPSFWWPPWPFSSDPPFFWFPSDSFWFP
+
+   ihab(0) Surrendered. (Health: 15)
+   Turn:0123456789012345678901234567890123456789012345678
+     LH:BSWP
+     RH:BSSP
+
+   chb(0) Surrendered. (Health: 8)
+   Turn:0123456789012345678901234567890123456789012345678
+     LH:BFSDPPWPP
+     RH:BPFSF-FFP

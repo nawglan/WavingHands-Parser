@@ -1,0 +1,274 @@
+   Username: ____________
+   Password: ____________
+   Remember: [_]
+   Login
+     New User
+
+
+   Rules
+
+        Status
+
+              Challenges
+
+                        Players
+
+                               RavenBlack Games
+
+                                                           Spell Reference
+
+Turn 17 in Melee (ParaFC) Battle 64496
+
+   Turn 0
+
+     kaytee bows.
+     JC bows.
+     Alaric bows.
+
+   Turn 1
+
+     kaytee says "Forced Turn".
+     Alaric says "Greetings".
+     kaytee proffers the palm of his left hand.
+     kaytee proffers the palm of his right hand.
+     kaytee casts Shield at himself.
+     kaytee casts Shield at himself.
+     JC snaps the fingers of his left hand.
+     JC proffers the palm of his right hand.
+     JC casts Shield at himself.
+     Alaric points the digit of his left hand.
+     Alaric proffers the palm of his right hand.
+     Alaric casts Shield at himself.
+     kaytee is covered by a shimmering shield.
+     kaytee is covered by a shimmering shield.
+     JC is covered by a shimmering shield.
+     Alaric is covered by a shimmering shield.
+     kaytee surrenders.
+
+   Turn 2
+
+     JC wiggles the fingers of his left hand.
+     JC snaps the fingers of his right hand.
+     Alaric snaps the fingers of his left hand.
+     Alaric snaps the fingers of his right hand.
+
+   Turn 3
+
+     JC waves his left hand.
+     JC points the digit of his right hand.
+     JC casts Summon Goblin at himself.
+     JC casts Magic Missile at Alaric.
+     Alaric wiggles the fingers of his left hand.
+     Alaric points the digit of his right hand.
+     Alaric casts Confusion at JC.
+     Alaric casts Magic Missile at the monster JC is summoning with his
+     left hand.
+     Nasty Goblin is summoned to serve JC.
+     JC looks a bit confused.
+     Alaric is hit by a Magic Missile, for 1 damage.
+     Nasty Goblin is hit by a Magic Missile, for 1 damage.
+     JC directs Nasty Goblin to attack Alaric.
+     Nasty Goblin attacks Alaric for 1 damage.
+     Nasty Goblin dies.
+
+   Turn 4
+
+     JC confusedly makes the wrong gesture with his left hand.
+     JC makes no gesture with his left hand.
+     JC points the digit of his right hand.
+     JC casts Charm Monster at himself.
+     Alaric waves his left hand.
+     Alaric wiggles the fingers of his right hand.
+     Alaric casts Summon Goblin at himself.
+     Alaric casts Charm Person at JC.
+     Bearded Goblin is summoned to serve Alaric.
+     JC ignores JC's appeal to his baser instincts.
+     JC looks intrigued by Alaric.
+     JC shakes his head and regains control, as enchantments cancel each
+     other out.
+     Bearded Goblin attacks JC for 1 damage.
+
+   Turn 5
+
+     JC stabs with his left hand.
+     JC proffers the palm of his right hand.
+     JC casts Shield at himself.
+     Alaric proffers the palm of his left hand.
+     Alaric wiggles the fingers of his right hand.
+     Alaric casts Shield at himself.
+     JC is covered by a shimmering shield.
+     Alaric is covered by a shimmering shield.
+     JC attacks Bearded Goblin for 1 damage.
+     Bearded Goblin attacks JC, but is deflected by a shield.
+     Bearded Goblin dies.
+
+   Turn 6
+
+     JC wiggles the fingers of his left hand.
+     JC proffers the palm of his right hand.
+     JC casts Amnesia at Alaric.
+     Alaric wiggles the fingers of his left hand.
+     Alaric points the digit of his right hand.
+     Alaric starts to look blank.
+
+   Turn 7
+
+     Alaric forgets what he's doing, and makes the same gestures as last
+     round!
+     JC waves his left hand.
+     JC waves his right hand.
+     Alaric wiggles the fingers of his left hand.
+     Alaric points the digit of his right hand.
+     Alaric casts Lightning Bolt at JC.
+     JC is hit by a bolt of lightning, for 5 damage.
+
+   Turn 8
+
+     JC snaps the fingers of his left hand.
+     JC snaps the fingers of his right hand.
+     JC casts Invisibility at himself.
+     Alaric wiggles the fingers of his left hand.
+     Alaric wiggles the fingers of his right hand.
+     Alaric casts Paralysis at JC.
+     JC's hands start to stiffen.
+     JC begins to shimmer.
+     There is a flash, and JC disappears!
+
+   Turn 9
+
+     JC's left hand is paralysed.
+     Alaric snaps the fingers of his left hand.
+     Alaric proffers the palm of his right hand.
+     Alaric casts Shield at himself.
+     Alaric is covered by a shimmering shield.
+     A magic missile bounces off Alaric's shield.
+
+   Turn 10
+
+     Alaric snaps the fingers of his left hand.
+     Alaric waves his right hand.
+     Alaric casts Cure Heavy Wounds at himself.
+     Grey Goblin is summoned to serve JC.
+     Alaric is healed.
+     Grey Goblin attacks Alaric for 1 damage.
+
+   Turn 11
+
+     Alaric points the digit of his left hand.
+     Alaric proffers the palm of his right hand.
+     Alaric casts Magic Missile at Grey Goblin.
+     Alaric casts Shield at himself.
+     Alaric looks a bit confused.
+     Alaric is covered by a shimmering shield.
+     Grey Goblin is hit by a Magic Missile, for 1 damage.
+     Grey Goblin attacks Alaric, but is deflected by a shield.
+     JC fades back into visibility.
+     Grey Goblin dies.
+
+   Turn 12
+
+     Alaric confusedly makes the wrong gesture with his right hand.
+     JC waves his left hand.
+     JC wiggles the fingers of his right hand.
+     JC casts Summon Goblin at himself.
+     Alaric points the digit of his left hand.
+     Alaric snaps the fingers of his right hand.
+     Alaric casts Fireball at JC.
+     Ugly Goblin is summoned to serve JC.
+     A fireball strikes JC, burning him for 5 damage.
+     Ugly Goblin attacks Alaric for 1 damage.
+
+   Turn 13
+
+     JC waves his left hand.
+     JC proffers the palm of his right hand.
+     JC casts Resist Heat at himself.
+     Alaric snaps the fingers of his left hand.
+     Alaric points the digit of his right hand.
+     Alaric casts Magic Missile at Ugly Goblin.
+     JC is covered in a coat of sparkling frost.
+     Ugly Goblin is hit by a Magic Missile, for 1 damage.
+     Ugly Goblin attacks Alaric for 1 damage.
+     Ugly Goblin dies.
+
+   Turn 14
+
+     JC waves his left hand.
+     JC snaps the fingers of his right hand.
+     Alaric wiggles the fingers of his left hand.
+     Alaric snaps the fingers of his right hand.
+     Alaric casts Confusion at JC.
+     JC looks a bit confused.
+
+   Turn 15
+
+     JC makes a confused gesture, but luckily it's what he intended
+     anyway!
+     JC proffers the palm of his left hand.
+     JC wiggles the fingers of his right hand.
+     JC casts Protection at Alaric.
+     Alaric waves his left hand.
+     Alaric wiggles the fingers of his right hand.
+     Alaric casts Summon Goblin at himself.
+     Alaric casts Confusion at JC.
+     Horrid Goblin is summoned to serve Alaric.
+     Alaric is surrounded by a thick shimmering shield.
+     JC looks a bit confused.
+     Horrid Goblin attacks JC for 1 damage.
+
+   Turn 16
+
+     JC confusedly makes the wrong gesture with his right hand.
+     JC says "Er, that was supposed to be LH:S for counterspell, but the
+     confusion would probably have made me do that instead, anyway :(".
+     JC proffers the palm of his left hand.
+     JC stabs with his right hand.
+     JC casts Counter Spell at Alaric.
+     Alaric proffers the palm of his left hand.
+     Alaric waves his right hand.
+     Alaric casts Shield at himself.
+     Alaric casts Summon Goblin at himself.
+     Alaric is covered by a magical glowing shield.
+     Alaric's Goblin is absorbed into a Counterspell glow.
+     Alaric is covered by a shimmering shield.
+     Alaric directs Horrid Goblin to attack the monster JC is summoning
+     with his right hand.
+     JC attacks Alaric, but is deflected by a shield.
+     Horrid Goblin swings wildly for the monster JC is summoning with his
+     right hand, but misses.
+
+   Turn 17
+
+     Alaric says "gg".
+     JC proffers the palm of his left hand.
+     JC proffers the palm of his right hand.
+     JC casts Shield at himself.
+     JC casts Shield at himself.
+     Alaric wiggles the fingers of his left hand.
+     Alaric proffers the palm of his right hand.
+     Alaric casts Shield at himself.
+     JC is covered by a shimmering shield.
+     JC is covered by a shimmering shield.
+     Alaric is covered by a shimmering shield.
+     Alaric directs Horrid Goblin to attack JC.
+     Horrid Goblin attacks JC, but is deflected by a shield.
+     JC surrenders.
+     Alaric is victorious!
+
+   Horrid Goblin    Health:1
+   Owned by: Alaric Attacking: JC
+
+   kaytee(0) Surrendered. (Health: 15)
+   Turn:012345678901234567
+     LH:BP
+     RH:BP
+
+   JC(0) Surrendered. (Health: 3) - Fireproof(permanent)
+   Turn:012345678901234567
+     LH:BSFW->FWS???WWWPPP
+     RH:BPSDDPPWS???FPSF>P
+
+   Registered!  Alaric(4) Health:12
+   Turn:012345678901234567
+     LH:BDSFWPFFFSSDDSFWPF
+     RH:BPSDFFDDFPWPSDSFWP

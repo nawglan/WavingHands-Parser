@@ -1,0 +1,181 @@
+
+   Buy my book and get a Warlocks registration (no ads, more simultaneous
+   games) free.
+   Username: ____________
+   Password: ____________
+   Remember: [_]
+   Login
+     New User
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 12 in Ladder Battle 18271
+
+   Turn 0
+
+     Witch bows.
+     kaoszombi bows.
+
+   Turn 1
+
+     Witch says "Hello ".
+     kaoszombi says "Hello".
+     Witch points the digit of his left hand.
+     Witch proffers the palm of his right hand.
+     Witch casts Shield at himself.
+     kaoszombi points the digit of his left hand.
+     kaoszombi proffers the palm of his right hand.
+     kaoszombi casts Shield at himself.
+     Witch is covered by a shimmering shield.
+     kaoszombi is covered by a shimmering shield.
+
+   Turn 2
+
+     Witch proffers the palm of his left hand.
+     Witch snaps the fingers of his right hand.
+     Witch casts Shield at himself.
+     kaoszombi snaps the fingers of his left hand.
+     kaoszombi snaps the fingers of his right hand.
+     Witch is covered by a shimmering shield.
+
+   Turn 3
+
+     Witch proffers the palm of his left hand.
+     Witch points the digit of his right hand.
+     Witch casts Amnesia at himself.
+     Witch casts Magic Missile at kaoszombi.
+     kaoszombi wiggles the fingers of his left hand.
+     kaoszombi points the digit of his right hand.
+     kaoszombi casts Confusion at Witch.
+     kaoszombi casts Magic Missile at Witch.
+     Witch starts to look blank.
+     Witch looks a bit confused.
+     Witch shakes his head and regains control, as enchantments cancel each
+     other out.
+     kaoszombi is hit by a Magic Missile, for 1 damage.
+     Witch is hit by a Magic Missile, for 1 damage.
+
+   Turn 4
+
+     Witch snaps the fingers of his left hand.
+     Witch wiggles the fingers of his right hand.
+     Witch casts Charm Person at kaoszombi.
+     kaoszombi waves his left hand.
+     kaoszombi points the digit of his right hand.
+     kaoszombi casts Summon Goblin at himself.
+     kaoszombi casts Charm Monster at the monster kaoszombi is summoning with
+     his left hand.
+     Belligerent Goblin is summoned to serve kaoszombi.
+     kaoszombi looks intrigued by Witch.
+     Belligerent Goblin looks, glassy-eyed, at kaoszombi.
+     kaoszombi directs Belligerent Goblin to attack Witch.
+     Belligerent Goblin attacks Witch for 1 damage.
+
+   Turn 5
+
+     kaoszombi is charmed into making the wrong gesture with his left hand.
+     Witch points the digit of his left hand.
+     Witch proffers the palm of his right hand.
+     Witch casts Magic Missile at kaoszombi.
+     Witch casts Shield at himself.
+     kaoszombi makes no gesture with his left hand.
+     kaoszombi wiggles the fingers of his right hand.
+     Witch is covered by a shimmering shield.
+     kaoszombi is hit by a Magic Missile, for 1 damage.
+     Belligerent Goblin attacks Witch, but is deflected by a shield.
+
+   Turn 6
+
+     Witch wiggles the fingers of his left hand.
+     Witch waves his right hand.
+     Witch casts Charm Person at kaoszombi.
+     Witch casts Cure Heavy Wounds at himself.
+     kaoszombi stabs with his left hand.
+     kaoszombi wiggles the fingers of his right hand.
+     kaoszombi looks intrigued by Witch.
+     Witch is healed.
+     kaoszombi attacks Belligerent Goblin for 1 damage.
+     Belligerent Goblin attacks Witch for 1 damage.
+     Belligerent Goblin dies.
+
+   Turn 7
+
+     kaoszombi is charmed into making the wrong gesture with his right hand.
+     Witch wiggles the fingers of his left hand.
+     Witch proffers the palm of his right hand.
+     Witch casts Shield at himself.
+     kaoszombi points the digit of his left hand.
+     kaoszombi makes no gesture with his right hand.
+     Witch is covered by a shimmering shield.
+
+   Turn 8
+
+     Witch points the digit of his left hand.
+     Witch wiggles the fingers of his right hand.
+     kaoszombi claps.
+
+   Turn 9
+
+     Witch wiggles the fingers of his left hand.
+     Witch snaps the fingers of his right hand.
+     kaoszombi waves his left hand.
+     kaoszombi waves his right hand.
+     kaoszombi casts Magic Mirror at himself.
+     kaoszombi is covered by a reflective shield.
+
+   Turn 10
+
+     Witch waves his left hand.
+     Witch snaps the fingers of his right hand.
+     Witch casts Cure Light Wounds at himself.
+     kaoszombi proffers the palm of his left hand.
+     kaoszombi waves his right hand.
+     kaoszombi casts Shield at himself.
+     Witch is healed.
+     kaoszombi is covered by a shimmering shield.
+
+   Turn 11
+
+     Witch waves his left hand.
+     Witch snaps the fingers of his right hand.
+     kaoszombi wiggles the fingers of his left hand.
+     kaoszombi proffers the palm of his right hand.
+     kaoszombi casts Protection at himself.
+     kaoszombi is surrounded by a thick shimmering shield.
+
+   Turn 12
+
+     Witch proffers the palm of his left hand.
+     Witch points the digit of his right hand.
+     Witch casts Protection at himself.
+     Witch casts Finger of Death at kaoszombi.
+     kaoszombi points the digit of his left hand.
+     kaoszombi proffers the palm of his right hand.
+     kaoszombi casts Cause Heavy Wounds at Witch.
+     kaoszombi casts Counter Spell at himself.
+     kaoszombi is covered by a magical glowing shield.
+     Witch is surrounded by a thick shimmering shield.
+     Wounds appear all over Witch's body!
+     kaoszombi is touched with the Finger of Death.
+     kaoszombi dies.
+     Witch is victorious!
+
+   Registered!  Witch(3) Health:12 - Shield(2)
+   Turn:0123456789012
+     LH:BDPPSDFFDFWWP
+     RH:BPSDFPWPFSSSD
+
+   kaoszombi(0) Dead. - Shield(1)
+   Turn:0123456789012
+     LH:BDSFW->DCWPFD
+     RH:BPSDDFF-CWWPP

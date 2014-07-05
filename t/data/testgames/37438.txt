@@ -1,0 +1,82 @@
+
+   Username: ____________
+   Password: ____________
+   Remember: [_]
+   Login
+     New User
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 4 in Ladder Battle 37438
+
+   Turn 0
+
+     Jera bows.
+     Morzas bows.
+
+   Turn 1
+
+     Jera snaps the fingers of his left hand.
+     Jera waves his right hand.
+     Morzas snaps the fingers of his left hand.
+     Morzas waves his right hand.
+
+   Turn 2
+
+     Morzas says "NOOOOOO".
+     Jera proffers the palm of his left hand.
+     Jera wiggles the fingers of his right hand.
+     Jera casts Shield at himself.
+     Morzas waves his left hand.
+     Morzas proffers the palm of his right hand.
+     Morzas casts Shield at himself.
+     Jera is covered by a shimmering shield.
+     Morzas is covered by a shimmering shield.
+
+   Turn 3
+
+     Jera wiggles the fingers of his left hand.
+     Jera proffers the palm of his right hand.
+     Jera casts Cause Light Wounds at Morzas.
+     Morzas points the digit of his left hand.
+     Morzas wiggles the fingers of his right hand.
+     Morzas casts Fear at Jera.
+     Jera cringes in fear.
+     Wounds appear all over Morzas's body!
+
+   Turn 4
+
+     Jera quakes in fear!
+     Jera says "Forced Turn".
+     Jera proffers the palm of his left hand.
+     Jera proffers the palm of his right hand.
+     Jera casts Anti-spell at Morzas.
+     Jera casts Shield at himself.
+     Morzas points the digit of his left hand.
+     Morzas points the digit of his right hand.
+     Morzas casts Cause Heavy Wounds at Jera.
+     Morzas's half-done spells fizzle and die.
+     Jera is covered by a shimmering shield.
+     Wounds appear all over Jera's body!
+     Jera surrenders.
+     Morzas is victorious!
+
+   Jera(0) Surrendered. (Health: 12)
+   Turn:01234
+     LH:BSPFP
+     RH:BWFPP
+
+   Morzas(1) Health:13
+   Turn:01234
+     LH:BSWD-
+     RH:BWPF-
