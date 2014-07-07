@@ -456,7 +456,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             my @players =  sort{length "$b" <=> length "$a"} @{$globals->{players}};
             my $playercount = scalar @players;
             if ($playercount > 2) {
-                $global->{melee_game} = 1;
+                $globals->{melee_game} = 1;
             }
             local ($1);
             my $rule = sprintf ("PLAYERNAME : /\\b\(%s\)\\b/", (join '|', @players));
@@ -567,7 +567,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     ELEMENTALMERGE : "Two" STORMTYPE ELEMENTAL "merge" INTO "one"
     ELEMENTALCANCEL : "Fire" AND "Ice" "storms" "cancel" "each" "other" "out" PUNCT "leaving" "just" "a" "gentle" "breeze"
     BURSTOFSPEED : IN A "burst" OF "speed" PUNCT | #nothing
-    NOMASTER : A SUMMONED "creature" PUNCT "finding" "no" "master" PUNCT "returns" "from" "whence" "it" "came"
+    NOMASTER : A SUMMONED "creature" PUNCT "finding" "no" "master" PUNCT "returns" "from" "whence" IT "came"
 
     specialtypes : NOMASTER | TURNOUTSIDETIME | ELEMENTALCANCEL | ELEMENTALMERGE | FIREBALLLANDS | SHIMMERSHIELD | ELEMENTALDESTROY | MIRRORDISSIPATE | PERMOVERRIDE | LIGHTNINGSPARKS | FASTPLAYERS | TINYHOLES | SPELLDRIFTS | LIGHTNINGARCS | HAZEENCHANT | MISSILEFLIES | SCALESGROW | SCALESREMOVED | HOLESOPEN | REFLECTSPELL | SPELLSFAIL | GOESPOOF | BOUNCEMISSILE | STORMRAGES | WOUNDED
 
@@ -717,6 +717,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     SPELL : /spells?/
     OVER : "over"
     DAMAGE : "damage"
+    IT : "it"
 
     # these are in order by likelyhood of being cast
     SPELLNAME :
@@ -828,7 +829,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
           "forgets" "what" "he" APOSS "doing" PUNCT AND "makes" THE "same" GESTURE AS "last" "round" |
           handed HAND "stab" IS "wasted" AT A "monster" "which" "wasn't" SUMMONED |
           "ignores" target APOSS "appeal" TO HIS "baser" "instincts" |
-          "makes" A "confused" GESTURE PUNCT BUT "luckily" "it" APOSS "what" "he" "intended" "anyway" |
+          "makes" A "confused" GESTURE PUNCT BUT "luckily" IT APOSS "what" "he" "intended" "anyway" |
           "makes" THE SPELL PERMANENT |
           "melts" ELEMENTALDESTROYED |
           "runs" ELEMENTALISWILD |
@@ -840,7 +841,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
           "starts" TO "lose" "coordination" |
           "stomach" "rumbles" |
           "stops" HIS "heart" "through" "force" OF "will" "alone" |
-          "tries" TO CAST "Clap" OF LIGHTNING PUNCT BUT "doesn't" "have" THE "charge" FOR "it"
+          "tries" TO CAST "Clap" OF LIGHTNING PUNCT BUT "doesn't" "have" THE "charge" FOR IT
 
 _EOGRAMMAR_
 ;
