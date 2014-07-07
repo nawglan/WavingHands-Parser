@@ -14,6 +14,7 @@ our $VERSION = '0.01';
 our $globals = {};
 
 use Parse::RecDescent;
+use JSON;
 
 =head1 SYNOPSIS
 
@@ -337,11 +338,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     CLAPS : "claps"
     {
-        my $turn = $globals->{data}{current_turn};
-        my $player = $globals->{data}{active_player};
+        my $turn = $globals->{current_turn};
+        my $player = $globals->{active_player};
 
-        $globals->{data}{turn}[$turn]->{$player}{gesture}{right} = 'C';
-        $globals->{data}{turn}[$turn]->{$player}{gesture}{left} = 'C';
+        $globals->{turnlist}[$turn]->{$player}{gesture}{right} = 'C';
+        $globals->{turnlist}[$turn]->{$player}{gesture}{left} = 'C';
     }
 
     GESTURE : /gestures?/
@@ -387,27 +388,25 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     BANKEDSPELL : PARENDS "Banked" COLON SPELLNAME PARENDS | #nothing
 
-    playerladder: PLAYERNAME PARENDS INTEGER PARENDS
-
-    player: REGISTERED playerladder SURRENDERED DEAD HEALTH DASH AFFECTEDBY BANKEDSPELL TURNLIST PLAYERGESTURES
+    player: REGISTERED PLAYERNAME PARENDS INTEGER PARENDS SURRENDERED DEAD HEALTH DASH AFFECTEDBY BANKEDSPELL TURNLIST PLAYERGESTURES
     {
         my $player = $item{PLAYERNAME};
         my $gestures = $item{PLAYERGESTURES};
 
-        ($globals->{data}{$player}{gestures}{left}) = ($gestures =~ /LH[:]B(.*?)\n/s);
-        ($globals->{data}{$player}{gestures}{right}) = ($gestures =~ /RH[:]B(.*?)\n+/s);
+        ($globals->{$player}{gestures}{left}) = ($gestures =~ /LH[:]B(.*?)\n/s);
+        ($globals->{$player}{gestures}{right}) = ($gestures =~ /RH[:]B(.*?)\n+/s);
     }
 
     listofplayers : "-ShOuLdNeVeRmAtCh-"
     playerlist : listofplayers
 
-    turnbody : TURNBODY | #nothing
+    turnbody : TURNBODYTYPES(s) PUNCT | #nothing
 
     turnsection : TURNLINE turnbody(s)
     {
-        my $turn = $globals->{data}{current_turn};
+        my $turn = $globals->{current_turn};
 
-        $globals->{data}{turn}[$turn]->{gametext} = $item{turnbody};
+        $globals->{turnlist}[$turn]->{gametext} = $item{turnbody};
 
         1;
     }
@@ -425,7 +424,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     modifier : PARAFC | PARAFDF | MALADROIT
     {
-        push @{$globals->{data}{game_modifiers}}, $item[1];
+        push @{$globals->{game_modifiers}}, $item[1];
     }
 
     formoney : LADDER | MELEE
@@ -440,12 +439,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     gametype : formoney | forpride
     {
-        $globals->{data}{gametype} = $item[1];
+        $globals->{gametype} = $item[1];
     }
 
     gameid : INTEGER
     {
-        $globals->{data}{gameid} = $item{INTEGER};
+        $globals->{gameid} = $item{INTEGER};
     }
 
     TURNLINE : TURN INTEGER
@@ -454,8 +453,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($turn == 1) {
             # create regex for matching playernames exactly and replace the generic one.
-            my @players =  sort{length "$b" <=> length "$a"} @{$globals->{data}{players}};
+            my @players =  sort{length "$b" <=> length "$a"} @{$globals->{players}};
             my $playercount = scalar @players;
+            if ($playercount > 2) {
+                $global->{melee_game} = 1;
+            }
             local ($1);
             my $rule = sprintf ("PLAYERNAME : /\\b\(%s\)\\b/", (join '|', @players));
             my $rule2 = "listofplayers : player($playercount)";
@@ -473,8 +475,8 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             die $@ if $@;
         }
 
-        $globals->{data}{turn}[$turn] = {};
-        $globals->{data}{current_turn} = $turn;
+        $globals->{turnlist}[$turn] = {};
+        $globals->{current_turn} = $turn;
     }
 
     DIES : "dies"
@@ -482,40 +484,52 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     SURRENDERS : "surrenders"
     IGNOBLEEND : NO "Warlocks" "remaining" PUNCT AN "ignominious" "end" TO A "battle"
 
-    targetoutcome : DIES | VICTORIOUS | SURRENDERS
+    possibleoutcome : DIES | VICTORIOUS | SURRENDERS
+    targetoutcome : target possibleoutcome
+    {
+        if (grep {$_ eq $item{target}} @{$globals->{players}}) {
+            if ($item{possibleoutcome} =~ /victorious/) {
+                $globals->{$item{target}}{winner} = 1;
+                $globals->{winner} = $item{target};
+            } elsif ($item{possibleoutcome} =~ /dies/) {
+                $globals->{$item{target}}{died} = 1;
+            } else {
+                $globals->{$item{target}}{surrendered} = 1;
+            }
+        }
+    }
 
-    possibleoutcome : IGNOBLEEND | target targetoutcome
-
-    gameoutcome : possibleoutcome PUNCT
+    gameoutcome : IGNOBLEEND | targetoutcome
 
     playername : PLAYERNAME
     {
-        $globals->{data}{active_player} = $item{PLAYERNAME};
+        $globals->{active_player} = $item{PLAYERNAME};
         $item{PLAYERNAME};
     }
 
-    playerdefault : playergesture | playercast | directmonster | CLAPS | playernotarget | playermiss | playerhit
-
     PLAYERSPEECH : "says" /"(.*?)"\.\n/sm
     {
-        my $turn = $globals->{data}{current_turn};
-        my $player = $globals->{data}{active_player};
-        my $speech = $item[2];
+        my $turn = $globals->{current_turn};
+        my $player = $globals->{active_player};
 
-        $globals->{data}{turn}[$turn]->{$player}{speech} = $speech;
+        $item[2] =~ /"(.*)"/;
+        $globals->{turnlist}[$turn]->{$player}{speech} = $1;
+
+        # put the period back on the text block so that PUNCT rule succeeds
+        $text = '.' . $text;
     }
 
-    playeractiontypes : PLAYERSPEECH | playerdefault PUNCT
+    playeractiontypes : playergesture | playercast | directmonster | PLAYERSPEECH | CLAPS | playernotarget | attackmiss | attackline
 
     playerturn : playername playeractiontypes
 
-    PLAYERBOWS : BOWNAME BOWS PUNCT
+    PLAYERBOWS : BOWNAME BOWS
     {
         my $player = $item[1];
-        push @{$globals->{data}{players}}, $player;
+        push @{$globals->{players}}, $player;
 
-        $globals->{data}{turn}[0]->{$player}{gesture}{left} = 'B';
-        $globals->{data}{turn}[0]->{$player}{gesture}{right} = 'B';
+        $globals->{turnlist}[0]->{$player}{gesture}{left} = 'B';
+        $globals->{turnlist}[0]->{$player}{gesture}{right} = 'B';
     }
 
     ANORA : AN | A
@@ -556,15 +570,17 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     NOMASTER : A SUMMONED "creature" PUNCT "finding" "no" "master" PUNCT "returns" "from" "whence" "it" "came"
 
     specialtypes : NOMASTER | TURNOUTSIDETIME | ELEMENTALCANCEL | ELEMENTALMERGE | FIREBALLLANDS | SHIMMERSHIELD | ELEMENTALDESTROY | MIRRORDISSIPATE | PERMOVERRIDE | LIGHTNINGSPARKS | FASTPLAYERS | TINYHOLES | SPELLDRIFTS | LIGHTNINGARCS | HAZEENCHANT | MISSILEFLIES | SCALESGROW | SCALESREMOVED | HOLESOPEN | REFLECTSPELL | SPELLSFAIL | GOESPOOF | BOUNCEMISSILE | STORMRAGES | WOUNDED
-    specialresult : specialtypes PUNCT
 
-    defaultresult : OUTSIDETIME BURSTOFSPEED target SPELLTEXT PUNCT
+    spellcaster : target
+    {
+        $globals->{spell_caster} = $item{target};
+    }
 
-    spellresult : defaultresult | specialresult
+    defaultresult : OUTSIDETIME BURSTOFSPEED spellcaster SPELLTEXT
+
+    spellresult : defaultresult | specialtypes
 
     TURNBODYTYPES : playerturn | spellresult | monsterturn | gameoutcome | PLAYERBOWS
-
-    TURNBODY : TURNBODYTYPES(s)
 
     directmonster : "directs" MONSTERNAME TO ATTACK target
 
@@ -572,19 +588,22 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     playergesture : gesturetype WITH(?) HIS handed HAND
     {
-        my $turn = $globals->{data}{current_turn};
-        my $player = $globals->{data}{active_player};
+        my $turn = $globals->{current_turn};
+        my $player = $globals->{active_player};
         my $hand = $item{handed};
 
-        $globals->{data}{turn}[$turn]->{$player}{gesture}{$hand} = $item{gesturetype};
+        $globals->{turnlist}[$turn]->{$player}{gesture}{$hand} = $item{gesturetype};
     }
 
-    playerhitoutcomes : FOR INTEGER DAMAGE | butmisses
-    playerhit : ATTACK target playerhitoutcomes
-
+    attackmiss : "swings" "wildly" FOR target butmisses
     missreason: "due" TO /blindness|invisibility/
-    misstype: "misses" missreason(?) | IS "deflected" "by" A SHIELD
+    misstype: "misses" missreason(?) | IS "deflected" "by" A SHIELD | "trips" ON "its" "feet"
     butmisses : PUNCT BUT misstype
+    attackverb : FOR | "does"
+    #attackoutcome : PUNCT "fruitlessly" | butmisses | attackverb INTEGER DAMAGE butmisses
+    attackoutcome : PUNCT "fruitlessly" | butmisses | attackverb INTEGER DAMAGE
+
+    attackline : TRIESTO ATTACK target attackoutcome
 
     HISBANKED : HIS "banked"
 
@@ -592,58 +611,70 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     playercast : CAST HISBANKED(?) SPELLNAME ATON target butmisses(?)
     {
-        my $turn = $globals->{data}{current_turn};
-        my $player = $globals->{data}{active_player};
+        my $turn = $globals->{current_turn};
+        my $player = $globals->{active_player};
         my $spell = $item{SPELLNAME};
         my $target = $item{target};
-        my $success = $item{butmisses};
+        my $success = $item{butmisses} == undef;
 
-        $globals->{data}{turn}[$turn]->{$player}{spells}{$spell}{count}++;
-        $globals->{data}{turn}[$turn]->{$player}{spells}{$spell}{success} = $success;
-        $globals->{data}{turn}[$turn]->{$player}{spells}{$spell}{target} = $target;
+        $globals->{turnlist}[$turn]->{$player}{spells}{$spell}{count}++;
+        $globals->{turnlist}[$turn]->{$player}{spells}{$spell}{success} = $success;
+        $globals->{turnlist}[$turn]->{$player}{spells}{$spell}{target} = $target;
     }
 
     VERY : "Very"
 
     VERYLIST : VERY(s?)
-    #NAMEENDING : APOSS PUNCT | APOSS | PUNCT | #nothing
 
     GOBLINADJ : /Bearded|Belligerent|Fat|Green|Grey|Horrid|Malodorous|Nasty|Ratty|Small|Smelly|Tricky|Ugly/ | #nothing
     GOBLINNAME : GOBLINADJ "Goblin"
+    {
+        $return = $item{GOBLINADJ} . ' Goblin';
+    }
 
     OGREADJ : /Angry|Black|Burnt|Crazy|Monstrous|Obtuse|Ochre|Stinking|Suicidal|Terrible|Yellow/ | #nothing
     OGRENAME : OGREADJ "Ogre"
+    {
+        $return = $item{OGREADJ} . ' Ogre';
+    }
 
     TROLLADJ : /Bridge|Green|Hairy|Ham-fisted|Irate|Loud|Mailing-list|Obnoxious|Stupid|Tall/ | #nothing
     TROLLNAME : TROLLADJ "Troll"
+    {
+        $return = $item{TROLLADJ} . ' Troll';
+    }
 
     GIANTADJ : /Beanstalk|Big|Gaunt|Golden|Hungry|Large|Norse/ | #nothing
     GIANTNAME : GIANTADJ "Giant"
+    {
+        $return = $item{GIANTADJ} . ' Giant';
+    }
 
     ELEMENTALNAME : ARTICLE STORMTYPE ELEMENTAL
+    {
+        $return = $item{ARTICLE} . ' ' . $item{STORMTYPE} . ' ' . $item{ELEMENTAL};
+    }
 
     MONSTERTYPENAME : GOBLINNAME | OGRENAME | TROLLNAME | GIANTNAME | ELEMENTALNAME
 
     MONSTERNAME : VERYLIST MONSTERTYPENAME
+    {
+        my $space = scalar @{$item{VERYLIST}} ? ' ' : '';
+        $return = join(' ', @{$item{VERYLIST}}) . $space . $item{MONSTERTYPENAME};
+    }
 
     OUTSIDETIME : "Outside" "time" PUNCT | #nothing
     TRIESTO : "tries" TO | #nothing
 
-    monsterdmg : "does" INTEGER DAMAGE TO target
-    monstermiss : "swings" "wildly" FOR target butmisses
-    playermiss : monstermiss
-
-    monsterhitresult : FOR INTEGER DAMAGE | PUNCT BUT IS "deflected" BY A SHIELD | PUNCT BUT "trips" ON "its" "feet" | "fruitlessly"
-    monsterhit : TRIESTO ATTACK target monsterhitresult
     monsterwanders : "wanders" "around" "aimlessly"
     monsterforgets : "forgets" TO ATTACK "anyone"
     monsternotarget : "doesn't" ATTACK "anyone"
     monsterscared : IS "too" "scared" TO ATTACK
     monsterelemental : IS SUMMONED "inside" ELEMENTALNAME AND IS "consumed" "instantly"
 
-    monsterturnline : monsterhit | monstermiss | monsterwanders | monsterforgets | monsternotarget | monsterscared | monsterelemental
+    monsterturnline : attackline | attackmiss | monsterwanders | monsterforgets | monsternotarget | monsterscared | monsterelemental
 
-    monsterturn : OUTSIDETIME BURSTOFSPEED ARTICLE MONSTERNAME monsterturnline PUNCT
+    monsterturn : OUTSIDETIME BURSTOFSPEED ARTICLE MONSTERNAME monsterturnline
 
     potentialmonster : THE "monster" PLAYERNAME IS "summoning" WITH HIS handed HAND
     {
@@ -708,12 +739,22 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     ELEMENTALRESISTANCE : "fiery" "heat" | "heat" OF THE FIRESTORM
     FEARQUALIFIER : "cringes" | "quakes"
 
+    SUMMONEDTOSERVE : SUMMONED TO "serve" PLAYERNAME
+    {
+        my $turn = $globals->{current_turn};
+
+        $globals->{monsters}{$globals->{spell_caster}}{original_owner} = $item{PLAYERNAME};
+        $globals->{monsters}{$globals->{spell_caster}}{current_owner} = $item{PLAYERNAME};
+        $globals->{monsters}{$globals->{spell_caster}}{turn_summoned} = $turn;
+        $globals->{monsters}{$globals->{spell_caster}}{damage_done} = 0;
+    }
+
     ISSPELLTEXT : 
           /covered|surrounded|protected/ BY A THICK(?) /magical\sglowing|glowing|reflective|magical|shimmering/ SHIELD |
           HIT BY A MAGICMISSILE PUNCT FOR INTEGER DAMAGE |
           "charmed" INTO "making" THE "wrong" GESTURE WITH HIS handed HAND |
           "charmed" PUNCT BUT "ends" UP "making" THE GESTURE "he" "intended" "anyway" |
-          SUMMONED TO "serve" PLAYERNAME |
+          SUMMONEDTOSERVE |
           HIT BY A "bolt" OF "lightning" PUNCT FOR INTEGER DAMAGE |
           HIT BY REMOVEENCHANTMENT PUNCT AND "starts" "coming" "apart" AT THE "seams" |
           HIT BY A "Fireball" AS THE ICESTORM "strikes" PUNCT AND IS "miraculously" LEFT "untouched" |
@@ -817,13 +858,13 @@ sub new
 
 sub get_data
 {
-    return $globals->{data};
+    return $globals;
 }
 
 sub reset_data
 {
-    $globals->{data} = {};
-    $globals->{data}{turn} = [];
+    $globals = {};
+    $globals->{turnlist} = [];
 }
 
 sub parse

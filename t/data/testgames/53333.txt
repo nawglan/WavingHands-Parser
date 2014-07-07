@@ -1,0 +1,929 @@
+
+   Username: ____________
+   Password: ____________
+   Remember: [_]
+   Login
+     New User
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 30 in Friendly Battle 53333
+
+   Turn 0
+
+     Errol bows.
+     Maestro_J bows.
+
+   Turn 1
+
+     Maestro_J says "Come here, my pretties! Wah ha hah! Oh, and for you, Noble
+     Opponent...here's just one for good measure. ^_^".
+     Errol snaps the fingers of his left hand.
+     Errol snaps the fingers of his right hand.
+     Maestro_J stabs with his left hand.
+     Maestro_J snaps the fingers of his right hand.
+     Maestro_J attacks Errol for 1 damage.
+
+   Turn 2
+
+     Errol wiggles the fingers of his left hand.
+     Errol wiggles the fingers of his right hand.
+     Maestro_J snaps the fingers of his left hand.
+     Maestro_J wiggles the fingers of his right hand.
+
+   Turn 3
+
+     Errol waves his left hand.
+     Errol waves his right hand.
+     Errol casts Summon Goblin at himself.
+     Errol casts Summon Goblin at himself.
+     Maestro_J wiggles the fingers of his left hand.
+     Maestro_J waves his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Belligerent Goblin is summoned to serve Errol.
+     Tricky Goblin is summoned to serve Errol.
+     Ratty Goblin is summoned to serve Maestro_J.
+     Maestro_J directs Ratty Goblin to attack Nobody.
+     Belligerent Goblin attacks Maestro_J for 1 damage.
+     Tricky Goblin attacks Maestro_J for 1 damage.
+     Ratty Goblin doesn't attack anyone.
+
+   Turn 4
+
+     Errol says "Oops.".
+     Maestro_J says "I guess that's fair.".
+     Errol snaps the fingers of his left hand.
+     Errol snaps the fingers of his right hand.
+     Maestro_J waves his left hand.
+     Maestro_J snaps the fingers of his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Small Goblin is summoned to serve Maestro_J.
+     Errol directs Belligerent Goblin to attack Nobody.
+     Errol directs Tricky Goblin to attack Nobody.
+     Maestro_J directs Ratty Goblin to attack Nobody.
+     Maestro_J directs Small Goblin to attack Nobody.
+     Belligerent Goblin doesn't attack anyone.
+     Tricky Goblin doesn't attack anyone.
+     Ratty Goblin doesn't attack anyone.
+     Small Goblin doesn't attack anyone.
+
+   Turn 5
+
+     Errol wiggles the fingers of his left hand.
+     Errol wiggles the fingers of his right hand.
+     Maestro_J snaps the fingers of his left hand.
+     Maestro_J wiggles the fingers of his right hand.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+
+   Turn 6
+
+     Errol waves his left hand.
+     Errol waves his right hand.
+     Errol casts Summon Goblin at himself.
+     Errol casts Summon Goblin at himself.
+     Maestro_J wiggles the fingers of his left hand.
+     Maestro_J waves his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Grey Goblin is summoned to serve Errol.
+     Goblin is summoned to serve Errol.
+     Malodorous Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Errol directs Grey Goblin to attack Nobody.
+     Errol directs Goblin to attack Nobody.
+     Grey Goblin doesn't attack anyone.
+     Goblin doesn't attack anyone.
+     Malodorous Goblin attacks Errol for 1 damage.
+
+   Turn 7
+
+     Errol snaps the fingers of his left hand.
+     Errol snaps the fingers of his right hand.
+     Maestro_J waves his left hand.
+     Maestro_J snaps the fingers of his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Green Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Maestro_J directs Ratty Goblin to attack Nobody.
+     Maestro_J directs Small Goblin to attack Nobody.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Maestro_J directs Malodorous Goblin to attack Nobody.
+     Maestro_J directs Green Goblin to attack Nobody.
+     Ratty Goblin doesn't attack anyone.
+     Small Goblin doesn't attack anyone.
+     Malodorous Goblin doesn't attack anyone.
+     Green Goblin doesn't attack anyone.
+
+   Turn 8
+
+     Errol wiggles the fingers of his left hand.
+     Errol wiggles the fingers of his right hand.
+     Maestro_J snaps the fingers of his left hand.
+     Maestro_J wiggles the fingers of his right hand.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+
+   Turn 9
+
+     Errol waves his left hand.
+     Errol waves his right hand.
+     Errol casts Summon Goblin at himself.
+     Errol casts Summon Goblin at himself.
+     Maestro_J wiggles the fingers of his left hand.
+     Maestro_J waves his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Smelly Goblin is summoned to serve Errol.
+     Ugly Goblin is summoned to serve Errol.
+     Bearded Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Errol directs Smelly Goblin to attack Nobody.
+     Errol directs Ugly Goblin to attack Nobody.
+     Smelly Goblin doesn't attack anyone.
+     Ugly Goblin doesn't attack anyone.
+     Bearded Goblin attacks Errol for 1 damage.
+
+   Turn 10
+
+     Errol snaps the fingers of his left hand.
+     Errol snaps the fingers of his right hand.
+     Maestro_J waves his left hand.
+     Maestro_J snaps the fingers of his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Fat Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Maestro_J directs Bearded Goblin to attack Nobody.
+     Maestro_J directs Fat Goblin to attack Nobody.
+     Bearded Goblin doesn't attack anyone.
+     Fat Goblin doesn't attack anyone.
+
+   Turn 11
+
+     Errol wiggles the fingers of his left hand.
+     Errol wiggles the fingers of his right hand.
+     Maestro_J snaps the fingers of his left hand.
+     Maestro_J wiggles the fingers of his right hand.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+
+   Turn 12
+
+     Errol waves his left hand.
+     Errol waves his right hand.
+     Errol casts Summon Goblin at himself.
+     Errol casts Summon Goblin at himself.
+     Maestro_J wiggles the fingers of his left hand.
+     Maestro_J waves his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Nasty Goblin is summoned to serve Errol.
+     Horrid Goblin is summoned to serve Errol.
+     Very Nasty Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin attacks Maestro_J for 1 damage.
+     Horrid Goblin attacks Maestro_J for 1 damage.
+     Very Nasty Goblin attacks Errol for 1 damage.
+
+   Turn 13
+
+     Errol snaps the fingers of his left hand.
+     Errol snaps the fingers of his right hand.
+     Maestro_J waves his left hand.
+     Maestro_J snaps the fingers of his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Very Bearded Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Errol directs Nasty Goblin to attack Nobody.
+     Errol directs Horrid Goblin to attack Nobody.
+     Nasty Goblin doesn't attack anyone.
+     Horrid Goblin doesn't attack anyone.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+
+   Turn 14
+
+     Errol wiggles the fingers of his left hand.
+     Errol wiggles the fingers of his right hand.
+     Maestro_J snaps the fingers of his left hand.
+     Maestro_J wiggles the fingers of his right hand.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+
+   Turn 15
+
+     Errol waves his left hand.
+     Errol waves his right hand.
+     Errol casts Summon Goblin at himself.
+     Errol casts Summon Goblin at himself.
+     Maestro_J wiggles the fingers of his left hand.
+     Maestro_J waves his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Very Tricky Goblin is summoned to serve Errol.
+     Very Ratty Goblin is summoned to serve Errol.
+     Very Horrid Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Errol directs Very Tricky Goblin to attack Nobody.
+     Errol directs Very Ratty Goblin to attack Nobody.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Tricky Goblin doesn't attack anyone.
+     Very Ratty Goblin doesn't attack anyone.
+     Very Horrid Goblin attacks Errol for 1 damage.
+
+   Turn 16
+
+     Errol snaps the fingers of his left hand.
+     Errol snaps the fingers of his right hand.
+     Maestro_J waves his left hand.
+     Maestro_J snaps the fingers of his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Very Belligerent Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+
+   Turn 17
+
+     Errol waves his left hand.
+     Errol wiggles the fingers of his right hand.
+     Maestro_J snaps the fingers of his left hand.
+     Maestro_J wiggles the fingers of his right hand.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+
+   Turn 18
+
+     Errol waves his left hand.
+     Errol waves his right hand.
+     Errol casts Summon Goblin at himself.
+     Maestro_J wiggles the fingers of his left hand.
+     Maestro_J waves his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Very Malodorous Goblin is summoned to serve Errol.
+     Very Small Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+     Very Malodorous Goblin attacks Maestro_J for 1 damage.
+     Very Small Goblin attacks Errol for 1 damage.
+
+   Turn 19
+
+     Errol snaps the fingers of his left hand.
+     Errol snaps the fingers of his right hand.
+     Errol casts Counter Spell at himself.
+     Maestro_J waves his left hand.
+     Maestro_J snaps the fingers of his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Errol is covered by a magical glowing shield.
+     Very Grey Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Very Nasty Goblin attacks Errol, but is deflected by a shield.
+     Very Bearded Goblin attacks Errol, but is deflected by a shield.
+     Very Horrid Goblin attacks Errol, but is deflected by a shield.
+     Very Belligerent Goblin attacks Errol, but is deflected by a shield.
+     Very Malodorous Goblin attacks Maestro_J for 1 damage.
+     Very Small Goblin attacks Errol, but is deflected by a shield.
+     Very Grey Goblin attacks Errol, but is deflected by a shield.
+
+   Turn 20
+
+     Errol wiggles the fingers of his left hand.
+     Errol wiggles the fingers of his right hand.
+     Maestro_J snaps the fingers of his left hand.
+     Maestro_J wiggles the fingers of his right hand.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+     Very Malodorous Goblin attacks Maestro_J for 1 damage.
+     Very Small Goblin attacks Errol for 1 damage.
+     Very Grey Goblin attacks Errol for 1 damage.
+
+   Turn 21
+
+     Errol waves his left hand.
+     Errol waves his right hand.
+     Errol casts Summon Goblin at himself.
+     Errol casts Summon Goblin at himself.
+     Maestro_J wiggles the fingers of his left hand.
+     Maestro_J waves his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Very Ugly Goblin is summoned to serve Errol.
+     Very Green Goblin is summoned to serve Errol.
+     Very Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Errol directs Very Ugly Goblin to attack Nobody.
+     Errol directs Very Green Goblin to attack Nobody.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+     Very Malodorous Goblin attacks Maestro_J for 1 damage.
+     Very Small Goblin attacks Errol for 1 damage.
+     Very Grey Goblin attacks Errol for 1 damage.
+     Very Ugly Goblin doesn't attack anyone.
+     Very Green Goblin doesn't attack anyone.
+     Very Goblin attacks Errol for 1 damage.
+
+   Turn 22
+
+     Errol snaps the fingers of his left hand.
+     Errol snaps the fingers of his right hand.
+     Maestro_J waves his left hand.
+     Maestro_J snaps the fingers of his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Very Smelly Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Very Ugly Goblin wanders around aimlessly.
+     Very Green Goblin wanders around aimlessly.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+     Very Malodorous Goblin attacks Maestro_J for 1 damage.
+     Very Small Goblin attacks Errol for 1 damage.
+     Very Grey Goblin attacks Errol for 1 damage.
+     Very Goblin attacks Errol for 1 damage.
+     Very Smelly Goblin attacks Errol for 1 damage.
+
+   Turn 23
+
+     Errol wiggles the fingers of his left hand.
+     Errol wiggles the fingers of his right hand.
+     Maestro_J snaps the fingers of his left hand.
+     Maestro_J wiggles the fingers of his right hand.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Very Ugly Goblin wanders around aimlessly.
+     Very Green Goblin wanders around aimlessly.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+     Very Malodorous Goblin attacks Maestro_J for 1 damage.
+     Very Small Goblin attacks Errol for 1 damage.
+     Very Grey Goblin attacks Errol for 1 damage.
+     Very Goblin attacks Errol for 1 damage.
+     Very Smelly Goblin attacks Errol for 1 damage.
+
+   Turn 24
+
+     Errol waves his left hand.
+     Errol waves his right hand.
+     Errol casts Summon Goblin at himself.
+     Errol casts Summon Goblin at himself.
+     Maestro_J wiggles the fingers of his left hand.
+     Maestro_J waves his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Very Fat Goblin is summoned to serve Errol.
+     Very Very Horrid Goblin is summoned to serve Errol.
+     Very Very Fat Goblin is summoned to serve Maestro_J.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Ratty Goblin wanders around aimlessly.
+     Small Goblin wanders around aimlessly.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Very Ugly Goblin wanders around aimlessly.
+     Very Green Goblin wanders around aimlessly.
+     Errol directs Very Fat Goblin to attack Nobody.
+     Errol directs Very Very Horrid Goblin to attack Nobody.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+     Very Malodorous Goblin attacks Maestro_J for 1 damage.
+     Very Small Goblin attacks Errol for 1 damage.
+     Very Grey Goblin attacks Errol for 1 damage.
+     Very Goblin attacks Errol for 1 damage.
+     Very Smelly Goblin attacks Errol for 1 damage.
+     Very Fat Goblin doesn't attack anyone.
+     Very Very Horrid Goblin doesn't attack anyone.
+     Very Very Fat Goblin attacks Errol for 1 damage.
+
+   Turn 25
+
+     Errol snaps the fingers of his left hand.
+     Errol snaps the fingers of his right hand.
+     Maestro_J waves his left hand.
+     Maestro_J proffers the palm of his right hand.
+     Maestro_J casts Summon Goblin at himself.
+     Maestro_J casts Shield at himself.
+     Very Very Nasty Goblin is summoned to serve Maestro_J.
+     Maestro_J is covered by a shimmering shield.
+     Belligerent Goblin wanders around aimlessly.
+     Tricky Goblin wanders around aimlessly.
+     Maestro_J directs Ratty Goblin to attack Errol.
+     Maestro_J directs Small Goblin to attack Errol.
+     Grey Goblin wanders around aimlessly.
+     Goblin wanders around aimlessly.
+     Maestro_J directs Malodorous Goblin to attack Errol.
+     Maestro_J directs Green Goblin to attack Errol.
+     Smelly Goblin wanders around aimlessly.
+     Ugly Goblin wanders around aimlessly.
+     Maestro_J directs Bearded Goblin to attack Errol.
+     Maestro_J directs Fat Goblin to attack Errol.
+     Nasty Goblin wanders around aimlessly.
+     Horrid Goblin wanders around aimlessly.
+     Maestro_J directs Very Nasty Goblin to attack Errol.
+     Maestro_J directs Very Bearded Goblin to attack Errol.
+     Very Tricky Goblin wanders around aimlessly.
+     Very Ratty Goblin wanders around aimlessly.
+     Maestro_J directs Very Horrid Goblin to attack Errol.
+     Maestro_J directs Very Belligerent Goblin to attack Errol.
+     Maestro_J directs Very Small Goblin to attack Errol.
+     Maestro_J directs Very Grey Goblin to attack Errol.
+     Very Ugly Goblin wanders around aimlessly.
+     Very Green Goblin wanders around aimlessly.
+     Maestro_J directs Very Goblin to attack Errol.
+     Maestro_J directs Very Smelly Goblin to attack Errol.
+     Very Fat Goblin wanders around aimlessly.
+     Very Very Horrid Goblin wanders around aimlessly.
+     Maestro_J directs Very Very Fat Goblin to attack Errol.
+     Maestro_J directs Very Very Nasty Goblin to attack Errol.
+     Ratty Goblin attacks Errol for 1 damage.
+     Small Goblin attacks Errol for 1 damage.
+     Malodorous Goblin attacks Errol for 1 damage.
+     Green Goblin attacks Errol for 1 damage.
+     Bearded Goblin attacks Errol for 1 damage.
+     Fat Goblin attacks Errol for 1 damage.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+     Very Malodorous Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Small Goblin attacks Errol for 1 damage.
+     Very Grey Goblin attacks Errol for 1 damage.
+     Very Goblin attacks Errol for 1 damage.
+     Very Smelly Goblin attacks Errol for 1 damage.
+     Very Very Fat Goblin attacks Errol for 1 damage.
+     Very Very Nasty Goblin attacks Errol for 1 damage.
+
+   Turn 26
+
+     Errol waves his left hand.
+     Errol proffers the palm of his right hand.
+     Errol casts Shield at himself.
+     Maestro_J points the digit of his left hand.
+     Maestro_J proffers the palm of his right hand.
+     Maestro_J casts Shield at himself.
+     Errol is covered by a shimmering shield.
+     Maestro_J is covered by a shimmering shield.
+     Errol directs Belligerent Goblin to attack Maestro_J.
+     Errol directs Tricky Goblin to attack Maestro_J.
+     Errol directs Grey Goblin to attack Maestro_J.
+     Errol directs Goblin to attack Maestro_J.
+     Errol directs Smelly Goblin to attack Maestro_J.
+     Errol directs Ugly Goblin to attack Maestro_J.
+     Errol directs Nasty Goblin to attack Maestro_J.
+     Errol directs Horrid Goblin to attack Maestro_J.
+     Errol directs Very Tricky Goblin to attack Maestro_J.
+     Errol directs Very Ratty Goblin to attack Maestro_J.
+     Errol directs Very Malodorous Goblin to attack Maestro_J.
+     Errol directs Very Ugly Goblin to attack Maestro_J.
+     Errol directs Very Green Goblin to attack Maestro_J.
+     Errol directs Very Fat Goblin to attack Maestro_J.
+     Errol directs Very Very Horrid Goblin to attack Maestro_J.
+     Belligerent Goblin attacks Maestro_J, but is deflected by a shield.
+     Tricky Goblin attacks Maestro_J, but is deflected by a shield.
+     Ratty Goblin attacks Errol, but is deflected by a shield.
+     Small Goblin attacks Errol, but is deflected by a shield.
+     Grey Goblin attacks Maestro_J, but is deflected by a shield.
+     Goblin attacks Maestro_J, but is deflected by a shield.
+     Malodorous Goblin attacks Errol, but is deflected by a shield.
+     Green Goblin attacks Errol, but is deflected by a shield.
+     Smelly Goblin attacks Maestro_J, but is deflected by a shield.
+     Ugly Goblin attacks Maestro_J, but is deflected by a shield.
+     Bearded Goblin attacks Errol, but is deflected by a shield.
+     Fat Goblin attacks Errol, but is deflected by a shield.
+     Nasty Goblin attacks Maestro_J, but is deflected by a shield.
+     Horrid Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Nasty Goblin attacks Errol, but is deflected by a shield.
+     Very Bearded Goblin attacks Errol, but is deflected by a shield.
+     Very Tricky Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Ratty Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Horrid Goblin attacks Errol, but is deflected by a shield.
+     Very Belligerent Goblin attacks Errol, but is deflected by a shield.
+     Very Malodorous Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Small Goblin attacks Errol, but is deflected by a shield.
+     Very Grey Goblin attacks Errol, but is deflected by a shield.
+     Very Ugly Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Green Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Goblin attacks Errol, but is deflected by a shield.
+     Very Smelly Goblin attacks Errol, but is deflected by a shield.
+     Very Fat Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Very Horrid Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Very Fat Goblin attacks Errol, but is deflected by a shield.
+     Very Very Nasty Goblin attacks Errol, but is deflected by a shield.
+
+   Turn 27
+
+     Errol waves his left hand.
+     Errol proffers the palm of his right hand.
+     Errol casts Shield at himself.
+     Maestro_J points the digit of his left hand.
+     Maestro_J proffers the palm of his right hand.
+     Maestro_J casts Shield at himself.
+     Errol is covered by a shimmering shield.
+     Maestro_J is covered by a shimmering shield.
+     Maestro_J directs Ratty Goblin to attack Belligerent Goblin.
+     Maestro_J directs Small Goblin to attack Tricky Goblin.
+     Maestro_J directs Malodorous Goblin to attack Grey Goblin.
+     Maestro_J directs Green Goblin to attack Goblin.
+     Maestro_J directs Bearded Goblin to attack Smelly Goblin.
+     Maestro_J directs Fat Goblin to attack Ugly Goblin.
+     Belligerent Goblin attacks Maestro_J, but is deflected by a shield.
+     Tricky Goblin attacks Maestro_J, but is deflected by a shield.
+     Ratty Goblin attacks Belligerent Goblin for 1 damage.
+     Small Goblin attacks Tricky Goblin for 1 damage.
+     Grey Goblin attacks Maestro_J, but is deflected by a shield.
+     Goblin attacks Maestro_J, but is deflected by a shield.
+     Malodorous Goblin attacks Grey Goblin for 1 damage.
+     Green Goblin attacks Goblin for 1 damage.
+     Smelly Goblin attacks Maestro_J, but is deflected by a shield.
+     Ugly Goblin attacks Maestro_J, but is deflected by a shield.
+     Bearded Goblin attacks Smelly Goblin for 1 damage.
+     Fat Goblin attacks Ugly Goblin for 1 damage.
+     Nasty Goblin attacks Maestro_J, but is deflected by a shield.
+     Horrid Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Nasty Goblin attacks Errol, but is deflected by a shield.
+     Very Bearded Goblin attacks Errol, but is deflected by a shield.
+     Very Tricky Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Ratty Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Horrid Goblin attacks Errol, but is deflected by a shield.
+     Very Belligerent Goblin attacks Errol, but is deflected by a shield.
+     Very Malodorous Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Small Goblin attacks Errol, but is deflected by a shield.
+     Very Grey Goblin attacks Errol, but is deflected by a shield.
+     Very Ugly Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Green Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Goblin attacks Errol, but is deflected by a shield.
+     Very Smelly Goblin attacks Errol, but is deflected by a shield.
+     Very Fat Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Very Horrid Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Very Fat Goblin attacks Errol, but is deflected by a shield.
+     Very Very Nasty Goblin attacks Errol, but is deflected by a shield.
+     Ugly Goblin dies.
+     Smelly Goblin dies.
+     Goblin dies.
+     Grey Goblin dies.
+     Tricky Goblin dies.
+     Belligerent Goblin dies.
+
+   Turn 28
+
+     Errol says "Let them burn.".
+     Errol claps.
+     Errol casts Fire Storm at nobody.
+     Maestro_J waves his left hand.
+     Maestro_J proffers the palm of his right hand.
+     Maestro_J casts Shield at himself.
+     Maestro_J is covered by a shimmering shield.
+     A Fire Storm rages through the circle!
+     Errol is burnt in the raging Fire Storm, for 5 damage.
+     Maestro_J is burnt in the raging Fire Storm, for 5 damage.
+     Ratty Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Small Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Malodorous Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Green Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Bearded Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Fat Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Nasty Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Horrid Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Nasty Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Bearded Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Tricky Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Ratty Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Horrid Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Belligerent Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Malodorous Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Small Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Grey Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Ugly Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Green Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Smelly Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Fat Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Very Horrid Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Very Fat Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Very Very Nasty Goblin is burnt in the raging Fire Storm, for 5 damage.
+     Maestro_J directs Ratty Goblin to attack Nasty Goblin.
+     Maestro_J directs Small Goblin to attack Horrid Goblin.
+     Malodorous Goblin wanders around aimlessly.
+     Green Goblin wanders around aimlessly.
+     Bearded Goblin wanders around aimlessly.
+     Fat Goblin wanders around aimlessly.
+     Ratty Goblin attacks Nasty Goblin for 1 damage.
+     Small Goblin attacks Horrid Goblin for 1 damage.
+     Nasty Goblin attacks Maestro_J, but is deflected by a shield.
+     Horrid Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Nasty Goblin attacks Errol for 1 damage.
+     Very Bearded Goblin attacks Errol for 1 damage.
+     Very Tricky Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Ratty Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Horrid Goblin attacks Errol for 1 damage.
+     Very Belligerent Goblin attacks Errol for 1 damage.
+     Very Malodorous Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Small Goblin attacks Errol for 1 damage.
+     Very Grey Goblin attacks Errol for 1 damage.
+     Very Ugly Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Green Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Goblin attacks Errol for 1 damage.
+     Very Smelly Goblin attacks Errol for 1 damage.
+     Very Fat Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Very Horrid Goblin attacks Maestro_J, but is deflected by a shield.
+     Very Very Fat Goblin attacks Errol for 1 damage.
+     Very Very Nasty Goblin attacks Errol for 1 damage.
+     Very Very Nasty Goblin dies.
+     Very Very Fat Goblin dies.
+     Very Very Horrid Goblin dies.
+     Very Fat Goblin dies.
+     Very Smelly Goblin dies.
+     Very Goblin dies.
+     Very Green Goblin dies.
+     Very Ugly Goblin dies.
+     Very Grey Goblin dies.
+     Very Small Goblin dies.
+     Very Malodorous Goblin dies.
+     Very Belligerent Goblin dies.
+     Very Horrid Goblin dies.
+     Very Ratty Goblin dies.
+     Very Tricky Goblin dies.
+     Very Bearded Goblin dies.
+     Very Nasty Goblin dies.
+     Horrid Goblin dies.
+     Nasty Goblin dies.
+     Fat Goblin dies.
+     Bearded Goblin dies.
+     Green Goblin dies.
+     Malodorous Goblin dies.
+     Small Goblin dies.
+     Ratty Goblin dies.
+
+   Turn 29
+
+     Errol waves his left hand.
+     Errol proffers the palm of his right hand.
+     Errol casts Shield at himself.
+     Maestro_J wiggles the fingers of his left hand.
+     Maestro_J proffers the palm of his right hand.
+     Maestro_J casts Shield at himself.
+     Errol is covered by a shimmering shield.
+     Maestro_J is covered by a shimmering shield.
+
+   Turn 30
+
+     Errol points the digit of his left hand.
+     Errol stabs with his right hand.
+     Maestro_J proffers the palm of his left hand.
+     Maestro_J stabs with his right hand.
+     Maestro_J casts Cause Light Wounds at Errol.
+     Wounds appear all over Errol's body!
+     Errol attacks Maestro_J for 1 damage.
+     Maestro_J attacks Errol for 1 damage.
+     Errol dies.
+     Maestro_J is victorious!
+
+   Errol(0) Dead.
+   Turn:0123456789012345678901234567890
+     LH:BSFWSFWSFWSFWSFWSWWSFWSFWSWWCWD
+     RH:BSFWSFWSFWSFWSFWSFWSFWSFWSPPCP>
+
+   Maestro_J(1) Health:5
+   Turn:0123456789012345678901234567890
+     LH:B>SFWSFWSFWSFWSFWSFWSFWSFWDDWFP
+     RH:BSFWSFWSFWSFWSFWSFWSFWSFWPPPPP>

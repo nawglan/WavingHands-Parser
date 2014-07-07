@@ -107,11 +107,12 @@ class WavingHands::Parser {
             if (!defined $options{directory} && !defined $options{filename});
 
         if (defined $options{directory}) {
-            # pull all files in current directory
+            # pull all files in current directory except vi swap files and
+            # hidden files (ones starting with dot)
             opendir(my $DIR, $options{directory});
-            my @allfiles = readdir($DIR);
+            my @allfiles = grep {$_ !~ /^\./ && $_ !~ /\.swp$/} readdir($DIR);
             closedir($DIR);
-            @{$!queue} = map { File::Spec->catfile($options{directory}, $_) } grep {$_ ne '.' && $_ ne '..'} @allfiles;
+            @{$!queue} = map { File::Spec->catfile($options{directory}, $_) } @allfiles;
         }
 
         if (defined $options{filename}) {
@@ -155,7 +156,6 @@ class WavingHands::Parser {
                 open $TRACE, '>', $tracefile;
                 local *STDERR = $TRACE;
                 $result = $!parser->parse($buffer);
-                warn "$result\n";
                 close $TRACE;
             } else {
                 $result = $!parser->parse($buffer);
@@ -169,7 +169,7 @@ class WavingHands::Parser {
         }
 
         if ($good) {
-            #$self->dump();
+            $self->dump();
         }
 
         return $good;
@@ -184,7 +184,17 @@ class WavingHands::Parser {
     }
 
     method dump() {
-        print encode_json($!parser->get_data());
+        my $data = $!parser->get_data();
+        my $json = JSON->new->allow_nonref->pretty;
+        my $dumpfile = File::Spec->catfile('/', 'tmp', "dump_$data->{gameid}.json");
+        local $1;
+        $dumpfile =~ /^(.*)\z/s;
+        eval {
+            $dumpfile = $1;
+        };
+        open my $DUMP, '>', $dumpfile or die "ERROR: Unable to open $dumpfile: $!";
+        print $DUMP $json->encode($data);
+        close $DUMP;
     }
 }
 
