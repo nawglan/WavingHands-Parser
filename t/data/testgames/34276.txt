@@ -1,0 +1,498 @@
+
+   Username: ____________
+   Password: ____________
+   Remember: [_]
+   Login
+     New User
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 27 in Melee Battle 34276
+
+   Turn 0
+
+     Rogan bows.
+     TK421 bows.
+     Kyros bows.
+     Tarot bows.
+
+   Turn 1
+
+     Kyros says "Anything goes, gentlemen. I will interfere with low-level
+     spells, but don't let me distract you from your real goal of eliminating
+     the other two. If somehow this account wins the actual game, it's still
+     the winner of you 3 that wins for coven purposes.".
+     Tarot says "Greetings. ^ ^".
+     Rogan waves his left hand.
+     Rogan snaps the fingers of his right hand.
+     TK421 proffers the palm of his left hand.
+     TK421 waves his right hand.
+     TK421 casts Shield at himself.
+     Kyros snaps the fingers of his left hand.
+     Kyros snaps the fingers of his right hand.
+     Tarot snaps the fingers of his left hand.
+     Tarot proffers the palm of his right hand.
+     Tarot casts Shield at himself.
+     TK421 is covered by a shimmering shield.
+     Tarot is covered by a shimmering shield.
+
+   Turn 2
+
+     Kyros says "Generally with spells like this Missle, I won't target. Fire
+     in the hole!".
+     Rogan wiggles the fingers of his left hand.
+     Rogan waves his right hand.
+     TK421 snaps the fingers of his left hand.
+     TK421 waves his right hand.
+     Kyros points the digit of his left hand.
+     Kyros wiggles the fingers of his right hand.
+     Kyros casts Magic Missile at TK421.
+     Tarot snaps the fingers of his left hand.
+     Tarot waves his right hand.
+     TK421 is hit by a Magic Missile, for 1 damage.
+
+   Turn 3
+
+     Kyros says "I'll roll a die and send this goblin at someone next turn.".
+     Tarot says "Indeed.".
+     Rogan proffers the palm of his left hand.
+     Rogan points the digit of his right hand.
+     Rogan casts Cause Light Wounds at TK421.
+     Rogan casts Fear at Tarot.
+     TK421 points the digit of his left hand.
+     TK421 snaps the fingers of his right hand.
+     TK421 casts Magic Missile at the monster Kyros is summoning with his right
+     hand.
+     TK421 casts Counter Spell at himself.
+     Kyros waves his left hand.
+     Kyros waves his right hand.
+     Kyros casts Summon Goblin at himself.
+     Tarot wiggles the fingers of his left hand.
+     Tarot proffers the palm of his right hand.
+     Tarot casts Shield at himself.
+     TK421 is covered by a magical glowing shield.
+     Small Goblin is summoned to serve Kyros.
+     Tarot cringes in fear.
+     Tarot is covered by a shimmering shield.
+     Small Goblin is hit by a Magic Missile, for 1 damage.
+     Holes open up in TK421's shield, but then close up again.
+     Small Goblin attacks Tarot, but is deflected by a shield.
+     Small Goblin dies.
+
+   Turn 4
+
+     Tarot quakes in fear!
+     Rogan says "or not :-)".
+     Rogan proffers the palm of his left hand.
+     Rogan wiggles the fingers of his right hand.
+     Rogan casts Shield at himself.
+     TK421 wiggles the fingers of his left hand.
+     TK421 snaps the fingers of his right hand.
+     TK421 casts Charm Person at Tarot.
+     Kyros snaps the fingers of his left hand.
+     Kyros wiggles the fingers of his right hand.
+     Tarot proffers the palm of his left hand.
+     Tarot waves his right hand.
+     Tarot casts Resist Cold at himself.
+     Tarot is covered by a warm glow.
+     Tarot looks intrigued by TK421.
+     Rogan is covered by a shimmering shield.
+
+   Turn 5
+
+     Tarot is charmed into making the wrong gesture with his right hand.
+     Rogan waves his left hand.
+     Rogan waves his right hand.
+     Rogan casts Cure Light Wounds at himself.
+     TK421 waves his left hand.
+     TK421 wiggles the fingers of his right hand.
+     TK421 casts Cure Light Wounds at himself.
+     Kyros snaps the fingers of his left hand.
+     Kyros proffers the palm of his right hand.
+     Kyros casts Cause Light Wounds at Rogan.
+     Tarot proffers the palm of his left hand.
+     Tarot makes no gesture with his right hand.
+     Tarot casts Shield at himself.
+     Rogan is healed.
+     TK421 is healed.
+     Tarot is covered by a shimmering shield.
+     Wounds appear all over Rogan's body!
+
+   Turn 6
+
+     Kyros says "That worked out alright.".
+     Rogan snaps the fingers of his left hand.
+     Rogan snaps the fingers of his right hand.
+     Rogan casts Invisibility at himself.
+     TK421 snaps the fingers of his left hand.
+     TK421 proffers the palm of his right hand.
+     TK421 casts Resist Cold at himself.
+     Kyros snaps the fingers of his left hand.
+     Kyros snaps the fingers of his right hand.
+     Tarot waves his left hand.
+     Tarot waves his right hand.
+     TK421 is covered by a warm glow.
+     Rogan begins to shimmer.
+     There is a flash, and Rogan disappears!
+
+   Turn 7
+
+     Kyros says "Delay Effect for someone. Flip a coin, and...".
+     TK421 snaps the fingers of his left hand.
+     TK421 snaps the fingers of his right hand.
+     Kyros proffers the palm of his left hand.
+     Kyros wiggles the fingers of his right hand.
+     Kyros casts Delay Effect at TK421.
+     Tarot snaps the fingers of his left hand.
+     Tarot snaps the fingers of his right hand.
+     Tarot casts Invisibility at himself.
+     Tarot begins to shimmer.
+     TK421 begins glowing faintly.
+     Rogan is covered by a shimmering shield.
+     Rogan attacks TK421 for 1 damage.
+     There is a flash, and Tarot disappears!
+
+   Turn 8
+
+     TK421 claps.
+     TK421 casts Ice Storm at Nobody.
+     Kyros wiggles the fingers of his left hand.
+     Kyros waves his right hand.
+     Kyros casts Summon Troll at himself.
+     Stupid Troll is summoned to serve Kyros.
+     Rogan is covered by a shimmering shield.
+     TK421 is hit by a Magic Missile, for 1 damage.
+     An Ice Storm rages through the circle!
+     Rogan is frozen by the raging Ice Storm, for 5 damage.
+     Tarot looks comfortable in the cooling Ice Storm.
+     Kyros is frozen by the raging Ice Storm, for 5 damage.
+     TK421 looks comfortable in the cooling Ice Storm.
+     Stupid Troll is frozen by the raging Ice Storm, for 5 damage.
+     Stupid Troll swings wildly for Rogan, but misses.
+     Stupid Troll dies.
+
+   Turn 9
+
+     Kyros says "Wax on, wax off.".
+     TK421 banks a spell for later.
+     TK421 waves his left hand.
+     TK421 waves his right hand.
+     Kyros proffers the palm of his left hand.
+     Kyros waves his right hand.
+     Kyros casts Anti-spell at TK421.
+     TK421's half-done spells fizzle and die.
+     TK421's half-done spells fizzle and die.
+     An Ice Storm rages through the circle!
+     Rogan is frozen by the raging Ice Storm, for 5 damage.
+     Tarot looks comfortable in the cooling Ice Storm.
+     Kyros is frozen by the raging Ice Storm, for 5 damage.
+     TK421 looks comfortable in the cooling Ice Storm.
+     Rogan fades back into visibility.
+
+   Turn 10
+
+     Rogan proffers the palm of his left hand.
+     Rogan snaps the fingers of his right hand.
+     Rogan casts Shield at himself.
+     TK421 proffers the palm of his left hand.
+     TK421 waves his right hand.
+     TK421 casts Shield at himself.
+     Kyros snaps the fingers of his left hand.
+     Kyros proffers the palm of his right hand.
+     Kyros casts Protection at Rogan.
+     Rogan is surrounded by a thick shimmering shield.
+     Rogan is covered by a shimmering shield.
+     TK421 is covered by a shimmering shield.
+     Tarot fades back into visibility.
+
+   Turn 11
+
+     Kyros says "I'm impressed how quickly this match is proceeding considering
+     there are four of us.".
+     Rogan waves his left hand.
+     Rogan points the digit of his right hand.
+     Rogan casts Magic Missile at Tarot.
+     TK421 waves his left hand.
+     TK421 proffers the palm of his right hand.
+     TK421 casts Shield at himself.
+     Kyros points the digit of his left hand.
+     Kyros proffers the palm of his right hand.
+     Kyros casts Magic Missile at TK421.
+     Kyros casts Counter Spell at Rogan.
+     Tarot waves his left hand.
+     Tarot wiggles the fingers of his right hand.
+     Rogan is covered by a magical glowing shield.
+     TK421 is covered by a shimmering shield.
+     Tarot is hit by a Magic Missile, for 1 damage.
+     A magic missile bounces off TK421's shield.
+
+   Turn 12
+
+     Tarot says "Yep. ^ ^".
+     Rogan waves his left hand.
+     Rogan waves his right hand.
+     Rogan casts Permanency at himself.
+     TK421 waves his left hand.
+     TK421 proffers the palm of his right hand.
+     TK421 casts Counter Spell at himself.
+     Kyros waves his left hand.
+     Kyros waves his right hand.
+     Kyros casts Permanency at Tarot.
+     Tarot waves his left hand.
+     Tarot wiggles the fingers of his right hand.
+     TK421 is covered by a magical glowing shield.
+     Rogan begins glowing faintly.
+     Tarot begins glowing faintly.
+
+   Turn 13
+
+     Kyros  says "Look at this! Banked Magic Mirror and two players with
+     Permanency. Isn't it great having me around?".
+     Rogan claps.
+     Rogan casts Haste at himself.
+     TK421 snaps the fingers of his left hand.
+     TK421 waves his right hand.
+     TK421 casts Counter Spell at himself.
+     Kyros snaps the fingers of his left hand.
+     Kyros snaps the fingers of his right hand.
+     Kyros casts Invisibility at Rogan.
+     Tarot snaps the fingers of his left hand.
+     Tarot wiggles the fingers of his right hand.
+     Tarot casts Summon Ice Elemental at Kyros.
+     Tarot casts Paralysis at Rogan.
+     Tarot makes the spell permanent!
+     TK421 is covered by a magical glowing shield.
+     An Ice Elemental appears in a sudden rush of arctic wind!
+     Rogan speeds up!
+     Rogan's hands start to stiffen.
+     Rogan begins to shimmer.
+     The Ice Elemental runs amok!
+     Rogan is frozen for 3 damage.
+     Tarot enjoys the icy chill.
+     Kyros is frozen for 3 damage.
+     TK421 enjoys the icy chill.
+
+   Turn 14
+
+     Fast warlocks sneak in an extra set of gestures.
+     Rogan stops his heart through force of will alone.
+     There is a flash, and Rogan disappears!
+     Rogan dies.
+
+   Turn 15
+
+     TK421 proffers the palm of his left hand.
+     TK421 points the digit of his right hand.
+     TK421 casts Shield at Kyros.
+     Kyros proffers the palm of his left hand.
+     Kyros snaps the fingers of his right hand.
+     Kyros casts Shield at himself.
+     Tarot snaps the fingers of his left hand.
+     Tarot wiggles the fingers of his right hand.
+     Tarot casts Paralysis at TK421.
+     TK421's hands start to stiffen.
+     Kyros is covered by a shimmering shield.
+     Kyros is covered by a shimmering shield.
+     The Ice Elemental runs amok!
+     Tarot enjoys the icy chill.
+     Kyros's shield keeps the Ice Elemental at bay.
+     TK421 enjoys the icy chill.
+
+   Turn 16
+
+     TK421's right hand is paralysed.
+     Kyros says "Much obliged, TK. Just don't lose focus.".
+     TK421 wiggles the fingers of his left hand.
+     TK421 points the digit of his right hand.
+     Kyros proffers the palm of his left hand.
+     Kyros wiggles the fingers of his right hand.
+     Kyros casts Shield at himself.
+     Tarot claps.
+     Tarot casts Ice Storm at nobody.
+     Kyros is covered by a shimmering shield.
+     The Ice Elemental flies away with the storm.
+     An Ice Storm rages through the circle!
+     Tarot looks comfortable in the cooling Ice Storm.
+     Kyros is frozen by the raging Ice Storm, for 5 damage.
+     TK421 looks comfortable in the cooling Ice Storm.
+     Kyros dies.
+
+   Turn 17
+
+     Tarot says "Just the two of us now.".
+     TK421 proffers the palm of his left hand.
+     TK421 snaps the fingers of his right hand.
+     TK421 casts Anti-spell at Nobody.
+     Tarot points the digit of his left hand.
+     Tarot proffers the palm of his right hand.
+     Tarot casts Shield at himself.
+     Tarot is covered by a shimmering shield.
+
+   Turn 18
+
+     TK421 snaps the fingers of his left hand.
+     TK421 wiggles the fingers of his right hand.
+     TK421 casts Confusion at Tarot.
+     Tarot proffers the palm of his left hand.
+     Tarot waves his right hand.
+     Tarot casts Shield at himself.
+     Tarot looks a bit confused.
+     Tarot is covered by a shimmering shield.
+
+   Turn 19
+
+     Tarot confusedly makes the wrong gesture with his left hand.
+     TK421 wiggles the fingers of his left hand.
+     TK421 wiggles the fingers of his right hand.
+     Tarot flailingly half-claps with his left hand.
+     Tarot proffers the palm of his right hand.
+     Tarot casts Shield at himself.
+     Tarot is covered by a shimmering shield.
+
+   Turn 20
+
+     TK421 waves his left hand.
+     TK421 wiggles the fingers of his right hand.
+     TK421 casts Summon Troll at himself.
+     TK421 casts Paralysis at Tarot.
+     Tarot proffers the palm of his left hand.
+     Tarot wiggles the fingers of his right hand.
+     Tarot casts Shield at himself.
+     Mailing-list Troll is summoned to serve TK421.
+     Tarot's hands start to stiffen.
+     Tarot is covered by a shimmering shield.
+     TK421 directs Mailing-list Troll to attack Tarot.
+     Mailing-list Troll attacks Tarot, but is deflected by a shield.
+
+   Turn 21
+
+     Tarot's right hand is paralysed.
+     TK421 claps.
+     TK421 casts Disease at Tarot.
+     Tarot snaps the fingers of his left hand.
+     Tarot wiggles the fingers of his right hand.
+     Tarot starts to look sick.
+     TK421 directs Mailing-list Troll to attack Tarot.
+     Mailing-list Troll attacks Tarot for 3 damage.
+
+   Turn 22
+
+     Tarot is a bit nauseous.
+     TK421 waves his left hand.
+     TK421 waves his right hand.
+     TK421 casts Magic Mirror at himself.
+     Tarot points the digit of his left hand.
+     Tarot wiggles the fingers of his right hand.
+     Tarot casts Magic Missile at TK421.
+     Tarot casts Paralysis at TK421.
+     TK421 is covered by a reflective shield.
+     The Paralysis spell is reflected from TK421's Magic Mirror.
+     The Magic Missile spell is reflected from TK421's Magic Mirror.
+     Tarot's hands start to stiffen.
+     Tarot is hit by a Magic Missile, for 1 damage.
+     Mailing-list Troll attacks Tarot for 3 damage.
+
+   Turn 23
+
+     Tarot is looking pale.
+     Tarot's left hand is paralysed.
+     TK421 proffers the palm of his left hand.
+     TK421 waves his right hand.
+     TK421 casts Shield at himself.
+     Tarot points the digit of his left hand.
+     Tarot proffers the palm of his right hand.
+     Tarot casts Charm Monster at Mailing-list Troll.
+     Tarot casts Shield at himself.
+     Mailing-list Troll looks, glassy-eyed, at Tarot.
+     TK421 is covered by a shimmering shield.
+     Tarot is covered by a shimmering shield.
+     Tarot directs Mailing-list Troll to attack TK421.
+     Mailing-list Troll attacks TK421, but is deflected by a shield.
+
+   Turn 24
+
+     Tarot is having difficulty breathing.
+     TK421 waves his left hand.
+     TK421 proffers the palm of his right hand.
+     TK421 casts Protection at himself.
+     Tarot wiggles the fingers of his left hand.
+     Tarot makes no gesture with his right hand.
+     TK421 is surrounded by a thick shimmering shield.
+     Tarot directs Mailing-list Troll to attack TK421.
+     Mailing-list Troll attacks TK421, but is deflected by a shield.
+
+   Turn 25
+
+     Tarot is sweating feverishly.
+     TK421 waves his left hand.
+     TK421 waves his right hand.
+     Tarot proffers the palm of his left hand.
+     Tarot waves his right hand.
+     Tarot casts Shield at himself.
+     Tarot is covered by a shimmering shield.
+     Tarot directs Mailing-list Troll to attack TK421.
+     Mailing-list Troll attacks TK421, but is deflected by a shield.
+
+   Turn 26
+
+     Tarot staggers weakly.
+     TK421 snaps the fingers of his left hand.
+     TK421 waves his right hand.
+     TK421 casts Counter Spell at Tarot.
+     Tarot waves his left hand.
+     Tarot waves his right hand.
+     Tarot casts Cure Heavy Wounds at himself.
+     Tarot is covered by a magical glowing shield.
+     Tiny holes in Tarot's shield are sealed up.
+     Tarot directs Mailing-list Troll to attack TK421.
+     Mailing-list Troll attacks TK421, but is deflected by a shield.
+
+   Turn 27
+
+     Tarot starts coughing up blood.
+     TK421 waves his left hand.
+     TK421 proffers the palm of his right hand.
+     TK421 casts Protection at himself.
+     Tarot waves his left hand.
+     Tarot proffers the palm of his right hand.
+     Tarot casts Protection at himself.
+     TK421 is surrounded by a thick shimmering shield.
+     Tarot is surrounded by a thick shimmering shield.
+     Tarot directs Mailing-list Troll to attack TK421.
+     Mailing-list Troll attacks TK421, but is deflected by a shield.
+     Tarot's Disease is fatal.
+     Tarot dies.
+     TK421 is victorious!
+
+   Mailing-list Troll Health:3
+   Owned by: Tarot    Attacking: TK421
+
+   Rogan(0) Dead. - Paralysed(permanent) Invisibility(3) Permanency(2) Haste(2)
+   Turn:0123456789012345678901234567
+     LH:BWFPPWS???PWWC?
+     RH:BSWDFWS???SDWC?
+
+   TK421(3) Health:13 - Shield(2) Coldproof(permanent) (Banked:Magic Mirror)
+   Turn:0123456789012345678901234567
+     LH:BPSDFWSSC-PWWS PFPSFWCWPWWSW
+     RH:BWWSSFPSC-WPPW DDSFFFCWWPWWP
+
+   Kyros(0) Dead.
+   Turn:0123456789012345678901234567
+     LH:BSDWSSSPFPSDWS PP
+     RH:BSFWFPSFWWPPWS SF
+
+   Tarot(0) Dead. - Shield(2) Coldproof(permanent)
+   Turn:0123456789012345678901234567
+     LH:BSSFPPWS???WWS SCDPCPSDDFPWW
+     RH:BPWPW-WS???FFF FCPWPFFFP-WWP

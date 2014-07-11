@@ -1,0 +1,164 @@
+   Username: ____________
+   Password: ____________
+   Remember: [ ]
+   Login
+     New User
+
+
+   Rules
+
+        Status
+
+              Challenges
+
+                        Players
+
+                               RavenBlack Games
+
+                                                           Spell Reference
+
+Turn 10 in Very Friendly (Maladroit) (ParaFDF) Battle 80702
+
+   Turn 0
+
+     SilkyMiror bows.
+     gamerz bows.
+
+   Turn 1
+
+     gamerz says "hello".
+     SilkyMiror points the digit of his left hand.
+     SilkyMiror proffers the palm of his right hand.
+     SilkyMiror casts Shield at himself.
+     gamerz points the digit of his left hand.
+     gamerz proffers the palm of his right hand.
+     gamerz casts Shield at himself.
+     SilkyMiror is covered by a shimmering shield.
+     gamerz is covered by a shimmering shield.
+
+   Turn 2
+
+     SilkyMiror says "hi".
+     SilkyMiror snaps the fingers of his left hand.
+     SilkyMiror points the digit of his right hand.
+     gamerz snaps the fingers of his left hand.
+     gamerz snaps the fingers of his right hand.
+
+   Turn 3
+
+     SilkyMiror wiggles the fingers of his left hand.
+     SilkyMiror waves his right hand.
+     SilkyMiror casts Maladroitness at himself.
+     gamerz wiggles the fingers of his left hand.
+     gamerz points the digit of his right hand.
+     gamerz casts Maladroitness at SilkyMiror.
+     gamerz casts Magic Missile at SilkyMiror.
+     SilkyMiror starts to lose coordination.
+     SilkyMiror starts to lose coordination.
+     SilkyMiror shakes his head and regains control, as enchantments
+     cancel each other out.
+     SilkyMiror is hit by a Magic Missile, for 1 damage.
+
+   Turn 4
+
+     SilkyMiror points the digit of his left hand.
+     SilkyMiror proffers the palm of his right hand.
+     SilkyMiror casts Remove Enchantment at himself.
+     gamerz waves his left hand.
+     gamerz wiggles the fingers of his right hand.
+     gamerz casts Summon Goblin at himself.
+     gamerz casts Charm Person at SilkyMiror.
+     Ugly Goblin is summoned to serve gamerz.
+     SilkyMiror looks intrigued by gamerz.
+     SilkyMiror's surrounding magical energies are grounded.
+     gamerz directs Ugly Goblin to attack the monster SilkyMiror is
+     summoning with his left hand.
+     Ugly Goblin swings wildly for the monster SilkyMiror is summoning
+     with his left hand, but misses.
+
+   Turn 5
+
+     SilkyMiror wiggles the fingers of his left hand.
+     SilkyMiror stabs with his right hand.
+     SilkyMiror casts Paralysis at gamerz.
+     gamerz waves his left hand.
+     gamerz wiggles the fingers of his right hand.
+     gamerz's hands start to stiffen.
+     gamerz directs Ugly Goblin to attack SilkyMiror.
+     SilkyMiror attacks Ugly Goblin for 1 damage.
+     Ugly Goblin attacks SilkyMiror for 1 damage.
+     Ugly Goblin dies.
+
+   Turn 6
+
+     gamerz's left hand is paralysed.
+     SilkyMiror claps.
+     SilkyMiror casts Disease at gamerz.
+     gamerz proffers the palm of his left hand.
+     gamerz points the digit of his right hand.
+     gamerz casts Protection at himself.
+     gamerz is surrounded by a thick shimmering shield.
+     gamerz starts to look sick.
+
+   Turn 7
+
+     gamerz is a bit nauseous.
+     SilkyMiror waves his left hand.
+     SilkyMiror waves his right hand.
+     SilkyMiror casts Magic Mirror at himself.
+     gamerz points the digit of his left hand.
+     gamerz proffers the palm of his right hand.
+     gamerz casts Shield at himself.
+     SilkyMiror is covered by a reflective shield.
+     gamerz is covered by a shimmering shield.
+
+   Turn 8
+
+     gamerz is looking pale.
+     SilkyMiror proffers the palm of his left hand.
+     SilkyMiror waves his right hand.
+     SilkyMiror casts Shield at himself.
+     gamerz waves his left hand.
+     gamerz proffers the palm of his right hand.
+     gamerz casts Amnesia at SilkyMiror.
+     SilkyMiror starts to look blank.
+     SilkyMiror is covered by a shimmering shield.
+
+   Turn 9
+
+     SilkyMiror forgets what he's doing, and makes the same gestures as
+     last round!
+     gamerz is having difficulty breathing.
+     SilkyMiror proffers the palm of his left hand.
+     SilkyMiror waves his right hand.
+     SilkyMiror casts Counter Spell at gamerz.
+     gamerz proffers the palm of his left hand.
+     gamerz points the digit of his right hand.
+     gamerz casts Remove Enchantment at himself.
+     gamerz is covered by a magical glowing shield.
+     gamerz's shield flickers, but remains firm.
+
+   Turn 10
+
+     gamerz is sweating feverishly.
+     SilkyMiror says "Good game.".
+     SilkyMiror waves his left hand.
+     SilkyMiror waves his right hand.
+     gamerz proffers the palm of his left hand.
+     gamerz proffers the palm of his right hand.
+     gamerz casts Counter Spell at himself.
+     gamerz casts Shield at himself.
+     gamerz is covered by a magical glowing shield.
+     gamerz is covered by a shimmering shield.
+     gamerz surrenders.
+     SilkyMiror is victorious!
+
+   Registered!  SilkyMiror(0) Health:13
+   Turn:01234567890
+     LH:BDSFDFCWPPW
+     RH:BPDWP>CWWWW
+
+   gamerz(0) Surrendered. (Health: 15) - Disease(2)
+   Turn:01234567890
+     LH:BDSFWWPDWPP
+     RH:BPSDFFDPPDP

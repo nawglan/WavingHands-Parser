@@ -15,7 +15,7 @@ WriteMakefile(
         'File::Spec' => 0,
         'List::Util' => 0,
         'Parse::RecDescent' => 0,
-        'mop' => 0,
+        'mop' => 0
     },
     TEST_REQUIRES => {
         'Test::More' => 0,

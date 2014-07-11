@@ -1,0 +1,377 @@
+
+   Mr Insulty says... the Internet is no better than a leaky MIDI system!
+                                                         Log out merrrick
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 29 in Ladder Battle 12813
+
+   Turn 0
+
+     merrrick bows.
+     Verdisian bows.
+
+   Turn 1
+
+     Verdisian says "hi".
+     merrrick points the digit of his left hand.
+     merrrick proffers the palm of his right hand.
+     merrrick casts Shield at himself.
+     Verdisian points the digit of his left hand.
+     Verdisian proffers the palm of his right hand.
+     Verdisian casts Shield at himself.
+     merrrick is covered by a shimmering shield.
+     Verdisian is covered by a shimmering shield.
+
+   Turn 2
+
+     merrrick says "hi".
+     merrrick snaps the fingers of his left hand.
+     merrrick snaps the fingers of his right hand.
+     Verdisian snaps the fingers of his left hand.
+     Verdisian snaps the fingers of his right hand.
+
+   Turn 3
+
+     merrrick wiggles the fingers of his left hand.
+     merrrick points the digit of his right hand.
+     merrrick casts Confusion at Verdisian.
+     merrrick casts Magic Missile at Verdisian.
+     Verdisian wiggles the fingers of his left hand.
+     Verdisian points the digit of his right hand.
+     Verdisian casts Confusion at merrrick.
+     Verdisian casts Magic Missile at merrrick.
+     Verdisian looks a bit confused.
+     merrrick looks a bit confused.
+     Verdisian is hit by a Magic Missile, for 1 damage.
+     merrrick is hit by a Magic Missile, for 1 damage.
+
+   Turn 4
+
+     merrrick confusedly makes the wrong gesture with his left hand.
+     Verdisian confusedly makes the wrong gesture with his left hand.
+     merrrick flailingly half-claps with his left hand.
+     merrrick points the digit of his right hand.
+     merrrick casts Charm Monster at the monster Verdisian is summoning with
+     his left hand.
+     Verdisian snaps the fingers of his left hand.
+     Verdisian wiggles the fingers of his right hand.
+     Verdisian casts Charm Person at merrrick.
+     The haze of an enchantment spell drifts aimlessly over the circle, and
+     dissipates.
+     merrrick looks intrigued by Verdisian.
+
+   Turn 5
+
+     merrrick is charmed into making the wrong gesture with his right hand.
+     merrrick says "wow that worked out really badly for me".
+     merrrick waves his left hand.
+     merrrick makes no gesture with his right hand.
+     Verdisian snaps the fingers of his left hand.
+     Verdisian waves his right hand.
+     Verdisian casts Cure Light Wounds at himself.
+     Verdisian is healed.
+
+   Turn 6
+
+     Verdisian says "hehe".
+     merrrick proffers the palm of his left hand.
+     merrrick waves his right hand.
+     merrrick casts Shield at himself.
+     Verdisian points the digit of his left hand.
+     Verdisian proffers the palm of his right hand.
+     Verdisian casts Magic Missile at merrrick.
+     Verdisian casts Shield at himself.
+     merrrick is covered by a shimmering shield.
+     Verdisian is covered by a shimmering shield.
+     A magic missile bounces off merrrick's shield.
+
+   Turn 7
+
+     merrrick proffers the palm of his left hand.
+     merrrick waves his right hand.
+     merrrick casts Counter Spell at himself.
+     Verdisian points the digit of his left hand.
+     Verdisian wiggles the fingers of his right hand.
+     Verdisian casts Fireball at merrrick.
+     merrrick is covered by a magical glowing shield.
+     A fireball strikes, and flames roar all around merrrick's shield.
+
+   Turn 8
+
+     merrrick snaps the fingers of his left hand.
+     merrrick snaps the fingers of his right hand.
+     merrrick casts Counter Spell at himself.
+     Verdisian proffers the palm of his left hand.
+     Verdisian points the digit of his right hand.
+     Verdisian casts Shield at himself.
+     Verdisian casts Cause Heavy Wounds at merrrick.
+     merrrick is covered by a magical glowing shield.
+     Verdisian is covered by a shimmering shield.
+     Holes open up in merrrick's shield, but then close up again.
+
+   Turn 9
+
+     merrrick wiggles the fingers of his left hand.
+     merrrick waves his right hand.
+     Verdisian proffers the palm of his left hand.
+     Verdisian snaps the fingers of his right hand.
+     Verdisian casts Amnesia at merrrick.
+     merrrick starts to look blank.
+
+   Turn 10
+
+     merrrick forgets what he's doing, and makes the same gestures as last
+     round!
+     merrrick wiggles the fingers of his left hand.
+     merrrick waves his right hand.
+     Verdisian snaps the fingers of his left hand.
+     Verdisian points the digit of his right hand.
+     Verdisian casts Magic Missile at merrrick.
+     merrrick is hit by a Magic Missile, for 1 damage.
+
+   Turn 11
+
+     Verdisian says "bah misclicked".
+     merrrick wiggles the fingers of his left hand.
+     merrrick wiggles the fingers of his right hand.
+     merrrick casts Paralysis at Verdisian.
+     Verdisian points the digit of his left hand.
+     Verdisian wiggles the fingers of his right hand.
+     Verdisian casts Magic Missile at merrrick.
+     Verdisian's hands start to stiffen.
+     merrrick is hit by a Magic Missile, for 1 damage.
+
+   Turn 12
+
+     Verdisian's left hand is paralysed.
+     merrrick wiggles the fingers of his left hand.
+     merrrick proffers the palm of his right hand.
+     merrrick casts Paralysis at Verdisian.
+     merrrick casts Resist Heat at himself.
+     Verdisian points the digit of his left hand.
+     Verdisian wiggles the fingers of his right hand.
+     Verdisian casts Charm Monster at himself.
+     merrrick is covered in a coat of sparkling frost.
+     Verdisian's hands start to stiffen.
+     Verdisian ignores Verdisian's appeal to his baser instincts.
+     Verdisian shakes his head and regains control, as enchantments cancel each
+     other out.
+
+   Turn 13
+
+     merrrick claps.
+     Verdisian proffers the palm of his left hand.
+     Verdisian points the digit of his right hand.
+     Verdisian casts Shield at himself.
+     Verdisian is covered by a shimmering shield.
+
+   Turn 14
+
+     merrrick waves his left hand.
+     merrrick waves his right hand.
+     merrrick casts Magic Mirror at himself.
+     Verdisian snaps the fingers of his left hand.
+     Verdisian proffers the palm of his right hand.
+     Verdisian casts Shield at himself.
+     merrrick is covered by a reflective shield.
+     Verdisian is covered by a shimmering shield.
+
+   Turn 15
+
+     merrrick snaps the fingers of his left hand.
+     merrrick proffers the palm of his right hand.
+     merrrick casts Shield at himself.
+     Verdisian wiggles the fingers of his left hand.
+     Verdisian proffers the palm of his right hand.
+     Verdisian casts Amnesia at merrrick.
+     merrrick starts to look blank.
+     merrrick is covered by a shimmering shield.
+
+   Turn 16
+
+     merrrick forgets what he's doing, and makes the same gestures as last
+     round!
+     merrrick snaps the fingers of his left hand.
+     merrrick proffers the palm of his right hand.
+     merrrick casts Counter Spell at Verdisian.
+     Verdisian waves his left hand.
+     Verdisian waves his right hand.
+     Verdisian casts Summon Ogre at himself.
+     Verdisian is covered by a magical glowing shield.
+     Verdisian's Ogre is absorbed into a Counterspell glow.
+
+   Turn 17
+
+     merrrick waves his left hand.
+     merrrick waves his right hand.
+     merrrick casts Summon Fire Elemental at nobody.
+     Verdisian snaps the fingers of his left hand.
+     Verdisian snaps the fingers of his right hand.
+     Verdisian casts Invisibility at the monster merrrick is summoning with his
+     left hand.
+     A Fire Elemental appears in a furious roar of flame!
+     Fire Elemental is hit by an Invisibility spell, and is annihilated by the
+     magical overload.
+
+   Turn 18
+
+     merrrick snaps the fingers of his left hand.
+     merrrick snaps the fingers of his right hand.
+     merrrick casts Invisibility at himself.
+     Verdisian snaps the fingers of his left hand.
+     Verdisian points the digit of his right hand.
+     Verdisian casts Magic Missile at merrrick.
+     merrrick begins to shimmer.
+     merrrick is hit by a Magic Missile, for 1 damage.
+     There is a flash, and merrrick disappears!
+
+   Turn 19
+
+     merrrick waves his left hand.
+     merrrick waves his right hand.
+     Verdisian claps.
+     Verdisian casts Ice Storm at nobody.
+     An Ice Storm rages through the circle!
+     Verdisian is frozen by the raging Ice Storm, for 5 damage.
+     merrrick is frozen by the raging Ice Storm, for 5 damage.
+
+   Turn 20
+
+     merrrick waves his left hand.
+     merrrick stabs with his right hand.
+     Verdisian waves his left hand.
+     Verdisian points the digit of his right hand.
+     merrrick attacks Verdisian for 1 damage.
+
+   Turn 21
+
+     merrrick claps.
+     merrrick casts Fire Storm at nobody.
+     Verdisian points the digit of his left hand.
+     Verdisian proffers the palm of his right hand.
+     Verdisian casts Shield at himself.
+     Verdisian is covered by a shimmering shield.
+     A Fire Storm rages through the circle!
+     Verdisian is burnt in the raging Fire Storm, for 5 damage.
+     merrrick basks in the heat of the Fire Storm.
+     merrrick fades back into visibility.
+
+   Turn 22
+
+     merrrick claps.
+     Verdisian points the digit of his left hand.
+     Verdisian waves his right hand.
+     Verdisian casts Dispel Magic at himself.
+     All magical effects are erased! All other spells fail!
+     Verdisian is covered by a shimmering shield.
+
+   Turn 23
+
+     merrrick waves his left hand.
+     merrrick waves his right hand.
+     merrrick casts Magic Mirror at himself.
+     Verdisian snaps the fingers of his left hand.
+     Verdisian proffers the palm of his right hand.
+     Verdisian casts Shield at himself.
+     merrrick is covered by a reflective shield.
+     Verdisian is covered by a shimmering shield.
+
+   Turn 24
+
+     merrrick waves his left hand.
+     merrrick proffers the palm of his right hand.
+     merrrick casts Shield at himself.
+     Verdisian wiggles the fingers of his left hand.
+     Verdisian wiggles the fingers of his right hand.
+     Verdisian casts Confusion at merrrick.
+     merrrick looks a bit confused.
+     merrrick is covered by a shimmering shield.
+
+   Turn 25
+
+     merrrick confusedly makes the wrong gesture with his left hand.
+     merrrick proffers the palm of his left hand.
+     merrrick wiggles the fingers of his right hand.
+     merrrick casts Protection at himself.
+     Verdisian waves his left hand.
+     Verdisian snaps the fingers of his right hand.
+     Verdisian casts Summon Goblin at himself.
+     Bearded Goblin is summoned to serve Verdisian.
+     merrrick is surrounded by a thick shimmering shield.
+     Verdisian directs Bearded Goblin to attack merrrick.
+     Bearded Goblin attacks merrrick, but is deflected by a shield.
+
+   Turn 26
+
+     merrrick stabs with his left hand.
+     merrrick points the digit of his right hand.
+     merrrick casts Cause Heavy Wounds at Verdisian.
+     Verdisian proffers the palm of his left hand.
+     Verdisian snaps the fingers of his right hand.
+     Verdisian casts Shield at himself.
+     Verdisian is covered by a shimmering shield.
+     Wounds appear all over Verdisian's body!
+     merrrick attacks Verdisian, but is deflected by a shield.
+     Bearded Goblin attacks merrrick, but is deflected by a shield.
+
+   Turn 27
+
+     merrrick claps.
+     Verdisian proffers the palm of his left hand.
+     Verdisian snaps the fingers of his right hand.
+     Verdisian casts Counter Spell at himself.
+     Verdisian is covered by a magical glowing shield.
+     Bearded Goblin attacks merrrick, but is deflected by a shield.
+
+   Turn 28
+
+     merrrick waves his left hand.
+     merrrick waves his right hand.
+     merrrick casts Magic Mirror at himself.
+     Verdisian points the digit of his left hand.
+     Verdisian proffers the palm of his right hand.
+     Verdisian casts Shield at himself.
+     merrrick is covered by a reflective shield.
+     Verdisian is covered by a shimmering shield.
+     Bearded Goblin attacks merrrick for 1 damage.
+
+   Turn 29
+
+     Verdisian says "gg".
+     merrrick wiggles the fingers of his left hand.
+     merrrick proffers the palm of his right hand.
+     merrrick casts Shield at himself.
+     Verdisian proffers the palm of his left hand.
+     Verdisian proffers the palm of his right hand.
+     Verdisian casts Shield at himself.
+     Verdisian casts Shield at himself.
+     merrrick is covered by a shimmering shield.
+     Verdisian is covered by a shimmering shield.
+     Verdisian is covered by a shimmering shield.
+     Bearded Goblin attacks merrrick, but is deflected by a shield.
+     Verdisian surrenders.
+     merrrick is victorious!
+
+   Bearded Goblin      Health:1
+   Owned by: Verdisian Attacking: merrrick
+
+   Verdisian(7) Surrendered. (Health: 1)
+   Turn:012345678901234567890123456789
+     LH:BDSFSSDDPPSDDPSFWSSCWDDSFWPPDP
+     RH:BPSDFWPFDSDFFDPPWSDCDPWPFSSSPP
+
+   merrrick(7) Health:5
+   Turn:012345678901234567890123456789
+     LH:BDSFCWPPSFFFFCWSSWSWWCCWWP>CWF
+     RH:BPSDD-WWSWWFPCWPPWSW>CCWPFDCWP

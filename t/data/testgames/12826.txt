@@ -1,0 +1,467 @@
+
+   Log out nawglan
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 38 in Ladder Battle 12826
+
+   Turn 0
+
+     nawglan bows.
+     obsidiaan bows.
+
+   Turn 1
+
+     nawglan says "not real active over the weekend. I'll try and check as
+     often as I can.".
+     obsidiaan says "Hi, again.".
+     nawglan proffers the palm of his left hand.
+     nawglan points the digit of his right hand.
+     nawglan casts Shield at himself.
+     obsidiaan points the digit of his left hand.
+     obsidiaan waves his right hand.
+     nawglan is covered by a shimmering shield.
+
+   Turn 2
+
+     obsidiaan says "np".
+     nawglan snaps the fingers of his left hand.
+     nawglan snaps the fingers of his right hand.
+     obsidiaan waves his left hand.
+     obsidiaan waves his right hand.
+
+   Turn 3
+
+     nawglan wiggles the fingers of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Confusion at obsidiaan.
+     obsidiaan waves his left hand.
+     obsidiaan snaps the fingers of his right hand.
+     obsidiaan casts Counter Spell at himself.
+     obsidiaan is covered by a magical glowing shield.
+     obsidiaan's shield blurs for a moment.
+
+   Turn 4
+
+     nawglan waves his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Summon Ogre at himself.
+     obsidiaan snaps the fingers of his left hand.
+     obsidiaan waves his right hand.
+     obsidiaan casts Counter Spell at nawglan.
+     nawglan is covered by a magical glowing shield.
+     nawglan's Ogre is absorbed into a Counterspell glow.
+
+   Turn 5
+
+     nawglan proffers the palm of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Shield at himself.
+     nawglan casts Paralysis at obsidiaan.
+     obsidiaan wiggles the fingers of his left hand.
+     obsidiaan points the digit of his right hand.
+     obsidiaan casts Fear at himself.
+     obsidiaan's hands start to stiffen.
+     obsidiaan cringes in fear.
+     obsidiaan shakes his head and regains control, as enchantments cancel each
+     other out.
+     nawglan is covered by a shimmering shield.
+
+   Turn 6
+
+     nawglan claps.
+     nawglan casts Disease at obsidiaan.
+     obsidiaan waves his left hand.
+     obsidiaan wiggles the fingers of his right hand.
+     obsidiaan casts Summon Goblin at himself.
+     Green Goblin is summoned to serve obsidiaan.
+     obsidiaan starts to look sick.
+     Green Goblin attacks nawglan for 1 damage.
+
+   Turn 7
+
+     obsidiaan is a bit nauseous.
+     nawglan proffers the palm of his left hand.
+     nawglan waves his right hand.
+     nawglan casts Shield at himself.
+     obsidiaan wiggles the fingers of his left hand.
+     obsidiaan proffers the palm of his right hand.
+     obsidiaan casts Shield at himself.
+     nawglan is covered by a shimmering shield.
+     obsidiaan is covered by a shimmering shield.
+     Green Goblin attacks nawglan, but is deflected by a shield.
+
+   Turn 8
+
+     obsidiaan is looking pale.
+     nawglan snaps the fingers of his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Shield at himself.
+     obsidiaan proffers the palm of his left hand.
+     obsidiaan waves his right hand.
+     obsidiaan casts Cause Light Wounds at nawglan.
+     obsidiaan casts Cure Heavy Wounds at himself.
+     obsidiaan is healed.
+     obsidiaan is at maximum health.
+     nawglan is covered by a shimmering shield.
+     Wounds appear all over nawglan's body!
+     Green Goblin attacks nawglan, but is deflected by a shield.
+
+   Turn 9
+
+     nawglan points the digit of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Magic Missile at Green Goblin.
+     obsidiaan snaps the fingers of his left hand.
+     obsidiaan proffers the palm of his right hand.
+     obsidiaan casts Shield at himself.
+     obsidiaan is covered by a shimmering shield.
+     Green Goblin is hit by a Magic Missile, for 1 damage.
+     Green Goblin attacks nawglan for 1 damage.
+     Green Goblin dies.
+
+   Turn 10
+
+     nawglan claps.
+     obsidiaan wiggles the fingers of his left hand.
+     obsidiaan proffers the palm of his right hand.
+     obsidiaan casts Counter Spell at himself.
+     obsidiaan is covered by a magical glowing shield.
+
+   Turn 11
+
+     nawglan points the digit of his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Shield at himself.
+     obsidiaan waves his left hand.
+     obsidiaan snaps the fingers of his right hand.
+     obsidiaan casts Summon Giant at himself.
+     Golden Giant is summoned to serve obsidiaan.
+     nawglan is covered by a shimmering shield.
+     Golden Giant attacks nawglan, but is deflected by a shield.
+
+   Turn 12
+
+     nawglan proffers the palm of his left hand.
+     nawglan snaps the fingers of his right hand.
+     nawglan casts Shield at himself.
+     obsidiaan waves his left hand.
+     obsidiaan waves his right hand.
+     nawglan is covered by a shimmering shield.
+     Golden Giant attacks nawglan, but is deflected by a shield.
+
+   Turn 13
+
+     nawglan waves his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Dispel Magic at himself.
+     obsidiaan waves his left hand.
+     obsidiaan points the digit of his right hand.
+     obsidiaan casts Fear at nawglan.
+     All magical effects are erased! All other spells fail!
+     nawglan is covered by a shimmering shield.
+     Golden Giant attacks nawglan, but is deflected by a shield.
+     Golden Giant dies.
+
+   Turn 14
+
+     nawglan proffers the palm of his left hand.
+     nawglan waves his right hand.
+     nawglan casts Shield at himself.
+     nawglan casts Summon Ogre at himself.
+     obsidiaan proffers the palm of his left hand.
+     obsidiaan points the digit of his right hand.
+     obsidiaan casts Protection at himself.
+     Black Ogre is summoned to serve nawglan.
+     obsidiaan is surrounded by a thick shimmering shield.
+     nawglan is covered by a shimmering shield.
+     Black Ogre attacks obsidiaan, but is deflected by a shield.
+
+   Turn 15
+
+     nawglan proffers the palm of his left hand.
+     nawglan points the digit of his right hand.
+     nawglan casts Counter Spell at himself.
+     obsidiaan snaps the fingers of his left hand.
+     obsidiaan snaps the fingers of his right hand.
+     nawglan is covered by a magical glowing shield.
+     Black Ogre attacks obsidiaan, but is deflected by a shield.
+
+   Turn 16
+
+     nawglan snaps the fingers of his left hand.
+     nawglan snaps the fingers of his right hand.
+     obsidiaan points the digit of his left hand.
+     obsidiaan wiggles the fingers of his right hand.
+     obsidiaan casts Magic Missile at Black Ogre.
+     obsidiaan casts Confusion at nawglan.
+     nawglan looks a bit confused.
+     Black Ogre is hit by a Magic Missile, for 1 damage.
+     Black Ogre attacks obsidiaan, but is deflected by a shield.
+
+   Turn 17
+
+     nawglan confusedly makes the wrong gesture with his left hand.
+     nawglan makes no gesture with his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Confusion at Black Ogre.
+     obsidiaan wiggles the fingers of his left hand.
+     obsidiaan waves his right hand.
+     obsidiaan casts Charm Person at nawglan.
+     obsidiaan casts Summon Goblin at himself.
+     Malodorous Goblin is summoned to serve obsidiaan.
+     Black Ogre looks a bit confused.
+     nawglan looks intrigued by obsidiaan.
+     obsidiaan directs Malodorous Goblin to attack Black Ogre.
+     Black Ogre attacks Malodorous Goblin for 2 damage.
+     Malodorous Goblin attacks Black Ogre for 1 damage.
+     Malodorous Goblin dies.
+     Black Ogre dies.
+
+   Turn 18
+
+     nawglan is charmed into making the wrong gesture with his right hand.
+     nawglan waves his left hand.
+     nawglan makes no gesture with his right hand.
+     obsidiaan wiggles the fingers of his left hand.
+     obsidiaan wiggles the fingers of his right hand.
+
+   Turn 19
+
+     nawglan proffers the palm of his left hand.
+     nawglan points the digit of his right hand.
+     nawglan casts Shield at himself.
+     obsidiaan wiggles the fingers of his left hand.
+     obsidiaan proffers the palm of his right hand.
+     obsidiaan casts Paralysis at nawglan.
+     obsidiaan casts Cause Light Wounds at nawglan.
+     nawglan's hands start to stiffen.
+     nawglan is covered by a shimmering shield.
+     Wounds appear all over nawglan's body!
+
+   Turn 20
+
+     nawglan's right hand is paralysed.
+     nawglan wiggles the fingers of his left hand.
+     nawglan points the digit of his right hand.
+     obsidiaan waves his left hand.
+     obsidiaan snaps the fingers of his right hand.
+
+   Turn 21
+
+     nawglan points the digit of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Cause Heavy Wounds at obsidiaan.
+     obsidiaan wiggles the fingers of his left hand.
+     obsidiaan points the digit of his right hand.
+     obsidiaan casts Magic Missile at nawglan.
+     nawglan is hit by a Magic Missile, for 1 damage.
+     Wounds appear all over obsidiaan's body!
+
+   Turn 22
+
+     nawglan wiggles the fingers of his left hand.
+     nawglan waves his right hand.
+     nawglan casts Cure Light Wounds at himself.
+     obsidiaan proffers the palm of his left hand.
+     obsidiaan wiggles the fingers of his right hand.
+     obsidiaan casts Cause Light Wounds at nawglan.
+     obsidiaan casts Charm Person at nawglan.
+     nawglan looks intrigued by obsidiaan.
+     nawglan is healed.
+     Wounds appear all over nawglan's body!
+
+   Turn 23
+
+     nawglan is charmed into making the wrong gesture with his right hand.
+     nawglan waves his left hand.
+     nawglan makes no gesture with his right hand.
+     nawglan casts Cure Light Wounds at himself.
+     obsidiaan snaps the fingers of his left hand.
+     obsidiaan waves his right hand.
+     obsidiaan casts Cure Light Wounds at himself.
+     nawglan is healed.
+     obsidiaan is healed.
+
+   Turn 24
+
+     nawglan proffers the palm of his left hand.
+     nawglan points the digit of his right hand.
+     nawglan casts Shield at himself.
+     obsidiaan points the digit of his left hand.
+     obsidiaan proffers the palm of his right hand.
+     obsidiaan casts Magic Missile at nawglan.
+     obsidiaan casts Shield at himself.
+     nawglan is covered by a shimmering shield.
+     obsidiaan is covered by a shimmering shield.
+     A magic missile bounces off nawglan's shield.
+
+   Turn 25
+
+     nawglan proffers the palm of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Counter Spell at himself.
+     obsidiaan wiggles the fingers of his left hand.
+     obsidiaan wiggles the fingers of his right hand.
+     obsidiaan casts Charm Person at nawglan.
+     nawglan is covered by a magical glowing shield.
+     nawglan's shield blurs for a moment.
+
+   Turn 26
+
+     nawglan waves his left hand.
+     nawglan waves his right hand.
+     nawglan casts Cure Light Wounds at himself.
+     obsidiaan proffers the palm of his left hand.
+     obsidiaan points the digit of his right hand.
+     obsidiaan casts Shield at himself.
+     obsidiaan casts Cause Heavy Wounds at nawglan.
+     nawglan is healed.
+     obsidiaan is covered by a shimmering shield.
+     Wounds appear all over nawglan's body!
+
+   Turn 27
+
+     nawglan snaps the fingers of his left hand.
+     nawglan snaps the fingers of his right hand.
+     nawglan casts Invisibility at himself.
+     obsidiaan proffers the palm of his left hand.
+     obsidiaan stabs with his right hand.
+     obsidiaan casts Shield at himself.
+     nawglan begins to shimmer.
+     obsidiaan is covered by a shimmering shield.
+     obsidiaan attacks nawglan for 1 damage.
+     There is a flash, and nawglan disappears!
+
+   Turn 28
+
+     nawglan points the digit of his left hand.
+     nawglan points the digit of his right hand.
+     nawglan casts Magic Missile at obsidiaan.
+     nawglan casts Magic Missile at obsidiaan.
+     obsidiaan waves his left hand.
+     obsidiaan waves his right hand.
+     obsidiaan is hit by a Magic Missile, for 1 damage.
+     obsidiaan is hit by a Magic Missile, for 1 damage.
+
+   Turn 29
+
+     nawglan wiggles the fingers of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     obsidiaan snaps the fingers of his left hand.
+     obsidiaan snaps the fingers of his right hand.
+     obsidiaan casts Invisibility at himself.
+     obsidiaan begins to shimmer.
+     There is a flash, and obsidiaan disappears!
+
+   Turn 30
+
+     nawglan proffers the palm of his left hand.
+     nawglan waves his right hand.
+     nawglan casts Shield at himself.
+     nawglan casts Cure Light Wounds at himself.
+     nawglan is healed.
+     nawglan is covered by a shimmering shield.
+     obsidiaan is covered by a shimmering shield.
+     nawglan fades back into visibility.
+
+   Turn 31
+
+     nawglan waves his left hand.
+     nawglan waves his right hand.
+     nawglan casts Cure Heavy Wounds at himself.
+     Grey Goblin is summoned to serve obsidiaan.
+     nawglan is healed.
+     obsidiaan is covered by a shimmering shield.
+     Grey Goblin attacks nawglan for 1 damage.
+
+   Turn 32
+
+     nawglan wiggles the fingers of his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Protection at himself.
+     nawglan is surrounded by a thick shimmering shield.
+     Grey Goblin is covered by a shimmering shield.
+     Grey Goblin attacks nawglan, but is deflected by a shield.
+     obsidiaan fades back into visibility.
+
+   Turn 33
+
+     nawglan proffers the palm of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Cause Light Wounds at Grey Goblin.
+     obsidiaan wiggles the fingers of his left hand.
+     obsidiaan points the digit of his right hand.
+     obsidiaan casts Time Stop at himself.
+     obsidiaan flickers out of time!
+     Wounds appear all over Grey Goblin's body!
+     Grey Goblin attacks nawglan, but is deflected by a shield.
+     Grey Goblin dies.
+
+   Turn 34
+
+     This turn took place outside of time.
+     Wounds appear all over nawglan's body!
+
+   Turn 35
+
+     nawglan snaps the fingers of his left hand.
+     nawglan points the digit of his right hand.
+     nawglan casts Cause Heavy Wounds at obsidiaan.
+     obsidiaan proffers the palm of his left hand.
+     obsidiaan wiggles the fingers of his right hand.
+     obsidiaan casts Shield at himself.
+     obsidiaan is covered by a shimmering shield.
+     Wounds appear all over obsidiaan's body!
+
+   Turn 36
+
+     nawglan wiggles the fingers of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     obsidiaan proffers the palm of his left hand.
+     obsidiaan wiggles the fingers of his right hand.
+     obsidiaan casts Amnesia at nawglan.
+     nawglan starts to look blank.
+
+   Turn 37
+
+     nawglan forgets what he's doing, and makes the same gestures as last
+     round!
+     nawglan wiggles the fingers of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     obsidiaan points the digit of his left hand.
+     obsidiaan points the digit of his right hand.
+     obsidiaan casts Blindness at nawglan.
+     Scales start to grow over nawglan's eyes!
+     nawglan's eyes are covered with scales!
+
+   Turn 38
+
+     nawglan proffers the palm of his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Shield at himself.
+     nawglan casts Shield at himself.
+     nawglan is covered by a shimmering shield.
+     nawglan is covered by a shimmering shield.
+     nawglan surrenders.
+     obsidiaan is victorious!
+
+   obsidiaan(3) Health:9
+   Turn:012345678901234567890123456789012345678
+     LH:BDWWSFWFPSFWWWPSDFFFWFPSDFPPWS???F?PPDW
+     RH:BWWSWDFPWPPSWDDSFWFPSDFWPFD>WS???D?FFDW
+
+   Registered!  nawglan(8) Surrendered. (Health: 4) - Blindness(2)
+   Turn:012345678901234567890123456789012345678
+     LH:BPSFWPCPSDCDPWPPS-WPFDFWPPWSDFPWFP SFFP
+     RH:BDSFFFCWPFCPSFWDSF-DDFW-DFWSDFWWPF DFFP

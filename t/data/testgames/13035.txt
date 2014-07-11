@@ -1,0 +1,433 @@
+
+   Log out nawglan
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 31 in Ladder Battle 13035
+
+   Turn 0
+
+     nawglan bows.
+     Taliesin bows.
+
+   Turn 1
+
+     nawglan says "Hallo".
+     Taliesin says "Ah nawglan, hello!".
+     nawglan proffers the palm of his left hand.
+     nawglan points the digit of his right hand.
+     nawglan casts Shield at himself.
+     Taliesin points the digit of his left hand.
+     Taliesin proffers the palm of his right hand.
+     Taliesin casts Shield at himself.
+     nawglan is covered by a shimmering shield.
+     Taliesin is covered by a shimmering shield.
+
+   Turn 2
+
+     Taliesin says "Good to get a chance to play you.".
+     nawglan snaps the fingers of his left hand.
+     nawglan snaps the fingers of his right hand.
+     Taliesin snaps the fingers of his left hand.
+     Taliesin snaps the fingers of his right hand.
+
+   Turn 3
+
+     nawglan says "always a fun match. I believe I owe you a couple if memory
+     serves correct.".
+     nawglan points the digit of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Magic Missile at Taliesin.
+     nawglan casts Confusion at Taliesin.
+     Taliesin wiggles the fingers of his left hand.
+     Taliesin points the digit of his right hand.
+     Taliesin casts Confusion at nawglan.
+     Taliesin casts Magic Missile at nawglan.
+     Taliesin looks a bit confused.
+     nawglan looks a bit confused.
+     Taliesin is hit by a Magic Missile, for 1 damage.
+     nawglan is hit by a Magic Missile, for 1 damage.
+
+   Turn 4
+
+     nawglan makes a confused gesture, but luckily it's what he intended
+     anyway!
+     Taliesin confusedly makes the wrong gesture with his left hand.
+     Taliesin says "More than likely, yes.".
+     nawglan points the digit of his left hand.
+     nawglan waves his right hand.
+     nawglan casts Charm Monster at the monster Taliesin is summoning with his
+     left hand.
+     nawglan casts Summon Goblin at himself.
+     Taliesin stabs with his left hand.
+     Taliesin wiggles the fingers of his right hand.
+     Taliesin casts Charm Person at nawglan.
+     Grey Goblin is summoned to serve nawglan.
+     The haze of an enchantment spell drifts aimlessly over the circle, and
+     dissipates.
+     nawglan looks intrigued by Taliesin.
+     nawglan directs Grey Goblin to attack Taliesin.
+     Taliesin attacks nawglan for 1 damage.
+     Grey Goblin attacks Taliesin for 1 damage.
+
+   Turn 5
+
+     nawglan is charmed into making the wrong gesture with his right hand.
+     Taliesin says "Hmm, somewhat lucky there.".
+     nawglan snaps the fingers of his left hand.
+     nawglan makes no gesture with his right hand.
+     Taliesin stabs with his left hand.
+     Taliesin proffers the palm of his right hand.
+     Taliesin casts Shield at himself.
+     Taliesin is covered by a shimmering shield.
+     Taliesin attacks Grey Goblin for 1 damage.
+     Grey Goblin attacks Taliesin, but is deflected by a shield.
+     Grey Goblin dies.
+
+   Turn 6
+
+     nawglan wiggles the fingers of his left hand.
+     nawglan snaps the fingers of his right hand.
+     nawglan casts Confusion at Taliesin.
+     Taliesin snaps the fingers of his left hand.
+     Taliesin waves his right hand.
+     Taliesin casts Cure Heavy Wounds at himself.
+     Taliesin looks a bit confused.
+     Taliesin is healed.
+
+   Turn 7
+
+     Taliesin confusedly makes the wrong gesture with his right hand.
+     nawglan waves his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Summon Goblin at himself.
+     nawglan casts Shield at himself.
+     Taliesin points the digit of his left hand.
+     Taliesin stabs with his right hand.
+     Taliesin casts Magic Missile at the monster nawglan is summoning with his
+     left hand.
+     Smelly Goblin is summoned to serve nawglan.
+     nawglan is covered by a shimmering shield.
+     Smelly Goblin is hit by a Magic Missile, for 1 damage.
+     Taliesin attacks nawglan, but is deflected by a shield.
+     Smelly Goblin attacks Taliesin for 1 damage.
+     Smelly Goblin dies.
+
+   Turn 8
+
+     nawglan proffers the palm of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     nawglan casts Shield at himself.
+     Taliesin snaps the fingers of his left hand.
+     Taliesin waves his right hand.
+     nawglan is covered by a shimmering shield.
+
+   Turn 9
+
+     nawglan wiggles the fingers of his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Anti-spell at Taliesin.
+     Taliesin wiggles the fingers of his left hand.
+     Taliesin proffers the palm of his right hand.
+     Taliesin casts Confusion at nawglan.
+     Taliesin casts Shield at himself.
+     nawglan looks a bit confused.
+     Taliesin's half-done spells fizzle and die.
+     Taliesin is covered by a shimmering shield.
+
+   Turn 10
+
+     nawglan confusedly makes the wrong gesture with his right hand.
+     nawglan points the digit of his left hand.
+     nawglan makes no gesture with his right hand.
+     nawglan casts Cause Heavy Wounds at Taliesin.
+     Taliesin waves his left hand.
+     Taliesin points the digit of his right hand.
+     Wounds appear all over Taliesin's body!
+
+   Turn 11
+
+     nawglan says "ok that hurt a bit.".
+     nawglan snaps the fingers of his left hand.
+     nawglan snaps the fingers of his right hand.
+     Taliesin wiggles the fingers of his left hand.
+     Taliesin snaps the fingers of his right hand.
+
+   Turn 12
+
+     nawglan wiggles the fingers of his left hand.
+     nawglan waves his right hand.
+     nawglan casts Confusion at Taliesin.
+     Taliesin proffers the palm of his left hand.
+     Taliesin wiggles the fingers of his right hand.
+     Taliesin casts Cause Light Wounds at nawglan.
+     Taliesin casts Confusion at nawglan.
+     Taliesin looks a bit confused.
+     nawglan looks a bit confused.
+     Wounds appear all over nawglan's body!
+
+   Turn 13
+
+     nawglan confusedly makes the wrong gesture with his right hand.
+     Taliesin confusedly makes the wrong gesture with his right hand.
+     nawglan waves his left hand.
+     nawglan waves his right hand.
+     nawglan casts Summon Goblin at himself.
+     Taliesin snaps the fingers of his left hand.
+     Taliesin flailingly half-claps with his right hand.
+     Tricky Goblin is summoned to serve nawglan.
+     nawglan directs Tricky Goblin to attack the monster Taliesin is summoning
+     with his right hand.
+     Tricky Goblin swings wildly for the monster Taliesin is summoning with his
+     right hand, but misses.
+
+   Turn 14
+
+     nawglan snaps the fingers of his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Protection at himself.
+     Taliesin points the digit of his left hand.
+     Taliesin proffers the palm of his right hand.
+     Taliesin casts Magic Missile at Tricky Goblin.
+     Taliesin casts Shield at himself.
+     nawglan is surrounded by a thick shimmering shield.
+     Taliesin is covered by a shimmering shield.
+     Tricky Goblin is hit by a Magic Missile, for 1 damage.
+     nawglan directs Tricky Goblin to attack Taliesin.
+     Tricky Goblin attacks Taliesin, but is deflected by a shield.
+     Tricky Goblin dies.
+
+   Turn 15
+
+     nawglan wiggles the fingers of his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Counter Spell at himself.
+     Taliesin wiggles the fingers of his left hand.
+     Taliesin snaps the fingers of his right hand.
+     Taliesin casts Charm Person at nawglan.
+     nawglan is covered by a magical glowing shield.
+     nawglan's shield blurs for a moment.
+
+   Turn 16
+
+     nawglan waves his left hand.
+     nawglan waves his right hand.
+     nawglan casts Summon Goblin at himself.
+     Taliesin proffers the palm of his left hand.
+     Taliesin points the digit of his right hand.
+     Taliesin casts Shield at himself.
+     Taliesin casts Magic Missile at the monster nawglan is summoning with his
+     left hand.
+     Malodorous Goblin is summoned to serve nawglan.
+     Taliesin is covered by a shimmering shield.
+     Malodorous Goblin is hit by a Magic Missile, for 1 damage.
+     Malodorous Goblin attacks Taliesin, but is deflected by a shield.
+     Malodorous Goblin dies.
+
+   Turn 17
+
+     nawglan snaps the fingers of his left hand.
+     nawglan snaps the fingers of his right hand.
+     nawglan casts Invisibility at himself.
+     Taliesin waves his left hand.
+     Taliesin wiggles the fingers of his right hand.
+     Taliesin casts Cure Heavy Wounds at himself.
+     Taliesin casts Charm Person at nawglan.
+     nawglan looks intrigued by Taliesin.
+     Taliesin is healed.
+     nawglan begins to shimmer.
+     There is a flash, and nawglan disappears!
+
+   Turn 18
+
+     nawglan is charmed into making the wrong gesture with his left hand.
+     nawglan makes no gesture with his left hand.
+     nawglan points the digit of his right hand.
+     nawglan casts Magic Missile at Taliesin.
+     Taliesin waves his left hand.
+     Taliesin proffers the palm of his right hand.
+     Taliesin casts Shield at himself.
+     Taliesin is covered by a shimmering shield.
+     A magic missile bounces off Taliesin's shield.
+
+   Turn 19
+
+     nawglan snaps the fingers of his left hand.
+     nawglan wiggles the fingers of his right hand.
+     Taliesin proffers the palm of his left hand.
+     Taliesin waves his right hand.
+     Taliesin casts Protection at himself.
+     Taliesin casts Cure Heavy Wounds at himself.
+     Taliesin is surrounded by a thick shimmering shield.
+     Taliesin is healed.
+
+   Turn 20
+
+     nawglan waves his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Shield at himself.
+     Taliesin wiggles the fingers of his left hand.
+     Taliesin waves his right hand.
+     nawglan is covered by a shimmering shield.
+     nawglan fades back into visibility.
+
+   Turn 21
+
+     nawglan points the digit of his left hand.
+     nawglan waves his right hand.
+     nawglan casts Fear at Taliesin.
+     nawglan casts Cure Heavy Wounds at himself.
+     Taliesin points the digit of his left hand.
+     Taliesin proffers the palm of his right hand.
+     Taliesin casts Cause Heavy Wounds at nawglan.
+     Taliesin casts Protection at himself.
+     Taliesin is surrounded by a thick shimmering shield.
+     Taliesin cringes in fear.
+     nawglan is healed.
+     Wounds appear all over nawglan's body!
+
+   Turn 22
+
+     Taliesin quakes in fear!
+     nawglan points the digit of his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Shield at himself.
+     Taliesin waves his left hand.
+     Taliesin proffers the palm of his right hand.
+     Taliesin casts Counter Spell at himself.
+     Taliesin is covered by a magical glowing shield.
+     nawglan is covered by a shimmering shield.
+
+   Turn 23
+
+     nawglan claps.
+     nawglan casts Clap of Lightning at Taliesin.
+     Taliesin waves his left hand.
+     Taliesin snaps the fingers of his right hand.
+     Taliesin is hit by a bolt of lightning, for 5 damage.
+
+   Turn 24
+
+     nawglan claps.
+     Taliesin wiggles the fingers of his left hand.
+     Taliesin points the digit of his right hand.
+     Taliesin casts Magic Missile at Nobody.
+     A magic missile flies off into the distance.
+
+   Turn 25
+
+     nawglan waves his left hand.
+     nawglan waves his right hand.
+     nawglan casts Magic Mirror at himself.
+     Taliesin waves his left hand.
+     Taliesin wiggles the fingers of his right hand.
+     Taliesin casts Charm Person at himself.
+     nawglan is covered by a reflective shield.
+     Taliesin looks intrigued by Taliesin.
+
+   Turn 26
+
+     Taliesin is charmed, but ends up making the gestures he intended anyway!
+     nawglan waves his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Shield at himself.
+     Taliesin points the digit of his left hand.
+     Taliesin wiggles the fingers of his right hand.
+     Taliesin casts Poison at nawglan.
+     nawglan starts to look sick.
+     nawglan is covered by a shimmering shield.
+
+   Turn 27
+
+     nawglan is a bit nauseous.
+     nawglan snaps the fingers of his left hand.
+     nawglan points the digit of his right hand.
+     nawglan casts Counter Spell at himself.
+     Taliesin proffers the palm of his left hand.
+     Taliesin wiggles the fingers of his right hand.
+     Taliesin casts Shield at himself.
+     Taliesin casts Paralysis at nawglan.
+     nawglan is covered by a magical glowing shield.
+     nawglan's shield blurs for a moment.
+     Taliesin is covered by a shimmering shield.
+
+   Turn 28
+
+     nawglan is looking pale.
+     nawglan says "didn't see the poison coming. *sigh*".
+     nawglan claps.
+     Taliesin proffers the palm of his left hand.
+     Taliesin wiggles the fingers of his right hand.
+     Taliesin casts Amnesia at nawglan.
+     Taliesin casts Paralysis at Nobody.
+     nawglan starts to look blank.
+     The haze of an enchantment spell drifts aimlessly over the circle, and
+     dissipates.
+
+   Turn 29
+
+     nawglan is having difficulty breathing.
+     nawglan forgets what he's doing, and makes the same gestures as last
+     round!
+     nawglan says "looks like you got me. good match.".
+     nawglan claps.
+     Taliesin snaps the fingers of his left hand.
+     Taliesin wiggles the fingers of his right hand.
+     Taliesin casts Paralysis at nawglan.
+     nawglan's hands start to stiffen.
+
+   Turn 30
+
+     nawglan is sweating feverishly.
+     nawglan's left hand is paralysed.
+     Taliesin says "I'll let you surrender before death, although technically I
+     had no need to do so...".
+     nawglan wiggles the fingers of his left hand.
+     nawglan points the digit of his right hand.
+     Taliesin points the digit of his left hand.
+     Taliesin wiggles the fingers of his right hand.
+     Taliesin casts Magic Missile at nawglan.
+     Taliesin casts Paralysis at Nobody.
+     The haze of an enchantment spell drifts aimlessly over the circle, and
+     dissipates.
+     nawglan is hit by a Magic Missile, for 1 damage.
+
+   Turn 31
+
+     nawglan staggers weakly.
+     nawglan says "much appreciated. need to pay more attention to those damn
+     W's. good match.".
+     nawglan proffers the palm of his left hand.
+     nawglan proffers the palm of his right hand.
+     nawglan casts Shield at himself.
+     nawglan casts Shield at himself.
+     Taliesin wiggles the fingers of his left hand.
+     Taliesin proffers the palm of his right hand.
+     Taliesin casts Charm Person at nawglan.
+     Taliesin casts Shield at himself.
+     nawglan looks intrigued by Taliesin.
+     nawglan is covered by a shimmering shield.
+     nawglan is covered by a shimmering shield.
+     Taliesin is covered by a shimmering shield.
+     nawglan surrenders.
+     Taliesin is victorious!
+
+   Registered!  Taliesin(24) Health:10
+   Turn:01234567890123456789012345678901
+     LH:BDSF>>SDS-WFPSDFPWWPFDWWFWDPPSDF
+     RH:BPSDFPW>W-DSFCPSDFPWWPPSDFFFFFFP
+
+   Registered!  nawglan(8) Surrendered. (Health: 9) - Charmed(1) Poison(1)
+   Turn:01234567890123456789012345678901
+     LH:BPSDDSFWPFDSFWSFWS-SWDDCCWWSCCFP
+     RH:BDSFW-SPFP-SWWPPWSDFPWPCCWPDCCDP
