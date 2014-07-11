@@ -13,11 +13,11 @@ WavingHands::Parser - Parse games for WavingHands ( http://www.gamecabinet.com/r
 
 =head1 VERSION
 
-Version 0.01
+Version 0.001
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = "0.001";
 
 =head1 SYNOPSIS
 
