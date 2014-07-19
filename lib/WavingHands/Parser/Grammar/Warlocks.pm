@@ -10,7 +10,7 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.001';
 our $globals = {};
 
 use Parse::RecDescent;
@@ -50,6 +50,7 @@ use JSON;
 =cut
 
 use constant GRAMMAR => << '_EOGRAMMAR_'
+    # initializing action
     {
         # autoflush
         $| = 1;
@@ -61,79 +62,660 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my $globals = $WavingHands::Parser::Grammar::Warlocks::globals;
     }
 
-    INTEGER : /\d+/
-
+    # single terms
+    APOSS : "'s"
+    APOST : "'t"
     BOWNAME : /\b\w+\b/
-
+    COLON : ":"
+    DASH : "-"
+    INTEGER : /\d+/
+    PLAYERLIST : LISTOFPLAYERS
+    LISTOFPLAYERS : "-ShOuLdNeVeRmAtCh-"
+    PLAYERGESTURES : /\s*LH[:]B(.*?)RH[:]B(.*?)\n(\n|\z)/ms
+    PARENDS : /[()]/
     PLAYERNAME : "__NoSuChPlAyEr__"
+    PUNCT : /[.!,]/
 
-    ARTICLE : /(the\s)|(an?\s)/i
+    # complex rules
 
-    PARAFC : PARENDS "ParaFC" PARENDS
+    HANDED : "left" | "right"
+
+    target : PLAYERTARGET | MONSTERTARGET
+
+    PLAYERTARGET : /himself|nobody|everyone|someone/i | PLAYERNAME
     {
-        "ParaFC";
+        if ($item{PLAYERNAME}) {
+          $return = "1:$item{PLAYERNAME}";
+        } else {
+          $return = "1:$item[1]";
+        }
     }
 
-    PARAFDF : PARENDS "ParaFDF" PARENDS
+    # these are in order by likelyhood of being cast
+    SPELLNAME :
+        "Shield" | "Paralysis" | MAGICMISSILE | COUNTERSPELL | CHARMPERSON |
+        SUMMONGOBLIN | "Protection" | "Amnesia" | CAUSELIGHTWOUNDS | CAUSEHEAVYWOUNDS |
+        "Confusion" | CHARMMONSTER | CURELIGHTWOUNDS | "Maladroitness" | "Fear" |
+        SUMMONOGRE | "Invisibility" | "Anti-spell" | CUREHEAVYWOUNDS | LIGHTNINGBOLT |
+        MAGICMIRROR | CLAPOFLIGHTNING | SUMMONGIANT | "Permanency" | "Blindness" |
+        TIMESTOP | SUMMONTROLL | RESISTHEAT | DISPELMAGIC | REMOVEENCHANTMENT |
+        "Fireball" | "Disease" | ICESTORM | SUMMONFIREELEMENTAL | FINGEROFDEATH |
+        RESISTCOLD | FIRESTORM | "Poison" | "Haste" | SUMMONICEELEMENTAL | DELAYEFFECT
+
+    MAGICMISSILE : "Magic" "Missile"
     {
-        "ParaFDF";
+        $return = "Magic Missile";
     }
 
-    MALADROIT : PARENDS "Maladroit" PARENDS
+    TURNBODYLINES : OUTSIDETIME(?) BURSTOFSPEED(?) ACTOR TURNBODYLINETYPES
     {
-        "Maladroit";
+        my ($is_player, $actorname) = split /:/, $item{ACTOR};
+
+        $return = '';
+        $return .= "$item{OUTSIDETIME} " if $item{OUTSIDETIME};
+        $return .= "$item{BURSTOFSPEED} " if $item{BURSTOFSPEED};
+        $return .= "$actorname $item{TURNBODYLINETYPES}";
     }
 
-    LADDER : "Ladder"
+    TURNBODYLINETYPES : NORMALTURNBODYLINES | OTHERTURNBODYLINES
+
+    # these are in order by likelyhood of happening
+    SPECIALTURNBODYLINES : MISSILERESULT2 | MISSILERESULT3 | COUNTERSPELLRESULT3 | CHARMMONSTERRESULT3 |
+        CAUSEWOUNDSRESULT | CAUSEWOUNDSRESULT2 | CUREWOUNDSRESULT3 | INVISRESULT2 | BLINDNESSRESULT2 | TIMESTOPEFFECT |
+        DISPELMAGICRESULT | FIREBALLRESULT | FIREBALLRESULT2 | MAGICMIRRORRESULT2 | ICESTORMRESULT | SUMMONFIRERESULT |
+        SUMMONFIRERESULT2 | FIRESTORMRESULT | HASTEEFFECT | HASTEEFFECT2 | SUMMONICERESULT | SUMMONICERESULT3 |
+        SUMMONICERESULT6
+
+    # EFFECTS are text the turn after the spell is cast
+    PARAEFFECT : APOSS HANDED "hand" "is" "paralysed"
     {
-        "Ladder";
+        $return = "'s $item{HANDED} hand is paralysed";
     }
 
-    VERYFRIENDLY : VERY FRIENDLY
+    PARAEFFECT2 : "can" APOST "move" "to" "attack"
     {
-        "Very Friendly";
+        $return = "can't move to attack";
     }
 
-    FRIENDLY : "Friendly"
+    CHARMPERSONEFFECT : "is" "charmed" "into" "making" "the" "wrong" "gesture" "with" "his" HANDED "hand"
     {
-        "Friendly";
+        $return = "is charmed into making the wrong gesture with his " . $item{HANDED} . " hand";
     }
 
-    MELEE : "Melee"
+    CHARMPERSONEFFECT2 : "is" "charmed" PUNCT "but" "ends" "up" "making" "the" "gestures" "he" "intended" "anyway"
     {
-        "Melee";
+        $return = "is charmed, but ends up making the gestures he intended anyway";
     }
 
-    WOUNDS : "Wounds"
+    PERMANENCYEFFECT : "makes" "the" "spell" "permanent"
+    {
+        $return = "makes the spell permanent";
+    }
 
-    LIGHT : "Light"
+    TIMESTOPEFFECT : "This" "turn" "took" "place" "outside" "of" "time"
+    {
+        $return = "This turn took place outside of time";
+    }
 
-    LIGHTNING : "Lightning"
+    DISEASEEFFECT1 : "is" "a" "bit" "nauseous"
+    {
+        $return = "is a bit nauseous";
+    }
 
-    ELEMENTAL : /Elementals?/
+    DISEASEEFFECT2 : "is" "looking" "pale"
+    {
+        $return = "is looking pale";
+    }
 
-    MAGIC : /magic/i
+    DISEASEEFFECT3 : "is" "having" "difficulty" "breathing"
+    {
+        $return = "is having difficulty breathing";
+    }
 
-    SUMMON : "Summon"
+    DISEASEEFFECT4 : "is" "sweating" "feverishly"
+    {
+        $return = "is sweating feverishly";
+    }
 
-    STORM : "Storm"
+    DISEASEEFFECT5 : "staggers" "weakly"
+    {
+        $return = "staggers weakly";
+    }
 
-    LOOKS : "looks"
+    DISEASEEFFECT6 : "starts" "coughing" "up" "blood"
+    {
+        $return = "starts coughing up blood";
+    }
 
-    HEAVY : "Heavy"
+    DISEASEEFFECT7 : APOSS "Disease" "is" "fatal"
+    {
+        $return = "'s Disease is fatal";
+    }
 
-    AMNESIA : "Amnesia"
+    POISONEFFECT : APOSS "Poison" "is" "fatal"
+    {
+        $return = "'s Poison is fatal";
+    }
 
-    ANTISPELL : "Anti-spell"
+    HASTEEFFECT : "Fast" "players" "sneak" "in" "an" "extra" "set" "of" "gestures"
+    {
+        $return = "Fast players sneak in an extra set of gestures";
+    }
 
-    BLINDNESS : "Blindness"
+    HASTEEFFECT2 : "Fast" "warlocks" "sneak" "in" "an" "extra" "set" "of" "gestures"
+    {
+        $return = "Fast warlocks sneak in an extra set of gestures";
+    }
 
-    CAUSEHEAVYWOUNDS : "Cause" HEAVY WOUNDS
+    # RESULTS are text the same turn as the spell is cast
+    SHIELDRESULT : "is" "covered" "by" "a" "shimmering" "shield"
+    {
+        $return = "is covered by a shimmering shield";
+    }
+
+    PARARESULT : APOSS "hands" "start" "to" "stiffen"
+    {
+        $return = "'s hands start to stiffen";
+    }
+
+    MISSILERESULT : "is" "hit" "by" "a" MAGICMISSILE PUNCT "for" INTEGER "damage"
+    {
+        $return = "is hit by a Magic Missile, for " . $item{INTEGER} . " damage";
+    }
+
+    COUNTERSPELLRESULT : "is" "covered" "by" "a" "magical" "glowing" "shield"
+    {
+        $return = "is covered by a magical glowing shield";
+    }
+
+    COUNTERSPELLRESULT3 : "A" SPELLNAME "drifts" "away" "aimlessly"
+    {
+        $return = "A " . $item{SPELLNAME} . " drifts away aimlessly";
+    }
+
+    CHARMPERSONRESULT : "looks" "intrigued" "by" target
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "looks intrigued by $targetname";
+    }
+
+    MISSILERESULT2 : "A" "magic" "missile" "bounces" "off" target APOSS "shield"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "A magic missile bounces off ${targetname}'s shield";
+    }
+
+    MISSILERESULT3 : "A" "magic" "missile" "flies" "off" "into" "the" "distance"
+    {
+        $return = "A magic missile flies off into the distance";
+    }
+
+    SUMMONMONSTERRESULT : "is" "summoned" "to" "serve" PLAYERNAME
+    {
+        my $turn = $globals->{current_turn};
+        my $playername = $item{PLAYERNAME};
+
+        $globals->{monsters}{$globals->{actor}}{original_owner} = $playername;
+        $globals->{monsters}{$globals->{actor}}{owned_by_length}{$playername} = 1;
+        $globals->{monsters}{$globals->{actor}}{current_owner} = $playername;
+        $globals->{monsters}{$globals->{actor}}{turn_summoned} = $turn;
+        $globals->{monsters}{$globals->{actor}}{damage_done} = 0;
+        $globals->{monsters}{$globals->{actor}}{killed_by} = "";
+        $globals->{monsters}{$globals->{actor}}{killed} = [];
+
+        $return = "is summoned to serve " . $item{PLAYERNAME};
+    }
+
+    PROTECTIONRESULT : "is" "surrounded" "by" "a" "thick" "shimmering" "shield"
+    {
+        $return = "is surrounded by a thick shimmering shield";
+    }
+
+    AMNESIARESULT : "starts" "to" "look" "blank"
+    {
+        $return = "starts to look blank";
+    }
+
+    AMNESIAEFFECT : "forgets" "what" "he" APOSS "doing" PUNCT "and" "makes" "the" "same" "gestures" "as" "last" "round"
+    {
+        $return = "forgets what he's doing, and makes the same gestures as last round";
+    }
+
+    CAUSEWOUNDSRESULT : "Wounds" "appear" "all" "over" target APOSS "body"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "Wounds appear all over ${targetname}'s body";
+    }
+
+    CAUSEWOUNDSRESULT2 : "Holes" "open" "up" "in" target APOSS "shield" PUNCT "but" "then" "close" "up" "again"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "Holes open up in ${targetname}'s shield, but then close up again";
+    }
+
+    CONFUSIONRESULT : "looks" "a" "bit" "confused"
+    {
+        $return = "looks a bit confused";
+    }
+
+    CONFUSIONRESULT2 : APOSS "shield" "blurs" "for" "a" "moment"
+    {
+        $return = "'s shield blurs for a moment";
+    }
+
+    CONFUSIONEFFECT : "confusedly" "makes" "the" "wrong" "gesture" "with" "his" HANDED "hand"
+    {
+        $return = "confusedly makes the wrong gesture with his " . $item{HANDED} . " hand";
+    }
+
+    CONFUSIONEFFECT2 : "makes" "a" "confused" "gesture" PUNCT "but" "luckily" "it" APOSS "what" "he" "intended" "anyway"
+    {
+        $return = "makes a confused gesture, but luckily it's what he intended anyway";
+    }
+
+    CHARMMONSTERRESULT : "looks" PUNCT "glassy-eyed" PUNCT "at" PLAYERNAME
+    {
+        $globals->{monsters}{$globals->{actor}}{current_owner} = $item{PLAYERNAME};
+        $globals->{monsters}{$globals->{actor}}{owned_by_length}{$item{PLAYERNAME}} += 1;
+        $return = "looks, glassy-eyed, at " . $item{PLAYERNAME};
+    }
+
+    CUREWOUNDSRESULT : "is" "healed"
+    {
+        $return = "is healed";
+    }
+
+    CUREWOUNDSRESULT3 : "Tiny" "holes" "in" target APOSS "shield" "are" "sealed" "up"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "Tiny holes in ${targetname}'s shield are sealed up";
+    }
+
+    CUREWOUNDSRESULT2 : "is" "at" "maximum" "health"
+    {
+        $return = "is at maximum health";
+    }
+
+    MALADROITRESULT : "starts" "to" "lose" "coordination"
+    {
+        $return = "starts to lose coordination";
+    }
+
+    CANCELENCHANTMENT : "shakes" "his" "head" "and" "regains" "control" PUNCT "as" "enchantments" "cancel" "each" "other" "out"
+    {
+        $return = "shakes his head and regains control, as enchantments cancel each other out";
+    }
+
+    FEARRESULT : "cringes" "in" "fear"
+    {
+        $return = "cringes in fear";
+    }
+
+    FEAREFFECT : "quakes" "in" "fear"
+    {
+        $return = "quakes in fear";
+    }
+
+    INVISRESULT : "begins" "to" "shimmer"
+    {
+        $return = "begins to shimmer";
+    }
+
+    INVISEFFECT : "fades" "back" "into" "visibility"
+    {
+        $return = "fades back into visibility";
+    }
+
+    SUMMONMONSTERRESULT2 : APOSS MONSTERNAME "is" "absorbed" "into" "a" "Counterspell" "glow"
+    {
+        $return = "'s $item{MONSTERNAME} is absorbed into a Counterspell glow";
+    }
+
+    INVISRESULT2 : "There" "is" "a" "flash" PUNCT "and" PLAYERNAME "disappears"
+    {
+        $return = "There is a flash, and " . $item{PLAYERNAME} . " disappears";
+    }
+
+    ANTISPELLRESULT : APOSS "half-done" "spells" "fizzle" "and" "die"
+    {
+        $return = "'s half-done spells fizzle and die";
+    }
+
+    LIGHTNINGBOLTRESULT : "is" "hit" "by" "a" "bolt" "of" "lightning" PUNCT "for" INTEGER "damage"
+    {
+        $return = "is hit by a bolt of lightning, for " . $item{INTEGER} . " damage";
+    }
+
+    MAGICMIRRORRESULT : "is" "covered" "by" "a" "reflective" "shield"
+    {
+        $return = "is covered by a reflective shield";
+    }
+
+    MAGICMIRRORRESULT2 : "The" SPELLNAME "spell" "is" "reflected" "from" target APOSS "Magic" "Mirror"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "The $item{SPELLNAME} spell is reflected from ${targetname}'s Magic Mirror";
+    }
+
+    CLAPOFLIGHTNINGRESULT : "tries" "to" "cast" "Clap" "of" "Lightning" PUNCT "but" "doesn't" "have" "the" "charge" "for" "it"
+    {
+        $return = "tries to cast Clap of Lightning, but doesn't have the charge for it";
+    }
+
+    PERMANENCYRESULT : "begins" "glowing" "faintly"
+    {
+        $return = "begins glowing faintly";
+    }
+
+    PERMANENCYRESULT2 : APOSS "shield" "intensified" "momentarily"
+    {
+        $return = "'s shield intensified momentarily";
+    }
+
+    BLINDNESSRESULT : APOSS "eyes" "are" "covered" "with" "scales"
+    {
+        $return = "'s eyes are covered with scales";
+    }
+
+    BLINDNESSRESULT2 : "Scales" "start" "to" "grow" "over" PLAYERNAME APOSS "eyes"
+    {
+        $return = "Scales start to grow over $item{PLAYERNAME}'s eyes";
+    }
+
+    TIMESTOPRESULT : "flickers" "out" "of" "time"
+    {
+        $return = "flickers out of time";
+    }
+
+    ATTACKRESULT : "attacks" target "for" INTEGER "damage"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+
+        unless ($is_player) {
+            my $currentowner =  $globals->{monsters}{$globals->{actor}}{current_owner};
+
+            $globals->{monsters}{$globals->{actor}}{damage_done} += $item{INTEGER};
+            $globals->{monsters}{$globals->{actor}}{owned_by_length}{$currentowner} += 1;
+        }
+
+        $return = "attacks $targetname for " . $item{INTEGER} . " damage";
+    }
+
+    ATTACKRESULT2 : "attacks" target PUNCT "but" "is" "deflected" "by" "a" "shield"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "attacks $targetname, but is deflected by a shield";
+    }
+
+    RESISTHEATRESULT : "is" "covered" "in" "a" "coat" "of" "sparkling" "frost"
+    {
+        $return = "is covered in a coat of sparkling frost";
+    }
+
+    CHARMMONSTERRESULT2  : "ignores" target APOSS "appeal" "to" "his" "baser" "instincts"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "ignores ${targetname}'s appeal to his baser instincts";
+    }
+
+    CHARMMONSTERRESULT3  : "The" "haze" "of" "an" "enchantment" "spell" "drifts" "aimlessly" "over" "the" "circle" PUNCT "and" "dissipates"
+    {
+        $return = "The haze of an enchantment spell drifts aimlessly over the circle, and dissipates";
+    }
+
+    DISPELMAGICRESULT : "All" "magical" "effects" "are" "erased" PUNCT "All" "other" "spells" "fail"
+    {
+        $return = "All magical effects are erased! All other spells fail";
+    }
+
+    REMOVEENCHANTRESULT : APOSS "surrounding" "magical" "energies" "are" "grounded"
+    {
+        $return = "'s surrounding magical energies are grounded";
+    }
+
+    REMOVEENCHANTRESULT2 : APOSS "shield" "flickers" PUNCT "but" "remains" "firm"
+    {
+        $return = "'s shield flickers, but remains firm";
+    }
+
+    FIREBALLRESULT : "A" "fireball" "strikes" target PUNCT "burning" "him" "for" INTEGER "damage"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "A fireball strikes $targetname, burning him for " . $item{INTEGER} . " damage";
+    }
+
+    FIREBALLRESULT2 : "A" "fireball" "strikes" PUNCT "and" "flames" "roar" "all" "around" target APOSS "shield"
+    {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "A fireball strikes, and flames roar all around ${targetname}'s shield";
+    }
+
+    DISEASERESULT : "starts" "to" "look" "sick"
+    {
+        $return = "starts to look sick";
+    }
+
+    ICESTORMRESULT : "An" "Ice" "Storm" "rages" "through" "the" "circle"
+    {
+        $return = "An Ice Storm rages through the circle";
+    }
+
+    ICESTORMRESULT2 : "is" "frozen" "by" "the" "raging" "Ice" "Storm" PUNCT "for" INTEGER "damage"
+    {
+        $return = "is frozen by the raging Ice Storm, for " . $item{INTEGER} . " damage";
+    }
+
+    ICESTORMRESULT3 : "looks" "comfortable" "in" "the" "cooling" "Ice" "Storm"
+    {
+        $return = "looks comfortable in the cooling Ice Storm";
+    }
+
+    SUMMONFIRERESULT : "A" "Fire" "Elemental" "appears" "in" "a" "furious" "roar" "of" "flame"
+    {
+        $return = "A Fire Elemental appears in a furious roar of flame";
+    }
+
+    SUMMONFIRERESULT2 : "A" "Fire" "Elemental" "flies" "away" "with" "the" "storm"
+    {
+        $return = "A Fire Elemental flies away with the storm";
+    }
+
+    FIRESTORMRESULT3 : "basks" "in" "the" "heat" "of" "the" "Fire" "Storm"
+    {
+        $return = "basks in the heat of the Fire Storm";
+    }
+
+    SUMMONMONSTERRESULT3 : "is" "hit" "by" "an" "Invisibility" "spell" PUNCT "and" "is" "annihilated" "by" "the" "magical" "overload"
+    {
+        $return = "is hit by an Invisibility spell, and is annihilated by the magical overload";
+    }
+
+    BLINDNESSRESULT3 : "is" "hit" "by" "a" "Blindness" "spell" PUNCT "and" "is" "annihilated" "by" "the" "magical" "overload"
+    {
+        $return = "is hit by a Blindness spell, and is annihilated by the magical overload";
+    }
+
+    FINGEROFDEATHRESULT : "is" "touched" "with" "the" "Finger" "of" "Death"
+    {
+        $return = "is touched with the Finger of Death";
+    }
+
+    RESISTCOLDRESULT : "is" "covered" "by" "a" "warm" "glow"
+    {
+        $return = "is covered by a warm glow";
+    }
+
+    COUNTERSPELLRESULT2 : APOSS "shield" "looks" "thicker" "for" "a" "moment" PUNCT "then" "fades" "back"
+    {
+        $return = "'s shield looks thicker for a moment, then fades back";
+    }
+
+    FIRESTORMRESULT : "A" "Fire" "Storm" "rages" "through" "the" "circle"
+    {
+        $return = "A Fire Storm rages through the circle";
+    }
+
+    FIRESTORMRESULT2 : "is" "burnt" "in" "the" "raging" "Fire" "Storm" PUNCT "for" INTEGER "damage"
+    {
+        $return = "is burnt in the raging Fire Storm, for " . $item{INTEGER} . " damage";
+    }
+
+    POISONRESULT : "starts" "to" "look" "sick"
+    {
+        $return = "starts to look sick";
+    }
+
+    HASTERESULT : "speeds" "up"
+    {
+        $return = "speeds up";
+    }
+
+    SUMMONICERESULT : "An" "Ice" "Elemental" "appears" "in" "a" "sudden" "rush" "of" "arctic" "wind"
+    {
+        $return = "An Ice Elemental appears in a sudden rush of arctic wind";
+    }
+
+    SUMMONICERESULT2 : "enjoys" "the" "icy" "chill"
+    {
+        $return = "enjoys the icy chill";
+    }
+
+    SUMMONICERESULT3 : "The" "Ice" "Elemental" "runs" "amok"
+    {
+        $return = "The Ice Elemental runs amok";
+    }
+
+    SUMMONICERESULT4 : "is" "frozen" "for" INTEGER "damage"
+    {
+        $return = "is frozen for $item{INTEGER} damage";
+    }
+
+    SUMMONICERESULT5 : APOSS "shield" "keeps" "the" "Ice" "Elemental" "at" "bay"
+    {
+        $return = "'s shield keeps the Ice Elemental at bay";
+    }
+
+    SUMMONICERESULT6 : "The" "Ice" "Elemental" "flies" "away" "with" "the" "storm"
+    {
+        $return = "The Ice Elemental flies away with the storm";
+    }
+
+    DELAYEFFECTRESULT : "banks" "a" "spell" "for" "later"
+    {
+        $return = "banks a spell for later";
+    }
+
+    NORMALTURNBODYLINES : PLAYERACTIONTYPES | MONSTERTURNLINE
+
+    PLAYERACTIONTYPES : PLAYERGESTURE | PLAYERCAST | PLAYERDIRECTS | PLAYERSPEECH | CLAPS
+
+    GESTUREF : "wiggles" "the" "fingers" "of"
+    {
+        $return = "F";
+    }
+
+    GESTUREP : "proffers" "the" "palm" "of"
+    {
+        $return = "P";
+    }
+
+    GESTURES : "snaps" "the" "fingers" "of"
+    {
+        $return = "S";
+    }
+
+    GESTUREW : "waves"
+    {
+        $return = "W";
+    }
+
+    GESTURED : "points" "the" "digit" "of"
+    {
+        $return = "D";
+    }
+
+    GESTUREC : "flailingly" "half-claps"
+    {
+        $return = 'C';
+    }
+
+    PLAYERSTAB : "stabs"
+    {
+        $return = ">";
+    }
+
+    NOGESTURE : "makes" "no" "gesture"
+    {
+        $return = "-";
+    }
+
+    GESTURETYPE : GESTURED | GESTURES | GESTUREW | GESTUREF | GESTUREP | GESTUREC | PLAYERSTAB | NOGESTURE
+
+    WITH : "with"
+
+    PLAYERGESTURE : GESTURETYPE WITH(?) "his" HANDED "hand"
+    {
+        my $turn = $globals->{current_turn};
+        my $player = $globals->{actor};
+        my $hand = $item{HANDED};
+        my $gesture = $item{GESTURETYPE};
+        my $gesturemap = {
+            'D' => "points the digit of his $hand hand",
+            'S' => "snaps the fingers of his $hand hand",
+            'W' => "waves with his $hand hand",
+            'F' => "wiggles the fingers of his $hand hand",
+            'P' => "proffers the palm of his $hand hand",
+            'C' => "flailingly half-claps with his $hand hand",
+            '>' => "stabs with his $hand hand",
+            '-' => "makes no gesture with his $hand hand"
+        };
+
+        $globals->{turnlist}[$turn]->{$player}{gesture}{$hand} = $gesture;
+
+        $return = $gesturemap->{$gesture};
+    }
+
+    PLAYERSUICIDE : "stops" "his" "heart" "through" "force" "of" "will" "alone"
+    {
+        $return = "stops his heart through force of will alone";
+    }
+
+    # preceded by target, these are in order by likelyhood of being cast / happening
+    OTHERTURNBODYLINES : SHIELDRESULT | PARARESULT | PARAEFFECT | PARAEFFECT2 | MISSILERESULT | COUNTERSPELLRESULT |
+        COUNTERSPELLRESULT2 | CHARMPERSONRESULT | CHARMPERSONEFFECT | CHARMPERSONEFFECT2 | SUMMONMONSTERRESULT |
+        SUMMONMONSTERRESULT2 | SUMMONMONSTERRESULT3 | ATTACKRESULT | ATTACKRESULT2 | PROTECTIONRESULT |
+        AMNESIARESULT | AMNESIAEFFECT | CONFUSIONRESULT | CONFUSIONRESULT2 | CONFUSIONEFFECT | CONFUSIONEFFECT2 |
+        CHARMMONSTERRESULT | CHARMMONSTERRESULT2 | CUREWOUNDSRESULT | CUREWOUNDSRESULT2 | MALADROITRESULT |
+        CANCELENCHANTMENT | FEARRESULT | FEAREFFECT | INVISRESULT | INVISEFFECT | ANTISPELLRESULT | LIGHTNINGBOLTRESULT |
+        MAGICMIRRORRESULT | CLAPOFLIGHTNINGRESULT | PERMANENCYRESULT | PERMANENCYRESULT2 | PERMANENCYEFFECT |
+        BLINDNESSRESULT | BLINDNESSRESULT3 | TIMESTOPRESULT | RESISTHEATRESULT |
+        REMOVEENCHANTRESULT | REMOVEENCHANTRESULT2 | DISEASERESULT | DISEASEEFFECT1 | DISEASEEFFECT2 |
+        DISEASEEFFECT3 | DISEASEEFFECT4 | DISEASEEFFECT5 | DISEASEEFFECT6 | DISEASEEFFECT7 | ICESTORMRESULT2 |
+        ICESTORMRESULT3 | FINGEROFDEATHRESULT | RESISTCOLDRESULT | FIRESTORMRESULT2 | FIRESTORMRESULT3 | POISONRESULT |
+        POISONEFFECT | HASTERESULT | SUMMONICERESULT2 | SUMMONICERESULT4 | SUMMONICERESULT5 | DELAYEFFECTRESULT |
+        PLAYERSUICIDE
+
+    PARAFCOPT : PARENDS "ParaFC" PARENDS
+    {
+        $return = "ParaFC";
+    }
+
+    PARAFDFOPT : PARENDS "ParaFDF" PARENDS
+    {
+        $return = "ParaFDF";
+    }
+
+    MALADROITOPT : PARENDS "Maladroit" PARENDS
+    {
+        $return = "Maladroit";
+    }
+
+    CAUSEHEAVYWOUNDS : "Cause" "Heavy" "Wounds"
     {
         $return = "Cause Heavy Wounds";
     }
 
-    CAUSELIGHTWOUNDS : "Cause" LIGHT WOUNDS
+    CAUSELIGHTWOUNDS : "Cause" "Light" "Wounds"
     {
         $return = "Cause Light Wounds";
     }
@@ -148,24 +730,22 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "Charm Person";
     }
 
-    CLAPOFLIGHTNING : "Clap" OF LIGHTNING
+    CLAPOFLIGHTNING : "Clap" "of" "Lightning"
     {
         $return = "Clap of Lightning";
     }
-
-    CONFUSION : "Confusion"
 
     COUNTERSPELL : "Counter" "Spell"
     {
         $return = "Counter Spell";
     }
 
-    CUREHEAVYWOUNDS : "Cure" HEAVY WOUNDS
+    CUREHEAVYWOUNDS : "Cure" "Heavy" "Wounds"
     {
         $return = "Cure Heavy Wounds";
     }
 
-    CURELIGHTWOUNDS : "Cure" LIGHT WOUNDS
+    CURELIGHTWOUNDS : "Cure" "Light" "Wounds"
     {
         $return = "Cure Light Wounds";
     }
@@ -175,60 +755,35 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "Delay Effect";
     }
 
-    DISEASE : "Disease"
-
-    DISPELMAGIC : "Dispel" MAGIC
+    DISPELMAGIC : "Dispel" "Magic"
     {
         $return = "Dispel Magic";
     }
 
-    FEAR : "Fear"
-
-    FINGEROFDEATH : "Finger" OF "Death"
+    FINGEROFDEATH : "Finger" "of" "Death"
     {
         $return = "Finger of Death";
     }
 
-    FIREBALL : "Fireball"
-
-    FIRESTORM : FIRE STORM
+    FIRESTORM : "Fire" "Storm"
     {
         $return = "Fire Storm";
     }
 
-    HASTE : "Haste"
-
-    ICESTORM : ICE STORM
+    ICESTORM : "Ice" "Storm"
     {
         $return = "Ice Storm";
     }
 
-    INVISIBILITY : "Invisibility"
-
-    LIGHTNINGBOLT : LIGHTNING "Bolt"
+    LIGHTNINGBOLT : "Lightning" "Bolt"
     {
         $return = "Lightning Bolt";
     }
 
-    MAGICMIRROR : MAGIC "Mirror"
+    MAGICMIRROR : "Magic" "Mirror"
     {
-        $return = $item{MAGIC} . " Mirror";
+        $return = "Magic Mirror";
     }
-
-    MAGICMISSILE : MAGIC /missile/i
-    {
-        $return = $item{MAGIC} . " " . $item[2];
-    }
-
-    MALADROITNESS : "Maladroitness"
-
-    PARALYSIS : "Paralysis"
-
-    PERMANENCY : "Permanency"
-
-    POISON : "Poison"
-
-    PROTECTION : "Protection"
 
     REMOVEENCHANTMENT : "Remove" "Enchantment"
     {
@@ -245,34 +800,32 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "Resist Heat";
     }
 
-    SHIELDSPELL : "Shield"
-
-    SUMMONFIREELEMENTAL : SUMMON FIRE ELEMENTAL
+    SUMMONFIREELEMENTAL : "Summon" "Fire" "Elemental"
     {
         $return = "Summon Fire Elemental";
     }
 
-    SUMMONGIANT : SUMMON "Giant"
+    SUMMONGIANT : "Summon" "Giant"
     {
         $return = "Summon Giant";
     }
 
-    SUMMONGOBLIN : SUMMON "Goblin"
+    SUMMONGOBLIN : "Summon" "Goblin"
     {
         $return = "Summon Goblin";
     }
 
-    SUMMONICEELEMENTAL : SUMMON ICE ELEMENTAL
+    SUMMONICEELEMENTAL : "Summon" "Ice" "Elemental"
     {
         $return = "Summon Ice Elemental";
     }
 
-    SUMMONOGRE : SUMMON "Ogre"
+    SUMMONOGRE : "Summon" "Ogre"
     {
         $return = "Summon Ogre";
     }
 
-    SUMMONTROLL : SUMMON "Troll"
+    SUMMONTROLL : "Summon" "Troll"
     {
         $return = "Summon Troll";
     }
@@ -282,74 +835,10 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "Time Stop";
     }
 
-    BOWS : "bows"
-
-    COLON : ":"
-
-    CAST : /casts?/
-
-    AT : "at"
-
-    TURN : "Turn"
-
-    LEFT : "left"
-
-    RIGHT : "right"
-
-    HIS : "his"
-
-    APOSS : "'s"
-
-    PUNCT : /[.!,]/
-
-    HAND : "hand"
-
-    FINGERS : "wiggles" THE "fingers" OF
-    {
-        $return = "F";
-    }
-
-    PALM : "proffers" THE "palm" OF
-    {
-        $return = "P";
-    }
-
-    SNAPS : "snaps" THE "fingers" OF
-    {
-        $return = "S";
-    }
-
-    WAVES : "waves"
-    {
-        $return = "W";
-    }
-
-    POINTS : "points" THE "digit" OF
-    {
-        $return = "D";
-    }
-
-    PLAYERSTAB : "stabs"
-    {
-        $return = ">";
-    }
-
-    NOGESTURE : "makes" NO GESTURE
-    {
-        $return = "-";
-    }
-
-    HALFCLAP : "flailingly" "half-claps"
-    {
-        $return = 'C';
-    }
-
-    gesturetype : POINTS | SNAPS | WAVES | FINGERS | PALM | HALFCLAP | PLAYERSTAB | NOGESTURE
-
     CLAPS : "claps"
     {
         my $turn = $globals->{current_turn};
-        my $player = $globals->{active_player};
+        my $player = $globals->{actor};
 
         $globals->{turnlist}[$turn]->{$player}{gesture}{right} = 'C';
         $globals->{turnlist}[$turn]->{$player}{gesture}{left} = 'C';
@@ -357,26 +846,26 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "claps";
     }
 
-    GESTURE : /gestures?/
-
-    playertarget : /himself|nobody|everyone|someone/i | PLAYERNAME
-
-    target : playertarget | monstertarget
-
-    monster : MONSTERNAME HEALTH DASH(?) AFFECTEDBY(?) "Owned" "by" COLON playertarget "Attacking" COLON target
+    MONSTERLIST : MONSTERNAME HEALTH DASH(?) AFFECTEDBYITEM(s?) "Owned" "by" COLON PLAYERTARGET "Attacking" COLON target
     {
         my $dash = $item{DASH} ? ' - ' : '';
-        my $affectedby = $item{AFFECTEDBY} ? " " . $item{AFFECTEDBY} : '';
+        my ($is_player_target, $targetname) = split /:/, $item{target};
+        my ($is_player_owner, $playername) = split /:/, $item{PLAYERTARGET};
 
-        $return = $item{MONSTERNAME} . " " . $item{HEALTH} . $dash . $affectedby . " Owned by : " . $item{playertarget} . " Attacking : " . $item{target};
+        $return = $item{MONSTERNAME} . " " . $item{HEALTH} . $dash;
+        if ($item{AFFECTEDBYITEM}) {
+            $return .= join(' ', @{$item{AFFECTEDBYITEM}});
+        }
+        $return .= " Owned by : $playername Attacking : $targetname";
+
     }
 
-    REGISTERED : "Registered" PUNCT
+    PLAYERREGISTERED : "Registered" PUNCT
     {
         $return = "Registered!";
     }
 
-    DEAD : "Dead" PUNCT
+    PLAYERDEAD : "Dead" PUNCT
     {
         $return = "Dead.";
     }
@@ -389,14 +878,10 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         }
     }
 
-    TURNLIST : TURN COLON TURNNUMBERS
+    TURNLIST : "Turn" COLON TURNNUMBERS
     {
         $return = "Turn:" . $item{TURNNUMBERS};
     }
-
-    PLAYERGESTURES : /\s*LH[:]B(.*?)RH[:]B(.*?)\n(\n|\z)/ms
-
-    PARENDS : /[()]/
 
     HEALTH : PARENDS(?) "Health" COLON INTEGER PARENDS(?)
     {
@@ -407,31 +892,18 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         }
     }
 
-    SURRENDERED : "Surrendered" PUNCT
+    PLAYERSURRENDERED : "Surrendered" PUNCT
     {
         $return = "Surrendered.";
     }
 
-    DASH : "-"
-
     AFFECTEDBYTYPE : /Afraid|Blindness|Charmed|Coldproof|Confused|Delay|Disease|Fireproof|Forgetful|Haste|Invisibility|Maladroit|MShield|Paralysed|Permanency|Poison|Shield|TimeOut/
 
-    PERMANENT : "permanent"
-
-    DURATION : INTEGER | PERMANENT
+    DURATION : INTEGER | /permanent/i
 
     AFFECTEDBYITEM : AFFECTEDBYTYPE PARENDS DURATION PARENDS
     {
         $return = $item{AFFECTEDBYTYPE} . "(" . $item{DURATION} . ")";
-    }
-
-    AFFECTEDBY : AFFECTEDBYITEM(s?)
-    {
-      if ($item{AFFECTEDBYITEM}) {
-          $return = join(' ', @{$item{AFFECTEDBYITEM}});
-      } else {
-          $return = "";
-      }
     }
 
     BANKEDSPELL : PARENDS "Banked" COLON SPELLNAME PARENDS
@@ -439,9 +911,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
       $return = "(Banked: " . $item{SPELLNAME} . ")";
     }
 
-    SURRENDERORDEAD : SURRENDERED | DEAD
+    SURRENDERORDEAD : PLAYERSURRENDERED | PLAYERDEAD
 
-    player: REGISTERED(?) PLAYERNAME PARENDS INTEGER PARENDS SURRENDERORDEAD(?) HEALTH(?) DASH(?) AFFECTEDBY BANKEDSPELL(?) TURNLIST PLAYERGESTURES
+    PLAYERLINES : PLAYERREGISTERED(?) PLAYERNAME PARENDS INTEGER PARENDS SURRENDERORDEAD(?) HEALTH(?) DASH(?) AFFECTEDBYITEM(s?) BANKEDSPELL(?) TURNLIST PLAYERGESTURES
     {
         my $player = $item{PLAYERNAME};
         my $gestures = $item{PLAYERGESTURES};
@@ -449,7 +921,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         ($globals->{$player}{gestures}{left}) = ($gestures =~ /LH[:]B(.*?)\n/s);
         ($globals->{$player}{gestures}{right}) = ($gestures =~ /RH[:]B(.*?)\n+/s);
 
-        if ($item{REGISTERED}) {
+        if ($item{PLAYERREGESTERED}) {
             $return = "Registered! ";
         } else {
             $return = "";
@@ -465,8 +937,8 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         if ($item{DASH}) {
             $return .= " $item{DASH}";
         }
-        if ($item{AFFECTEDBY}) {
-            $return .= " $item{AFFECTEDBY}";
+        if ($item{AFFECTEDBYITEM}) {
+            $return .= join(' ', @{$item{AFFECTEDBYITEM}});
         }
         if ($item{BANKEDSPELL}) {
             $return .= " $item{BANKEDSPELL}";
@@ -474,10 +946,6 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return .= "\n$item{TURNLIST}";
         $return .= "\n$item{PLAYERGESTURES}";
     }
-
-    listofplayers : "-ShOuLdNeVeRmAtCh-"
-
-    playerlist : listofplayers
 
     TURNBODY : TURNBODYTYPES PUNCT
     {
@@ -487,59 +955,64 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $globals->{turnlist}[$turn]->{gametext} .= ($globals->{turnlist}[$turn]->{gametext} ? "\n" : "") . $turntext;
     }
 
-    turnsection : TURNLINE TURNBODY(s?)
+    TURNSECTION : TURNLINE TURNBODY(s?)
     {
         $return = $item{TURNLINE} . "\n";
         if ($item{TURNBODY}) {
             $return .= join("\n", @{$item{TURNBODY}});
+        } else {
+            $return = 1;
         }
-
-        1;
     }
 
-    eofile : /[\n\s]*/ms
+    EOFILE : /[\n\s]*/ms
     {
         1;
     }
 
-    startrule : preamble turnsection(s) monster(s?) playerlist eofile
+    startrule : PREAMBLE TURNSECTION(s) MONSTERLIST(s?) PLAYERLIST EOFILE
 
-    turnsingame : /(?:.*?)Turn \d+ in/ms
+    TURNSINGAME : /(?:.*?)Turn \d+ in/ms
 
-    preamble : turnsingame gametype modifier(s?) "Battle" gameid
+    PREAMBLE : TURNSINGAME GAMETYPE MODIFIER(s?) "Battle" GAMEID
     {
-        $return = $item{turnsingame} . " " . $item{gametype};
+        $return = $item{TURNSINGAME} . " " . $item{GAMETYPE};
 
-        if ($item{modifier}) {
-            $return .= " " . $item{modifier};
+        if ($item{MODIFIER}) {
+            $return .= " " . $item{MODIFIER};
         }
 
-        $return .= " Battle " . $item{gameid};
+        $return .= " Battle " . $item{GAMEID};
     }
 
-    modifier : PARAFC | PARAFDF | MALADROIT
+    MODIFIER : PARAFCOPT | PARAFDFOPT | MALADROITOPT
     {
         push @{$globals->{game_modifiers}}, $item[1];
 
         $return = $item[1];
     }
 
-    formoney : LADDER | MELEE
+    FORMONEY : "Ladder" | "Melee"
 
-    forpride : VERYFRIENDLY | FRIENDLY
+    VERYFRIENDLY : "Very" "Friendly"
+    {
+        $return = "Very Friendly";
+    }
 
-    gametype : formoney | forpride
+    FORPRIDE : VERYFRIENDLY | "Friendly"
+
+    GAMETYPE : FORMONEY | FORPRIDE
     {
         $globals->{gametype} = $item[1];
     }
 
-    gameid : INTEGER
+    GAMEID : INTEGER
     {
         $globals->{gameid} = $item{INTEGER};
         $return = $item{INTEGER};
     }
 
-    TURNLINE : TURN INTEGER
+    TURNLINE : "Turn" INTEGER
     {
         my $turn = $item{INTEGER};
 
@@ -552,7 +1025,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
             local ($1);
             my $rule = sprintf ("PLAYERNAME : /\\b\(%s\)\\b/", (join '|', @players));
-            my $rule2 = "listofplayers : player($playercount)";
+            my $rule2 = "LISTOFPLAYERS : PLAYERLINES($playercount)";
             $rule =~ /^(.*)\z/s;
             eval {
                 $rule = $1;
@@ -573,50 +1046,41 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "Turn $turn";
     }
 
-    DIES : "dies"
-
-    VICTORIOUS : IS "victorious"
+    ISVICTORIOUS : "is" "victorious"
     {
         $return = "is victorious";
     }
 
-    SURRENDERS : "surrenders"
-
-    IGNOBLEEND : NO "Warlocks" "remaining" PUNCT AN "ignominious" "end" TO A "battle"
+    IGNOBLEEND : "No" "Warlocks" "remaining" PUNCT "An" "ignominious" "end" "to" "a" "battle"
     {
-        $return = "No Warlocks remaining. An ignominous end to a battle";
+        $return = "No Warlocks remaining. An ignominious end to a battle";
     }
 
-    possibleoutcome : DIES | VICTORIOUS | SURRENDERS
+    POSSIBLEOUTCOME : "dies" | ISVICTORIOUS | "surrenders"
 
-    targetoutcome : target possibleoutcome
+    TARGETOUTCOME : target POSSIBLEOUTCOME
     {
-        if (grep {$_ eq $item{target}} @{$globals->{players}}) {
+        my ($is_player, $targetname) = split /:/, $item{target};
+        if (grep {$_ eq $targetname} @{$globals->{players}}) {
             if ($item{possibleoutcome} =~ /victorious/) {
-                $globals->{$item{target}}{winner} = 1;
-                $globals->{winner} = $item{target};
+                $globals->{$targetname}{winner} = 1;
+                $globals->{winner} = $targetname;
             } elsif ($item{possibleoutcome} =~ /dies/) {
-                $globals->{$item{target}}{died} = 1;
+                $globals->{$targetname}{died} = 1;
             } else {
-                $globals->{$item{target}}{surrendered} = 1;
+                $globals->{$targetname}{surrendered} = 1;
             }
         }
 
-        $return = $item{target} . " " . $item{possibleoutcome};
+        $return = $targetname . " " . $item{POSSIBLEOUTCOME};
     }
 
-    gameoutcome : IGNOBLEEND | targetoutcome
-
-    playername : PLAYERNAME
-    {
-        $globals->{active_player} = $item{PLAYERNAME};
-        $item{PLAYERNAME};
-    }
+    GAMEOUTCOME : IGNOBLEEND | TARGETOUTCOME
 
     PLAYERSPEECH : "says" /"(.*?)"\.\n/sm
     {
         my $turn = $globals->{current_turn};
-        my $player = $globals->{active_player};
+        my $player = $globals->{actor};
 
         local $1;
         $item[2] =~ /"(.*)"/;
@@ -632,14 +1096,8 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "says \"$speech_text\"";
     }
 
-    playeractiontypes : playergesture | playercast | directmonster | PLAYERSPEECH | CLAPS | notarget | attackmiss | attackline
 
-    playerturn : playername playeractiontypes
-    {
-        $return = $item{playername} . " " . $item{playeractiontypes};
-    }
-
-    PLAYERBOWS : BOWNAME BOWS
+    PLAYERBOWS : BOWNAME "bows"
     {
         my $player = $item[1];
         push @{$globals->{players}}, $player;
@@ -649,359 +1107,119 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "$player bows";
     }
 
-    ANORA : AN | A
-
-    STORMRAGES : ANORA STORMTYPE STORM "rages" "through" THE "circle"
+    ACTOR : target
     {
-        $return = join(' ', ($item{ANORA}, $item{STORMTYPE}, $item{STORM}, "rages through the circle"));
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $globals->{actor} = $targetname;
+        $globals->{actor_is_player} = $is_player;
     }
 
-    WOUNDED : WOUNDS "appear" ALL OVER target APOSS "body"
+    TURNBODYTYPES : PLAYERBOWS | TURNBODYLINES | SPECIALTURNBODYLINES | GAMEOUTCOME
+
+    ATTACKRESULT3 : "swings" "wildly" "for" target BUTMISSES
     {
-        $return = "Wounds appear all over " . $item{target} . "'s body";
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "swings wildy for ${targetname}$item{BUTMISSES}";
     }
 
-    BOUNCEMISSILE : A MAGICMISSILE "bounces" "off" target APOSS SHIELD
+    BLINDORINVIS : /blindness|invisibility/
+
+    MISSREASON : "due" "to" BLINDORINVIS
     {
-        $return = "A " . $item{MAGICMISSILE} . " bounces off " . $item{target} . "'s shield";
+        $return = "due to $item{BLINDORINVIS}";
     }
 
-    GOESPOOF : "There" IS A "flash" PUNCT AND PLAYERNAME "disappears"
-    {
-        $return = "There is a flash, and " . $item{PLAYERNAME} . " disappears";
-    }
-
-    SPELLSFAIL : "All" MAGICAL "effects" ARE "erased" PUNCT "All" "other" SPELL "fail"
-    {
-        $return = "All magical effects are erased! All other spells fail";
-    }
-
-    REFLECTSPELL : THE SPELLNAME SPELL IS "reflected" FROM target APOSS MAGICMIRROR
-    {
-        $return = "The " . $item{SPELLNAME} . " spell is reflected from " . $item{target} . "'s " . $item{MAGICMIRROR};
-    }
-
-    SCALESGROW : "Scales" "start" TO "grow" OVER PLAYERNAME APOSS "eyes"
-    {
-        $return = "Scales start to grow over " . $item{PLAYERNAME} . "'s eyes";
-    }
-
-    SCALESREMOVED : THE "scales" ARE "removed" FROM PLAYERNAME APOSS "eyes"
-    {
-        $return = "The scales are removed from " . $item{PLAYERNAME} . "'s eyes";
-    }
-
-    HOLESOPEN : "Holes" "open" UP IN target APOSS SHIELD PUNCT BUT "then" "close" UP "again"
-    {
-        $return = "Holes open up in " . $item{target} . "'s shield, but then close up again";
-    }
-
-    MISSILEFLIES : A MAGICMISSILE "flies" "off" INTO THE "distance"
-    {
-        $return = "A " . $item{MAGICMISSILE} . " flies off into the distance";
-    }
-
-    HAZEENCHANT : THE "haze" OF AN "enchantment" SPELL "drifts" "aimlessly" OVER THE "circle" PUNCT AND "dissipates"
-    {
-        $return = "The haze of an enchantment spell drifts aimlessly over the circle, and dissipates.";
-    }
-
-    LIGHTNINGARCS : A "bolt" OF "lightning" "arcs" TO THE "ground"
-    {
-        $return = "A bolt of lightning arcs to the ground";
-    }
-
-    SPELLDRIFTS : A SPELLNAME "drifts" "away" "aimlessly"
-    {
-        $return = "A " . $item{SPELLNAME} . " drifts away aimlessly";
-    }
-
-    TINYHOLES : "Tiny" "holes" IN target APOSS SHIELD ARE "sealed" UP
-    {
-        $return = "Tiny holes in " . $item{target} . "'s shield are sealed up";
-    }
-
-    FASTGUYS : "players" | "warlocks"
-
-    FASTPLAYERS : "Fast" FASTGUYS "sneak" IN AN "extra" "set" OF GESTURE
-    {
-        $return = "Fast " . $item{FASTGUYS} . " sneak in an extra set of gestures";
-    }
-
-    TURNOUTSIDETIME : "This" "turn" "took" "place" "outside" OF "time"
-    {
-        $return = "This turn took place outside of time";
-    }
-
-    FIREBALLSHIELD: ALL "around" target APOSS SHIELD
-    {
-        $return = ", and flames roar all around " . $item{target} . "'s shield";
-    }
-
-    FIREBALLCALM : "around" target PUNCT CALMINFERNO
-    {
-        $return = ", and flames roar around " . $item{target} . ". " . $item{CALMINFERNO};
-    }
-
-    FIREBALLRESISTTYPE : FIREBALLSHIELD | FIREBALLCALM
-
-    FIREBALLRESIST : PUNCT AND "flames" "roar" FIREBALLRESISTTYPE
-    {
-        $return = ", and flames roar around " . $item{FIREBALLRESISTTYPE};
-    }
-
-    FIREBALLHITS : target PUNCT "burning" "him" FOR INTEGER DAMAGE
-    {
-        $return = $item{target} . ", burning him for " . $item{INTEGER} . " damage";
-    }
-
-    FIREBALLSTRIKETYPE : FIREBALLRESIST | FIREBALLHITS
-
-    FIREBALLSTRIKES : "strikes" FIREBALLSTRIKETYPE
-    {
-        $return = "strikes " . $item{FIREBALLSTRIKETYPE};
-    }
-
-    FIREBALLFLIES : "flies" INTO THE "distance" AND "burns" "itself" "out"
-    {
-        $return = "flies into the distance and burns itself out";
-    }
-
-    FIREBALLOUTCOME : FIREBALLFLIES | FIREBALLSTRIKES
-
-    FIREBALLLANDS : A "fireball" FIREBALLOUTCOME
-    {
-        $return = "A fireball " . $item{FIREBALLOUTCOME};
-    }
-
-    CALMINFERNO : "He" "stands" "calmly" "in" THE "inferno"
-    {
-        $return = "He stands calmly in the inferno";
-    }
-
-    LIGHTNINGSPARKS : LIGHTNING "sparks" ALL "around" target APOSS SHIELD
-    {
-        $return = $item{LIGHTNING} . " sparks all around " . $item{target} . "'s shield";
-    }
-
-    PERMOVERRIDE : THE PERMANENT "enchantment" ON target "overrides" THE SPELLNAME "effect"
-    {
-        $return = "The permanent enchantment on " . $item{target} . " overrides the " . $item{SPELLNAME} . " effect";
-    }
-
-    MIRRORDISSIPATE : A MAGICMIRROR "dissipates" INTO THE "air"
-    {
-        $return = "A " . $item{MAGICMIRROR} . " dissipates into the air";
-    }
-
-    ELEMENTALDESTROY : "Opposing" ELEMENTAL "destroy" "each" "other"
-    {
-        $return = "Opposing elementals destroy each other";
-    }
-
-    SHIMMERSHIELD : THE "shimmer" OF A SHIELD "briefly" "covers" THE "circle" PUNCT "then" "dissolves"
-    {
-        $return = "The shimmer of a shield briefly covers the circle, then dissolves";
-    }
-
-    ELEMENTALMERGE : "Two" STORMTYPE ELEMENTAL "merge" INTO "one"
-    {
-        $return = "Two " . $item{STORMTYPE} . " elementals merge into one";
-    }
-
-    ELEMENTALCANCEL : FIRE AND ICE "storms" "cancel" "each" "other" "out" PUNCT "leaving" "just" "a" "gentle" "breeze"
-    {
-        $return = "Fire and Ice storms cancel each other out, leaving just a gentle breeze";
-    }
-
-    BURSTOFSPEED : IN A "burst" OF "speed" PUNCT
-    {
-        $return = "In a burst of speed,";
-    }
-
-    NOMASTER : A SUMMONED "creature" PUNCT "finding" "no" "master" PUNCT "returns" "from" "whence" IT "came"
-    {
-        $return = "A summoned creature, finding no master, returns from whence it came";
-    }
-
-    specialtypes : NOMASTER | TURNOUTSIDETIME | ELEMENTALCANCEL | ELEMENTALMERGE | FIREBALLLANDS | SHIMMERSHIELD | ELEMENTALDESTROY | MIRRORDISSIPATE | PERMOVERRIDE | LIGHTNINGSPARKS | FASTPLAYERS | TINYHOLES | SPELLDRIFTS | LIGHTNINGARCS | HAZEENCHANT | MISSILEFLIES | SCALESGROW | SCALESREMOVED | HOLESOPEN | REFLECTSPELL | SPELLSFAIL | GOESPOOF | BOUNCEMISSILE | STORMRAGES | WOUNDED
-
-    spellcaster : target
-    {
-        $globals->{spell_caster} = $item{target};
-    }
-
-    defaultresult : OUTSIDETIME(?) BURSTOFSPEED(?) spellcaster SPELLTEXT
-    {
-        $return = "";
-        if ($item{OUTSIDETIME}) {
-            $return .= $item{OUTSIDETIME};
-        }
-        if ($item{BURSTOFSPEED}) {
-            $return .= $item{BURSTOFSPEED};
-        }
-        $return .= $item{spellcaster} . ' ' . $item{SPELLTEXT};
-    }
-
-    spellresult : defaultresult | specialtypes
-
-    TURNBODYTYPES : playerturn | spellresult | monsterturn | gameoutcome | PLAYERBOWS
-
-    directmonster : "directs" MONSTERNAME TO ATTACK target
-    {
-        $return = "directs $item{MONSTERNAME} to attack $item{target}";
-    }
-
-    playergesture : gesturetype WITH(?) HIS handed HAND
-    {
-        my $turn = $globals->{current_turn};
-        my $player = $globals->{active_player};
-        my $hand = $item{handed};
-        my $gesture = $item{gesturetype};
-        my $gesturemap = {
-            'D' => "points the digit of his $hand hand",
-            'S' => "snaps the fingers of his $hand hand",
-            'W' => "waves with his $hand hand",
-            'F' => "wiggles the fingers of his $hand hand",
-            'P' => "proffers the palm of his $hand hand",
-            'C' => "flailingly half-claps with his $hand hand",
-            '>' => "stabs with his $hand hand",
-            '-' => "makes no gesture with his $hand hand"
-        };
-
-        $globals->{turnlist}[$turn]->{$player}{gesture}{$hand} = $gesture;
-
-        $return = $gesturemap->{$gesture};
-    }
-
-    attackmiss : "swings" "wildly" FOR target butmisses
-    {
-        $return = "swings wildy for $item{target}$item{butmisses}";
-    }
-
-    blindorinvis : /blindness|invisibility/
-
-    missreason : "due" TO blindorinvis
-    {
-        $return = "due to $item{blindorinvis}";
-    }
-
-    missdeflect : IS "deflected" "by" A SHIELD
+    MISSDEFLECT : "is" "deflected" "by" "a" "shield"
     {
         $return = "is deflected by a shield";
     }
 
-    misstrip : "trips" ON "its" "feet"
+    MISSTRIP : "trips" "on" "its" "feet"
     {
         $return = "trips on its feet";
     }
 
-    missmisses : "misses" missreason(?)
+    MISSMISSES : "misses" MISSREASON(?)
     {
-        $return = "misses" . ($item{missreason} ? " $item{missreason}" : "");
+        $return = "misses" . ($item{MISSREASON} ? " $item{MISSREASON}" : "");
     }
 
-    misstype : missmisses | missdeflect | misstrip
+    MISSTYPE : MISSMISSES | MISSDEFLECT | MISSTRIP
 
-    butmisses : PUNCT BUT misstype
+    BUTMISSES : PUNCT "but" MISSTYPE
     {
         $return = "$item{PUNCT} but $item{misstype}";
     }
 
-    attackverb : FOR | "does"
+    ATTACKVERB : "for" | "does"
 
-    attacksuccess : attackverb INTEGER DAMAGE
+    ATTACKSUCCESS : ATTACKVERB INTEGER "damage"
     {
         $return = "$item{attackverb} $item{INTEGER} damage"
     }
 
-    attackfruitless : PUNCT "fruitlessly"
+    ATTACKFRUITLESS : PUNCT "fruitlessly"
     {
         $return = $item{PUNCT} . " fruitlessly";
     }
 
-    attackoutcome : attackfruitless | butmisses | attacksuccess
+    ATTACKOUTCOME : ATTACKFRUITLESS | BUTMISSES | ATTACKSUCCESS
 
-    attackline : TRIESTO(?) ATTACK target attackoutcome
+    ATTACKLINE : TRIESTO(?) "attack" target ATTACKOUTCOME
     {
-        $return = ($item{TRIESTO} ? "tries to attack" : "attacks") . " $item{target} $item{attackoutcome}";
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = ($item{TRIESTO} ? "tries to attack" : "attacks") . " $targetname $item{ATTACKOUTCOME}";
     }
 
-    HISBANKED : HIS "banked"
+    HISBANKED : "his" "banked"
     {
         $return = "his banked";
     }
 
-    ATON : AT | ON
-
-    playercast : CAST HISBANKED(?) SPELLNAME ATON target butmisses(?)
-    {
-        my $turn = $globals->{current_turn};
-        my $player = $globals->{active_player};
-        my $spell = $item{SPELLNAME};
-        my $target = $item{target};
-        my $success = $item{butmisses} == undef;
-
-        if ($item{HISBANKED}) {
-            $globals->{turnlist}[$turn]->{$player}{spells}{banked}{$spell}{count}++;
-            $globals->{turnlist}[$turn]->{$player}{spells}{banked}{$spell}{success} = $success;
-            $globals->{turnlist}[$turn]->{$player}{spells}{banked}{$spell}{target} = $target;
-        } else {
-            $globals->{turnlist}[$turn]->{$player}{spells}{$spell}{count}++;
-            $globals->{turnlist}[$turn]->{$player}{spells}{$spell}{success} = $success;
-            $globals->{turnlist}[$turn]->{$player}{spells}{$spell}{target} = $target;
-        }
-
-        my $hisbanked = " ";
-        if ($item{HISBANKED}) {
-            $hisbanked = " his banked ";
-        }
-        my $butmisses = "";
-        if ($item{butmisses}) {
-            $butmisses = " $item{butmisses}";
-        }
-
-        $return = "casts${hisbanked}${spell} $item{ATON} ${target}${butmisses}";
-    }
+    ATON : "at" | "on"
 
     VERY : "Very"
 
-    GOBLINADJ : /Bearded|Belligerent|Fat|Green|Grey|Horrid|Malodorous|Nasty|Ratty|Small|Smelly|Tricky|Ugly/
+    GOBLINADJ : /Bearded|Belligerent|Fat|Green|Grey|Horrid|Malodorous|Nasty|Ratty|Small|Smelly|Tricky|Ugly/ | #nothing
 
-    GOBLINNAME : GOBLINADJ(?) "Goblin"
+    GOBLINNAME : GOBLINADJ "Goblin"
     {
         my $adj = $item{GOBLINADJ} ? "$item{GOBLINADJ} " : "";
-        $return = $adj . 'Goblin';
+        $return = $adj . "Goblin";
     }
 
-    OGREADJ : /Angry|Black|Burnt|Crazy|Monstrous|Obtuse|Ochre|Stinking|Suicidal|Terrible|Yellow/
+    OGREADJ : /Angry|Black|Burnt|Crazy|Monstrous|Obtuse|Ochre|Stinking|Terrible|Yellow/ | #nothing
 
-    OGRENAME : OGREADJ(?) "Ogre"
+    OGRENAME : OGREADJ "Ogre"
     {
         my $adj = $item{OGREADJ} ? "$item{OGREADJ} " : "";
-        $return = $adj . 'Ogre';
+        $return = $adj . "Ogre";
     }
 
-    TROLLADJ : /Bridge|Green|Hairy|Ham-fisted|Irate|Loud|Mailing-list|Obnoxious|Stupid|Tall/
+    TROLLADJ : /Bridge|Green|Hairy|Ham-fisted|Irate|Loud|Mailing-list|Obnoxious|Stupid|Tall/ | #nothing
 
-    TROLLNAME : TROLLADJ(?) "Troll"
+    TROLLNAME : TROLLADJ "Troll"
     {
         my $adj = $item{TROLLADJ} ? "$item{TROLLADJ} " : "";
-        $return = $adj . 'Troll';
+        $return = $adj . "Troll";
     }
 
-    GIANTADJ : /Beanstalk|Big|Gaunt|Golden|Hungry|Large|Norse/
+    GIANTADJ : /Beanstalk|Big|Gaunt|Golden|Hungry|Large|Norse/ | #nothing
 
-    GIANTNAME : GIANTADJ(?) "Giant"
+    GIANTNAME : GIANTADJ "Giant"
     {
         my $adj = $item{GIANTADJ} ? "$item{GIANTADJ} " : "";
-        $return = $adj . 'Giant';
+        $return = $adj . "Giant";
     }
 
-    ELEMENTALNAME : ARTICLE(?) STORMTYPE ELEMENTAL
+    ARTICLE : /the|an|a/i | #nothing
+
+    STORMTYPE : "Ice" | "Fire"
+
+    ELEMENTALNAME : ARTICLE STORMTYPE "Elemental"
     {
         my $article = $item{ARTICLE} ? "$item{ARTICLE} " : "";
-        $return = $article . $item{STORMTYPE} . ' ' . $item{ELEMENTAL};
+        $return = $article . $item{STORMTYPE} . " Elemental";
     }
 
     MONSTERTYPENAME : GOBLINNAME | OGRENAME | TROLLNAME | GIANTNAME | ELEMENTALNAME
@@ -1017,329 +1235,93 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return .= $item{MONSTERTYPENAME};
     }
 
+    BURSTOFSPEED : "In" "a" "burst" "of" "speed" PUNCT
+    {
+        $return = "In a burst of speed,";
+    }
+
     OUTSIDETIME : "Outside" "time" PUNCT
     {
         $return = "Outside time,";
     }
 
-    TRIESTO : "tries" TO
+    TRIESTO : "tries" "to"
     {
         $return = "tries to";
     }
 
-    monsterwanders : "wanders" "around" "aimlessly"
+    MONSTERWANDERS : "wanders" "around" "aimlessly"
     {
         $return = "wanders around aimlessly";
     }
 
-    monsterforgets : "forgets" TO ATTACK "anyone"
+    MONSTERFORGETS : "forgets" "to" "attack" "anyone"
     {
         $return = "forgets to attack anyone";
     }
 
-    notarget : "doesn't" ATTACK "anyone"
+    NOTARGET : "doesn't" "attack" "anyone"
     {
         $return = "doesn't attack anyone";
     }
 
-    monsterscared : IS "too" "scared" TO ATTACK
+    MONSTERSCARED : "is" "too" "scared" "to" "attack"
     {
         $return = "is too scared to attack";
     }
 
-    monsterelemental : IS SUMMONED "inside" ELEMENTALNAME AND IS "consumed" "instantly"
+    MONSTERELEMENTAL : "is" "summoned" "inside" ELEMENTALNAME "and" "is" "consumed" "instantly"
     {
         $return = "is summoned inside $item{ELEMENTALNAME} and is consumed instantly";
     }
 
-    monsterturnline : attackline | attackmiss | monsterwanders | monsterforgets | notarget | monsterscared | monsterelemental
+    MONSTERTURNLINE : ATTACKRESULT3 | MONSTERWANDERS | MONSTERFORGETS | NOTARGET | MONSTERSCARED | MONSTERELEMENTAL
 
-    monsterturn : OUTSIDETIME(?) BURSTOFSPEED(?) ARTICLE(?) MONSTERNAME monsterturnline
+    POTENTIALMONSTER : "the" "monster" PLAYERNAME "is" "summoning" "with" "his" HANDED "hand"
     {
-        my $outsidetime = $item{OUTSIDETIME} ? "$item{OUTSIDETIME} " : "";
-        my $burstofspeed = $item{BURSTOFSPEED} ? "$item{BURSTOFSPEED} " : "";
-        my $article = $item{ARTICLE} ? "$item{ARTICLE} " : "";
-
-        $return = $outsidetime . $burstofspeed . $article . $item{MONSTERNAME} . " " . $item{monsterturnline};
+        $return = "the monster " . $item{PLAYERNAME} . " is summoning with his " . $item{HANDED} . " hand";
     }
 
-    potentialmonster : THE "monster" PLAYERNAME IS "summoning" WITH HIS handed HAND
+    MONSTERTARGET : POTENTIALMONSTER | MONSTERNAME
     {
-        $return = "the monster " . $item{PLAYERNAME} . " is summoning with his " . $item{handed} . " hand";
+        $return = "0:$item[1]";
     }
 
-    monstertarget : potentialmonster | MONSTERNAME
-
-    ATTACK : /attacks?/
-
-    THICK : "thick"
-
-    MAGICAL : "magical"
-
-    APPEARS : "appears"
-
-    IN : /in/i
-
-    A : /a/i
-
-    AN : /an/i
-
-    AS : /as/i
-
-    ARE : /are/i
-
-    IS : "is"
-
-    OF : "of"
-
-    BY : "by"
-
-    TO : "to"
-
-    NO : /no/i
-
-    INTO : "into"
-
-    FROM : "from"
-
-    ON : "on"
-
-    UP : "up"
-
-    AND : "and"
-
-    FOR : "for"
-
-    BUT : "but"
-
-    THE : /the/i
-
-    WITH : "with"
-
-    ALL : "all"
-
-    HIT : "hit"
-
-    SUMMONED : "summoned"
-
-    SHIELD : "shield"
-
-    SPELL : /spells?/
-
-    OVER : "over"
-
-    DAMAGE : "damage"
-
-    IT : "it"
-
-    # these are in order by likelyhood of being cast
-    SPELLNAME :
-    SHIELDSPELL | PARALYSIS | MAGICMISSILE | COUNTERSPELL | CHARMPERSON |
-    SUMMONGOBLIN | PROTECTION | AMNESIA | CAUSELIGHTWOUNDS | CAUSEHEAVYWOUNDS |
-    CONFUSION | CHARMMONSTER | CURELIGHTWOUNDS | MALADROITNESS | FEAR |
-    SUMMONOGRE | INVISIBILITY | ANTISPELL | CUREHEAVYWOUNDS | LIGHTNINGBOLT |
-    MAGICMIRROR | CLAPOFLIGHTNING | SUMMONGIANT | PERMANENCY | BLINDNESS |
-    TIMESTOP | SUMMONTROLL | RESISTHEAT | DISPELMAGIC | REMOVEENCHANTMENT |
-    FIREBALL | DISEASE | ICESTORM | SUMMONFIREELEMENTAL | FINGEROFDEATH |
-    RESISTCOLD | FIRESTORM | POISON | HASTE | SUMMONICEELEMENTAL | DELAYEFFECT
-
-
-    handed : LEFT | RIGHT
-
-    TOHIT : TO HIT
-    {
-        $return = "to hit";
-    }
-
-    FIRE : "Fire"
-
-    ICE : "Ice"
-
-    STORMTYPE : FIRE | ICE
-
-    FIREENTRANCE : "furious" "roar" OF "flame"
-    {
-        $return = "furious roar of flame";
-    }
-
-    ICEENTRANCE : "sudden" "rush" OF "arctic" "wind"
-    {
-        $return = "sudden rush of arctic wind";
-    }
-
-    ELEMENTALENTRANCE : FIREENTRANCE | ICEENTRANCE
-
-    FIRERYHEAT : "fiery" "heat"
-    {
-        $return = "fiery heat";
-    }
-
-    HEATSTORM : "heat" OF THE FIRESTORM
-    {
-        $return = "heat of the " . $item{FIRESTORM};
-    }
-
-    ELEMENTALRESISTANCE : FIRERYHEAT | HEATSTORM
-
-    FEARQUALIFIER : "cringes" | "quakes"
-
-    SUMMONEDTOSERVE : SUMMONED TO "serve" PLAYERNAME
+    PLAYERCAST : "casts" HISBANKED(?) SPELLNAME ATON target BUTMISSES(?)
     {
         my $turn = $globals->{current_turn};
+        my $player = $globals->{actor};
+        my $spell = $item{SPELLNAME};
+        my ($is_player, $targetname) = split /:/, $item{target};
+        my $success = $item{BUTMISSES} == undef;
 
-        $globals->{monsters}{$globals->{spell_caster}}{original_owner} = $item{PLAYERNAME};
-        $globals->{monsters}{$globals->{spell_caster}}{current_owner} = $item{PLAYERNAME};
-        $globals->{monsters}{$globals->{spell_caster}}{turn_summoned} = $turn;
-        $globals->{monsters}{$globals->{spell_caster}}{damage_done} = 0;
-        $globals->{monsters}{$globals->{spell_caster}}{killed_by} = "";
-        $globals->{monsters}{$globals->{spell_caster}}{killed} = [];
+        if ($item{HISBANKED}) {
+            $globals->{turnlist}[$turn]->{$player}{spells}{banked}{$spell}{count}++;
+            $globals->{turnlist}[$turn]->{$player}{spells}{banked}{$spell}{success} = $success;
+            $globals->{turnlist}[$turn]->{$player}{spells}{banked}{$spell}{target} = $targetname;
+        } else {
+            $globals->{turnlist}[$turn]->{$player}{spells}{$spell}{count}++;
+            $globals->{turnlist}[$turn]->{$player}{spells}{$spell}{success} = $success;
+            $globals->{turnlist}[$turn]->{$player}{spells}{$spell}{target} = $targetname;
+        }
 
-        $return = "summoned to serve " . $item{PLAYERNAME};
+        my $hisbanked = " ";
+        if ($item{HISBANKED}) {
+            $hisbanked = " his banked ";
+        }
+        my $butmisses = "";
+        if ($item{BUTMISSES}) {
+            $butmisses = " $item{BUTMISSES}";
+        }
+
+        $return = "casts${hisbanked}${spell} $item{ATON} ${targetname}${butmisses}";
     }
 
-    ISSPELLTEXT :
-          /covered|surrounded|protected/ BY A THICK(?) /magical\sglowing|glowing|reflective|magical|shimmering/ SHIELD |
-          HIT BY A MAGICMISSILE PUNCT FOR INTEGER DAMAGE |
-          "charmed" INTO "making" THE "wrong" GESTURE WITH HIS handed HAND |
-          "charmed" PUNCT BUT "ends" UP "making" THE GESTURE "he" "intended" "anyway" |
-          SUMMONEDTOSERVE |
-          HIT BY A "bolt" OF "lightning" PUNCT FOR INTEGER DAMAGE |
-          HIT BY REMOVEENCHANTMENT PUNCT AND "starts" "coming" "apart" AT THE "seams" |
-          HIT BY A "Fireball" AS THE ICESTORM "strikes" PUNCT AND IS "miraculously" LEFT "untouched" |
-          HIT BY ARTICLE SPELLNAME SPELL PUNCT AND IS "annihilated" BY THE MAGICAL "overload" |
-          A "bit" "nauseous" |
-          AT "maximum" "health" |
-          "absorbed" BY PLAYERNAME APOSS "counter" SPELL |
-          "burnt" FOR INTEGER DAMAGE |
-          "burnt" IN THE "raging" FIRESTORM PUNCT FOR INTEGER DAMAGE |
-          "covered" BY A "warm" "glow" |
-          "covered" IN A "coat" OF "sparkling" "frost" |
-          "destroyed" BY A SPELLNAME SPELL |
-          "looking" "pale" |
-          "having" "difficulty" "breathing" |
-          "healed" |
-          "frozen" BY THE "raging" ICESTORM PUNCT FOR INTEGER DAMAGE |
-          "frozen" FOR INTEGER DAMAGE |
-          "rendered" "maladroit" |
-          "sweating" "feverishly" |
-          "touched" WITH THE "Finger" OF "Death"
-
-    SOLIDSHIELD : "momentarily" "more" "solid"
+    PLAYERDIRECTS : "directs" MONSTERNAME "to" "attack" target
     {
-        $return = "momentarily more solid";
+        my ($is_player, $targetname) = split /:/, $item{target};
+        $return = "directs " . $item{MONSTERNAME} . " to attack $targetname";
     }
-
-    THICKERSHIELD : "thicker" FOR A "moment" PUNCT "then" "fades" "back"
-    {
-        $return = "thicker for a moment, then fades back";
-    }
-
-    SHIELDAPPEARANCE : SOLIDSHIELD  | THICKERSHIELD
-
-    FIRMSHIELD : PUNCT BUT "remains" "firm"
-    {
-        $return = ", but remains firm";
-    }
-
-    FORAMOMENT : FOR A "moment"
-    {
-        $return = "for a moment";
-    }
-
-    SHIELDFLICKERS : FIRMSHIELD | FORAMOMENT
-
-    SHIELDSPELLTEXT :
-          "blurs" FOR A "moment" |
-          "disappears" FOR A "moment" |
-          "fizzles" "slightly" |
-          "flickers" SHIELDFLICKERS |
-          /intensifie[ds]/ "momentarily" |
-          "keeps" THE STORMTYPE ELEMENTAL AT "bay" |
-          LOOKS SHIELDAPPEARANCE |
-          "sparkles" "rapidly" FOR A "moment"  |
-          "turns" A "greenish" "hue" FOR A "moment"
-
-    LOOKSSPELLTEXT :
-          A "bit" "confused" |
-          PUNCT "glassy-eyed" PUNCT AT PLAYERNAME |
-          "comfortable" IN THE "cooling" ICESTORM |
-          "intrigued" BY target
-
-    PLAYERGLOWING : "glowing" "faintly"
-    {
-        $return = "glowing faintly";
-    }
-
-    PLAYERSHIMMER : TO "shimmer"
-    {
-        $return = "to shimmer";
-    }
-
-    PLAYERAPPEARANCE : PLAYERGLOWING | PLAYERSHIMMER
-
-    ICEDESTROYED : PUNCT "calming" AND "cooling" THE FIRESTORM
-    {
-        $return = $item{PUNCT} . " calming and cooling the " . $item{FIRESTORM};
-    }
-
-    FIREDESTROYED : THE "oncoming" ICESTORM PUNCT AND IS "destroyed" BY THE "ensuing" "water"
-    {
-        $return = "the oncoming " . $item{ICESTORM} . $item{PUNCT} . " and is destroyed by the ensuing water";
-    }
-
-    ELEMENTALDESTROYED : ICEDESTROYED | FIREDESTROYED
-
-    ELEMENTALAMOK : "amok"
-
-    ELEMENTALISWILD : "around" "wildly" PUNCT "looking" FOR target TOHIT(?)
-    {
-        my $tohit = $item{TOHIT} ? " $item{TOHIT}" : "";
-        $return = "around wildly" . $item{PUNCT} . " looking for $item{target}${tohit}";
-    }
-
-    APOSSSPELLTEXT: SHIELD SHIELDSPELLTEXT |
-          "hands" "start" TO "stiffen" |
-          handed HAND IS "paralysed" |
-          "half-done" SPELL "fizzle" AND "die" |
-          "eyes" ARE "covered" WITH "scales" |
-          "absorbed" BY target APOSS "counter" SPELL |
-          "surrounding" MAGICAL "energies" ARE "grounded" |
-          MONSTERNAME IS "absorbed" INTO A "Counterspell" "glow" |
-          SPELLNAME IS "absorbed" INTO A "glow" |
-          DISEASE IS "fatal" |
-          POISON IS "fatal"
-
-    SPELLTEXT : IS ISSPELLTEXT | APOSS APOSSSPELLTEXT | LOOKS LOOKSSPELLTEXT |
-          APPEARS "unaffected" BY PLAYERNAME APOSS "intellectual" "charms" |
-          APPEARS IN A ELEMENTALENTRANCE |
-          "attempts" TO "make" THE SPELL PERMANENT |
-          "banks" A SPELL FOR "later" |
-          "begins" PLAYERAPPEARANCE |
-          "basks" IN THE ELEMENTALRESISTANCE |
-          "can't" "move" TO ATTACK |
-          "confusedly" "makes" THE "wrong" GESTURE WITH HIS handed HAND |
-          FEARQUALIFIER IN "fear" |
-          "enjoys" THE "icy" "chill" |
-          "fades" "back" INTO "visibility" |
-          "flickers" "out" OF "time" |
-          "flies" "away" WITH THE "storm" |
-          "forgets" "what" "he" APOSS "doing" PUNCT AND "makes" THE "same" GESTURE AS "last" "round" |
-          handed HAND "stab" IS "wasted" AT A "monster" "which" "wasn't" SUMMONED |
-          "ignores" target APOSS "appeal" TO HIS "baser" "instincts" |
-          "makes" A "confused" GESTURE PUNCT BUT "luckily" IT APOSS "what" "he" "intended" "anyway" |
-          "makes" THE SPELL PERMANENT |
-          "melts" ELEMENTALDESTROYED |
-          "runs" ELEMENTALAMOK |
-          "runs" ELEMENTALISWILD |
-          "shakes" HIS "head" AND "regains" "control" PUNCT AS "enchantments" "cancel" "each" "other" "out" |
-          "speeds" UP |
-          "staggers" "weakly" |
-          "starts" "coughing" UP "blood" |
-          "starts" TO "look" /blank|sick/ |
-          "starts" TO "lose" "coordination" |
-          "stomach" "rumbles" |
-          "stops" HIS "heart" "through" "force" OF "will" "alone" |
-          "tries" TO CAST "Clap" OF LIGHTNING PUNCT BUT "doesn't" "have" THE "charge" FOR IT
 
 _EOGRAMMAR_
 ;
@@ -1389,8 +1371,7 @@ sub trace
         $::RD_HINT = 'defined';
         $::RD_TRACE = 'defined';
     } else {
-        undef $::RD_HINT;
-        undef $::RD_TRACE;
+        undef $::RD_HINT; undef $::RD_TRACE;
     }
 
     return $self;
