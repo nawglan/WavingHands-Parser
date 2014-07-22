@@ -6,7 +6,6 @@ use warnings;
 use JSON;
 use File::Spec;
 use List::Util qw(shuffle);
-use mop;
 =head1 NAME
 
 WavingHands::Parser - Parse games for WavingHands ( http://www.gamecabinet.com/rules/WavingHands.html )
@@ -75,21 +74,45 @@ This module provides the main interface for parsing games for WavingHands games.
 
     Each call to parse will pull one game from the queue.
 
+=head2 untaint_str
+
+    Untaints a string returning the untainted string.
+
 =cut
 
+sub untaint_str {
+    my $str = shift;
+    my $retval;
+
+    local $1;
+    $str =~ /^(.*)\z/s;
+    eval {
+        $retval = $1;
+    };
+
+    die $@ if $@;
+
+    return $retval;
+}
+
+use mop;
 
 class WavingHands::Parser {
     has $!trace is rw = 0;
     has $!usesort is rw = 0;
     has $!bail is rw = 1;
     has $!gametype is rw = do{die "Parameter 'gametype' is required.";};
+    has $!tracedir is rw = File::Spec->catdir('/', 'tmp');
+    has $!dumpdir is rw;
+    has $!cachefile is rw;
     has $!queue is ro;
     has $!parser is ro;
+    has $!cache is ro;
 
     method _resetParser {
         $!parser->reset_data() if $!parser;
 
-        my $module = "WavingHands/Parser/Grammar/$!gametype.pm";
+        my $module = File::Spec->catfile('WavingHands', 'Parser', 'Grammar', $!gametype . '.pm');
         my $classname = "WavingHands::Parser::Grammar::$!gametype";
         require $module;
 
@@ -121,9 +144,13 @@ class WavingHands::Parser {
 
         if ($!usesort) {
             @{$!queue} = sort {
-                my ($g1, undef) = split /\./, $a;
-                my ($g2, undef) = split /\./, $b;
-                if ($g1 =~ /\d+/ && $g2 =~ /\d+/) {
+                my (undef,undef,$aname) = File::Spec->splitpath($a);
+                my (undef,undef,$bname) = File::Spec->splitpath($b);
+
+                my ($g1, undef) = split /\./, $aname;
+                my ($g2, undef) = split /\./, $bname;
+
+                if ($g1 =~ /^\d+$/ && $g2 =~ /^\d+$/) {
                     $g1 <=> $g2;
                 } else {
                    "$g1" cmp "$g2";
@@ -132,6 +159,23 @@ class WavingHands::Parser {
         } else {
             @{$!queue} = shuffle @{$!queue};
         }
+
+        if ($!cachefile) {
+            $!cachefile = untaint_str($!cachefile);
+            if (-f $!cachefile) {
+                my $cachecount = 0;
+                open my $CACHEFILE, '<', $!cachefile;
+                if ($CACHEFILE) {
+                    while (my $fname = <$CACHEFILE>) {
+                        chomp $fname;
+                        $!cache->{$fname} = 1;
+                        $cachecount++;
+                    }
+                }
+                close $CACHEFILE;
+                warn "Loaded $cachecount cached results\n" if $ENV{WHP_DEBUG} && $cachecount;
+            }
+        }
     }
 
     method parse {
@@ -139,8 +183,9 @@ class WavingHands::Parser {
         my $result;
         my $good = 0;
 
-        if (@{$!queue}) {
+        if ($self->queue_has_items()) {
             my $filename = shift @{$!queue};
+            return 1 if $!cache->{$filename};
 
             open my $INPUT, '<', $filename or die ("Unable to open $filename : $!\n");
             my $buffer;
@@ -152,7 +197,7 @@ class WavingHands::Parser {
 
             my $TRACE;
             if ($!trace) {
-                my $tracefile = File::Spec->catfile('/', 'tmp', 'trace.txt');
+                my $tracefile = untaint_str(File::Spec->catfile($!tracedir, 'trace.txt'));
                 open $TRACE, '>', $tracefile;
                 local *STDERR = $TRACE;
                 $result = $!parser->parse($buffer);
@@ -163,13 +208,22 @@ class WavingHands::Parser {
 
             if (defined $result) {
                 $good = ($result == 1 ? 1 : 0);
+                $!cache->{$filename} = 1 if $good;
             }
 
             @{$!queue} = qw() if $!bail && !$result;
-        }
 
-        if ($good) {
-            $self->dump();
+            if ($good) {
+                $self->dump() if $ENV{WHP_DEBUG_DUMP};
+                if ($!cachefile) {
+                  open my $CACHEFILE, '>>', $!cachefile;
+                  print $CACHEFILE "$filename\n";
+                  close $CACHEFILE;
+                }
+                warn "Success: $filename parsed correctly." if $ENV{WHP_DEBUG};
+            } else {
+                warn "Warning: $filename did not parse correctly.";
+            }
         }
 
         return $good;
@@ -184,19 +238,19 @@ class WavingHands::Parser {
     }
 
     method dump() {
-        my $data = $!parser->get_data();
-        my $json = JSON->new->allow_nonref->pretty;
-        my $dumpfile = File::Spec->catfile('/', 'tmp', "dump_$data->{gameid}.json");
-        local $1;
-        $dumpfile =~ /^(.*)\z/s;
-        eval {
-            $dumpfile = $1;
-        };
-        open my $DUMP, '>', $dumpfile or die "ERROR: Unable to open $dumpfile: $!";
-        print $DUMP $json->encode($data);
-        close $DUMP;
+        if ($!dumpdir) {
+            my $data = $!parser->get_data();
+            my $json = JSON->new->allow_nonref->pretty;
+            my $dumpfile = untaint_str(File::Spec->catfile($!dumpdir, "dump_$data->{gameid}.json"));
+
+            open my $DUMP, '>', $dumpfile or die "ERROR: Unable to open $dumpfile: $!";
+            print $DUMP $json->encode($data);
+            close $DUMP;
+        }
     }
+
 }
 
 1;
 
+# vi: softtabstop=4 shiftwidth=4 et!: #

@@ -20,4 +20,6 @@ nytprof.out
 *.swp
 *.swo
 *~
-RD_TRACE
+/RD_TRACE
+/t/data/cache.txt
+/t/data/trace.txt
