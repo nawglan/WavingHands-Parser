@@ -1227,9 +1227,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     }
 
     SUMMONFIRERESULT10 : "runs" "around" "wildly" PUNCT "looking" "for"
-        "Everyone"
+        target
     {
-        $return = "runs around wildly, looking for Everyone";
+        my ($is_player, $targetname) = split /:/, $item{target};
+
+        $return = "runs around wildly, looking for $targetname";
     }
 
     FINGEROFDEATHRESULT : "is" "touched" "with" "the" "Finger" "of" "Death"

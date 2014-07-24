@@ -22,7 +22,7 @@ my $parser = new_ok('WavingHands::Parser' => [
     tracedir => $datadir,
     usesort => $ENV{WHP_SORT} || 0,
     bail => 1,
-    cachefile => File::Spec->catfile($datadir, 'cache.txt'),
+    cachefile => '',
     dumpdir => $datadir,
     gametype => 'Warlocks'
 ]);
