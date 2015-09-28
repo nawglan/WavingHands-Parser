@@ -18,9 +18,9 @@ my $directory = $ENV{WHP_DIR} || File::Spec->catdir('.', 't', 'data', 'testgames
 my $datadir = File::Spec->catdir('.', 't', 'data');
 
 my $parser = new_ok('WavingHands::Parser' => [
-    trace => $ENV{WHP_TRACE} || 0,
+    trace => $ENV{WHP_TRACE} // 0,
     tracedir => $datadir,
-    usesort => $ENV{WHP_SORT} || 0,
+    usesort => $ENV{WHP_SORT} // 0,
     bail => 1,
     cachefile => '',
     dumpdir => $datadir,
@@ -41,8 +41,6 @@ while ($parser->queue_has_items()) {
     $total_good += $good;
     is ($good == 1, 1, 'Game parsed successfuly.');
     last unless $good == 1;
-    unlink "RD_TRACE" if -f "RD_TRACE";
-    unlink File::Spec->catfile($datadir, "trace.txt");
 }
 
 $num_tests++;

@@ -16,6 +16,8 @@ our $globals = {};
 use Parse::RecDescent;
 use WavingHands::Parser;
 
+undef $::RD_WARN;
+
 =head1 SYNOPSIS
 
     This module provides the grammar for parsing games from L<Warlocks|http://games.ravenblack.net>
@@ -121,6 +123,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     GAMEID : INTEGER
     {
         $globals->{gameid} = $item{INTEGER};
+        warn "Processing Game $globals->{gameid}\n" if defined $ENV{WHP_VERBOSE};
         $return = $item{INTEGER};
     }
 
@@ -147,11 +150,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                               @{$globals->{players}};
             my $playercount = scalar @players;
 
-            if ($playercount > 2) {
-                $globals->{melee_game} = 1;
-            }
+            $globals->{melee_game} = ($playercount > 2) ? 1 : 0;
 
-            my $rule = sprintf ("PLAYERNAME : /\\b\(%s\)\\b/", (join '|', @players));
+            my $rule = sprintf ("PLAYERNAME : /\\b\(%s\)\\b/\n%s",
+                (join '|', @players),
+                '{ $return = "1:$item[1]"; }'
+                );
             my $rule2 = "LISTOFPLAYERS : PLAYERLINES($playercount)";
 
             $rule = WavingHands::Parser::untaint_str($rule);
@@ -202,6 +206,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return .= "$item{OUTSIDETIME} " if $item{OUTSIDETIME};
         $return .= "$item{BURSTOFSPEED} " if $item{BURSTOFSPEED};
         $return .= "$actorname $item{TURNBODYLINETYPES}";
+
+        if ($is_player == 2) {
+            my $currentowner = $globals->{monsters}{$actorname}{current_owner};
+            $currentowner = 'none' if $currentowner == "";
+            $globals->{monsters}{$actorname}{owned_by_length}{$currentowner} += 1;
+        }
     }
 
     OUTSIDETIME : "Outside" "time" PUNCT
@@ -214,40 +224,47 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "In a burst of speed,";
     }
 
-    ACTOR : target
+    ACTOR : TARGET
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
         $globals->{actor} = $targetname;
         $globals->{actor_is_player} = $is_player;
-        $return = $item{target};
+        $return = $item{TARGET};
     }
 
-    target : PLAYERTARGET | MONSTERTARGET
-
-    PLAYERTARGET : GENERICTARGET | PLAYERNAME
+    TARGET : PLAYERTARGET | MONSTERTARGET
     {
-        if ($item{PLAYERNAME}) {
-          $return = "1:$item{PLAYERNAME}";
+        if ($item{PLAYERTARGET}) {
+            $return = $item{PLAYERTARGET};
         } else {
-          $return = "1:$item{GENERICTARGET}";
+            $return = $item{MONSTERTARGET};
         }
     }
 
-    GENERICTARGET : /himself|nobody|everyone|someone/i
+    PLAYERTARGET : GENERICTARGET | PLAYERNAME
 
-    PLAYERNAME : "__NoSuChPlAyEr__"
+    GENERICTARGET : /himself|nobody|everyone|someone/i
+    {
+        if ($item[1] =~ /himself|someone|everyone/) {
+            $return = "1:$item[1]";
+        } else {
+            $return = "2:$item[1]";
+        }
+    }
 
     MONSTERTARGET : POTENTIALMONSTER | MONSTERNAME
     {
-        $return = "0:$item{POTENTIALMONSTER}" if $item{POTENTIALMONSTER};
-        $return = "0:$item{MONSTERNAME}" if $item{MONSTERNAME};
+        $return = "2:$item{POTENTIALMONSTER}" if $item{POTENTIALMONSTER};
+        $return = "2:$item{MONSTERNAME}" if $item{MONSTERNAME};
     }
 
     POTENTIALMONSTER : "the" "monster" PLAYERNAME "is" "summoning" "with"
         "his" HANDED "hand"
     {
-        $return = "the monster $item{PLAYERNAME} is summoning with his" .
+        my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
+
+        $return = "the monster $playername is summoning with his" .
             " $item{HANDED} hand";
     }
 
@@ -405,25 +422,31 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     HANDED : "left" | "right"
 
-    PLAYERCAST : "casts" HISBANKED(?) SPELLNAME ATON target BUTMISSES(?)
+    PLAYERCAST : "casts" HISBANKED(?) SPELLNAME ATON TARGET BUTMISSES(?)
     {
         my $turn = $globals->{current_turn};
         my $player = $globals->{actor};
         my $spell = $item{SPELLNAME};
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
         my $success = $item{BUTMISSES} == undef;
         my $pturn = $globals->{turnlist}[$turn]->{$player};
         my $hisbanked = " ";
         my $butmisses = "";
 
         if ($item{HISBANKED}) {
-            $pturn->{spells}{banked}{$spell}{count}++;
-            $pturn->{spells}{banked}{$spell}{success} = $success;
-            $pturn->{spells}{banked}{$spell}{target} = $targetname;
+            $globals->{$player}{spells}{banked}{$spell}{count}++;
+            push @{$pturn->{spells}{banked}{$spell}}, {
+                success => $success,
+                target => $targetname,
+                target_type => $is_player
+            };
         } else {
-            $pturn->{spells}{$spell}{count}++;
-            $pturn->{spells}{$spell}{success} = $success;
-            $pturn->{spells}{$spell}{target} = $targetname;
+            $globals->{$player}{spells}{$spell}{count}++;
+            push @{$pturn->{spells}{$spell}}, {
+                success => $success,
+                target => $targetname,
+                target_type => $is_player
+            };
         }
 
         if ($item{HISBANKED}) {
@@ -590,7 +613,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     BUTMISSES : PUNCT "but" MISSTYPE
     {
-        $return = "$item{PUNCT} but $item{misstype}";
+        $return = "$item{PUNCT} but $item{MISSTYPE}";
     }
 
     MISSTYPE : MISSMISSES | MISSDEFLECT | MISSTRIP
@@ -617,9 +640,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "trips on its feet";
     }
 
-    PLAYERDIRECTS : "directs" MONSTERNAME "to" "attack" target
+    PLAYERDIRECTS : "directs" MONSTERNAME "to" "attack" TARGET
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
         $return = "directs " . $item{MONSTERNAME} . " to attack $targetname";
     }
@@ -657,31 +680,37 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         ATTACKRESULT7 | MONSTERWANDERS | MONSTERRUNS | MONSTERFORGETS |
         NOTARGET | MONSTERSCARED | MONSTERELEMENTAL | REMOVEENCHANTRESULT3
 
-    ATTACKRESULT3 : "swings" "wildly" "for" target BUTMISSES
+    ATTACKRESULT3 : "swings" "wildly" "for" TARGET BUTMISSES
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
-        $return = "swings wildy for ${targetname}$item{BUTMISSES}";
+        $return = "swings wildy for ${targetname} $item{BUTMISSES}";
     }
 
-    ATTACKRESULT4 : "does" INTEGER "damage" "to" target
+    ATTACKRESULT4 : "does" INTEGER "damage" "to" TARGET
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $actor = $globals->{actor};
+        my $damage = $item{INTEGER};
 
-        $return = "does $item{INTEGER} damage to $targetname";
+        if ($globals->{actor_is_player} == 2) {
+          $globals->{monsters}{$actor}{damage_done}{$targetname} += $damage;
+        }
+
+        $return = "does $damage damage to $targetname";
     }
 
-    ATTACKRESULT5 : "tries" "to" "attack" target PUNCT "but" "trips" "on"
+    ATTACKRESULT5 : "tries" "to" "attack" TARGET PUNCT "but" "trips" "on"
         "its" "feet"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
         $return = "tries to attack $targetname, but trips on its feet";
     }
 
-    ATTACKRESULT7 : "tries" "to" "attack" target PUNCT "fruitlessly"
+    ATTACKRESULT7 : "tries" "to" "attack" TARGET PUNCT "fruitlessly"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
         $return = "tries to attack $targetname, fruitlessly";
     }
@@ -715,6 +744,32 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     MONSTERELEMENTAL : "is" "summoned" "inside" ELEMENTALNAME PUNCT "and"
         "is" "consumed" "instantly"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /^Summon/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $item{ELEMENTALNAME};
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        if ($globals->{actor_is_player} == 2) {
+          $globals->{monsters}{$actor}{killed_by} = $item{ELEMENTALNAME};
+        }
+
         $return = "is summoned inside $item{ELEMENTALNAME}, and is" .
             " consumed instantly";
     }
@@ -722,6 +777,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     REMOVEENCHANTRESULT3 : "is" "hit" "by" "Remove" "Enchantment" PUNCT "and"
         "starts" "coming" "apart" "at" "the" "seams"
     {
+        my $actor = $globals->{actor};
+        if ($globals->{actor_is_player} == 2) {
+          $globals->{monsters}{$actor}{killed_by} = 'Remove Enchantment';
+        }
+
         $return = "is hit by Remove Enchantment, and starts coming apart" .
             " at the seams";
     }
@@ -798,31 +858,117 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     COUNTERSPELLRESULT : "is" "covered" "by" "a" "magical" "glowing" "shield"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next if $spell eq 'Counter Spell' || $spell eq 'Dispel Magic';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless ($spell_info->{target} eq $actor) || ($actor eq $player && $spell_info->{target} =~ /himself/i);
+                        $spell_info->{success} = 0;
+                    }
+                }
+            }
+        }
+
         $return = "is covered by a magical glowing shield";
     }
 
     COUNTERSPELLRESULT2 : APOSS "shield" "looks" "thicker" "for" "a" "moment"
         PUNCT "then" "fades" "back"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            next unless $player eq $actor;
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Shield';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield looks thicker for a moment, then fades back";
     }
 
     COUNTERSPELLRESULT4 : APOSS SPELLNAME "is" "absorbed" "into" "a" "glow"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            next unless $player eq $actor;
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq $item{SPELLNAME};
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s $item{SPELLNAME} is absorbed into a glow";
     }
 
-    CHARMPERSONRESULT : "looks" "intrigued" "by" target
+    CHARMPERSONRESULT : "looks" "intrigued" "by" TARGET
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
         $return = "looks intrigued by $targetname";
     }
 
-    CHARMPERSONRESULT2 : "appears" "unaffected" "by" target APOSS
+    CHARMPERSONRESULT2 : "appears" "unaffected" "by" TARGET APOSS
         "intellectual" "charms"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            next unless $player eq $targetname;
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Charm Person';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "appears unaffected by ${targetname}'s intellectual charms";
     }
@@ -844,16 +990,15 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     SUMMONMONSTERRESULT : "is" "summoned" "to" "serve" PLAYERNAME
     {
         my $turn = $globals->{current_turn};
-        my $playername = $item{PLAYERNAME};
+        my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
         my $actor = $globals->{actor};
 
         $globals->{monsters}{$actor}{original_owner} = $playername;
         $globals->{monsters}{$actor}{owned_by_length}{$playername} = 1;
         $globals->{monsters}{$actor}{current_owner} = $playername;
         $globals->{monsters}{$actor}{turn_summoned} = $turn;
-        $globals->{monsters}{$actor}{damage_done} = 0;
+        $globals->{monsters}{$actor}{damage_done} = {};
         $globals->{monsters}{$actor}{killed_by} = "";
-        $globals->{monsters}{$actor}{killed} = [];
 
         $return = "is summoned to serve $playername";
     }
@@ -861,6 +1006,31 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     SUMMONMONSTERRESULT2 : APOSS MONSTERNAME "is" "absorbed" "into" "a"
         "Counterspell" "glow"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            next unless $player eq $actor;
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /Summon (\w+)/;
+                    my ($mtype) = ($spell =~ /Summon (\w+)/);
+                    next unless $item{MONSTERNAME} =~ /$mtype/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s $item{MONSTERNAME} is absorbed into a Counterspell" .
             " glow";
     }
@@ -868,36 +1038,79 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     SUMMONMONSTERRESULT3 : "is" "hit" "by" "an" "Invisibility" "spell" PUNCT
         "and" "is" "annihilated" "by" "the" "magical" "overload"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next if $spell =~ /Elemental/;
+                    my ($mtype) = ($spell =~ /Summon (\w+)/);
+                    next unless $actor =~ /$mtype/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "is hit by an Invisibility spell, and is annihilated by" .
             " the magical overload";
     }
 
-    SUMMONMONSTERRESULT5 : "is" "absorbed" "by" target APOSS "counter" "spell"
+    SUMMONMONSTERRESULT5 : "is" "absorbed" "by" TARGET APOSS "counter" "spell"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            next unless $player eq $targetname;
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /^Summon/;
+                    next if $spell =~ /Elemental/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "is absorbed by ${targetname}'s counter spell";
     }
 
-    ATTACKRESULT : "attacks" target "for" INTEGER "damage"
+    ATTACKRESULT : "attacks" TARGET "for" INTEGER "damage"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
         my $actor = $globals->{actor};
+        my $damage = $item{INTEGER};
 
-        unless ($is_player) {
-            my $currentowner =  $globals->{monsters}{$actor}{current_owner};
-
-            $globals->{monsters}{$actor}{damage_done} += $item{INTEGER};
-            $globals->{monsters}{$actor}{owned_by_length}{$currentowner} += 1;
+        if ($globals->{actor_is_player} == 2) {
+            $globals->{monsters}{$actor}{damage_done}{$targetname} += $damage;
         }
 
-        $return = "attacks $targetname for $item{INTEGER} damage";
+        $return = "attacks $targetname for $damage damage";
     }
 
-    ATTACKRESULT2 : "attacks" target PUNCT "but" "is" "deflected" "by" "a"
+    ATTACKRESULT2 : "attacks" TARGET PUNCT "but" "is" "deflected" "by" "a"
         "shield"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
         $return = "attacks $targetname, but is deflected by a shield";
     }
@@ -917,6 +1130,28 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     PROTECTIONRESULT2 : APOSS "shield" "looks" "momentarily" "more" "solid"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Protection';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield looks momentarily more solid";
     }
 
@@ -939,6 +1174,28 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     CONFUSIONRESULT2 : APOSS "shield" "blurs" "for" "a" "moment"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Confusion';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield blurs for a moment";
     }
 
@@ -959,17 +1216,39 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     CHARMMONSTERRESULT : "looks" PUNCT "glassy-eyed" PUNCT "at" PLAYERNAME
     {
         my $actor = $globals->{actor};
-        my $playername = $item{PLAYERNAME};
+        my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
 
         $globals->{monsters}{$actor}{current_owner} = $playername;
         $globals->{monsters}{$actor}{owned_by_length}{$playername} += 1;
         $return = "looks, glassy-eyed, at $playername";
     }
 
-    CHARMMONSTERRESULT2  : "ignores" target APOSS "appeal" "to" "his"
+    CHARMMONSTERRESULT2  : "ignores" TARGET APOSS "appeal" "to" "his"
         "baser" "instincts"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            next unless $player eq $targetname;
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Charm Monster';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "ignores ${targetname}'s appeal to his baser instincts";
     }
@@ -997,6 +1276,28 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     CANCELENCHANTMENT : "shakes" "his" "head" "and" "regains" "control" PUNCT
         "as" "enchantments" "cancel" "each" "other" "out"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+#DEZ                    next unless $spell eq '';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "shakes his head and regains control, as enchantments" .
             " cancel each other out";
     }
@@ -1029,6 +1330,28 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     # counter antispell
     ANTISPELLRESULT2 : APOSS "shield" "fizzles" "slightly"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Anti-spell';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield fizzles slightly";
     }
 
@@ -1046,6 +1369,28 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     CLAPOFLIGHTNINGRESULT : "tries" "to" "cast" "Clap" "of" "Lightning" PUNCT
         "but" "doesn't" "have" "the" "charge" "for" "it"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            next unless $player eq $actor;
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Clap of Lightning';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "tries to cast Clap of Lightning, but doesn't have the" .
             " charge for it";
     }
@@ -1057,6 +1402,28 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     PERMANENCYRESULT2 : APOSS "shield" "intensifies" "momentarily"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Permanency';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield intensifies momentarily";
     }
 
@@ -1078,12 +1445,38 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     BLINDNESSRESULT3 : "is" "hit" "by" "a" "Blindness" "spell" PUNCT "and"
         "is" "annihilated" "by" "the" "magical" "overload"
     {
+        my $actor = $globals->{actor};
+        if ($globals->{actor_is_player} == 2) {
+          $globals->{monsters}{$actor}{killed_by} = 'Blindness';
+        }
         $return = "is hit by a Blindness spell, and is annihilated by the" .
             " magical overload";
     }
 
     BLINDNESSRESULT4 : APOSS "shield" "disappears" "for" "a" "moment"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Blindness';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield disappears for a moment";
     }
 
@@ -1094,6 +1487,28 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     TIMESTOPRESULT2 : APOSS "shield" "flickers" "for" "a" "moment"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Time Stop';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield flickers for a moment";
     }
 
@@ -1104,6 +1519,10 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     RESISTHEATRESULT2 : "is" "destroyed" "by" "a" "Resist" "Heat" "spell"
     {
+        my $actor = $globals->{actor};
+        if ($globals->{actor_is_player} == 2) {
+          $globals->{monsters}{$actor}{killed_by} = 'Resist Heat';
+        }
         $return = "is destroyed by a Resist Heat spell";
     }
 
@@ -1116,6 +1535,28 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     REMOVEENCHANTRESULT2 : APOSS "shield" "flickers" PUNCT "but" "remains"
         "firm"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Remove Enchantment';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield flickers, but remains firm";
     }
 
@@ -1216,20 +1657,44 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     SUMMONFIRERESULT6 : "is" "burnt" "for" INTEGER "damage"
     {
-        $return = "is burnt for $item{INTEGER} damage";
+        my $actor = $globals->{actor};
+        my $damage = $item{INTEGER};
+        $globals->{monsters}{'Fire Elemental'}{damage_done}{$actor} += $damage;
+
+        $return = "is burnt for $damage damage";
     }
 
     SUMMONFIRERESULT7 : "melts" "the" "oncoming" "Ice" "Storm" PUNCT "and" "is"
         "destroyed" "by" "the" "ensuing" "water"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Ice Storm';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "melts the oncoming Ice Storm, and is destroyed by the" .
             " ensuing water";
     }
 
     SUMMONFIRERESULT10 : "runs" "around" "wildly" PUNCT "looking" "for"
-        target
+        TARGET
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
         $return = "runs around wildly, looking for $targetname";
     }
@@ -1264,6 +1729,26 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     FIRESTORMRESULT5 : "melts" PUNCT "calming" "and" "cooling" "the" "Fire"
         "Storm"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Fire Storm';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "melts, calming and cooling the Fire Storm";
     }
 
@@ -1275,6 +1760,29 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     POISONRESULT2 : APOSS "shield" "turns" "a" "greenish" "hue" "for" "a"
         "moment"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Poison';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield turns a greenish hue for a moment";
     }
 
@@ -1290,6 +1798,29 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     HASTERESULT2 : APOSS "shield" "sparkles" "rapidly" "for" "a" "moment"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Haste';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $actor;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "'s shield sparkles rapidly for a moment";
     }
 
@@ -1310,7 +1841,10 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     SUMMONICERESULT4 : "is" "frozen" "for" INTEGER "damage"
     {
-        $return = "is frozen for $item{INTEGER} damage";
+        my $actor = $globals->{actor};
+        my $damage = $item{INTEGER};
+        $globals->{monsters}{'Ice Elemental'}{damage_done}{$actor} += $damage;
+        $return = "is frozen for $damage damage";
     }
 
     SUMMONICERESULT5 : APOSS "shield" "keeps" "the" "Ice" "Elemental" "at"
@@ -1326,6 +1860,26 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     SUMMONICERESULT8 : "is" "destroyed" "by" "a" "Resist" "Cold" "spell"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /Summon Ice Elemental/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "is destroyed by a Resist Cold spell";
     }
 
@@ -1357,14 +1911,57 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     SHIELDRESULT2 : "The" "shimmer" "of" "a" "shield" "briefly" "covers"
         "the" "circle" PUNCT "then" "dissolves"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Shield';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} =~ /nobody/i;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "The shimmer of a shield briefly covers the circle," .
             " then dissolves"
     }
 
-    MISSILERESULT2 : "A" "magic" "missile" "bounces" "off" target APOSS
+    MISSILERESULT2 : "A" "magic" "missile" "bounces" "off" TARGET APOSS
         "shield"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Magic Missile';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $targetname;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "A magic missile bounces off ${targetname}'s shield";
     }
@@ -1372,17 +1969,84 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     MISSILERESULT3 : "A" "magic" "missile" "flies" "off" "into" "the"
         "distance"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Magic Missile';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} =~ /nobody/i;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "A magic missile flies off into the distance";
     }
 
     COUNTERSPELLRESULT3 : "A" SPELLNAME "drifts" "away" "aimlessly"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq $item{SPELLNAME};
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} =~ /nobody/i;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "A " . $item{SPELLNAME} . " drifts away aimlessly";
     }
 
     SUMMONMONSTERRESULT4 : "A" "summoned" "creature" PUNCT "finding" "no"
         "master" PUNCT "returns" "from" "whence" "it" "came"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /^Summon/;
+                    next if $spell =~ /Elemental/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} =~ /nobody/i;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "A summoned creature, finding no master, returns from" .
             " whence it came";
     }
@@ -1390,29 +2054,93 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     CHARMMONSTERRESULT3  : "The" "haze" "of" "an" "enchantment" "spell"
         "drifts" "aimlessly" "over" "the" "circle" PUNCT "and" "dissipates"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Charm Monster';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} =~ /nobody/i;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "The haze of an enchantment spell drifts aimlessly" .
             " over the circle, and dissipates";
     }
 
-    CAUSEWOUNDSRESULT : "Wounds" "appear" "all" "over" target APOSS "body"
+    CAUSEWOUNDSRESULT : "Wounds" "appear" "all" "over" TARGET APOSS "body"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
         $return = "Wounds appear all over ${targetname}'s body";
     }
 
-    CAUSEWOUNDSRESULT2 : "Holes" "open" "up" "in" target APOSS "shield" PUNCT
+    CAUSEWOUNDSRESULT2 : "Holes" "open" "up" "in" TARGET APOSS "shield" PUNCT
         "but" "then" "close" "up" "again"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /Cause (Light|Heavy) Wounds/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $targetname;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "Holes open up in ${targetname}'s shield, but then close" .
             " up again";
     }
 
-    CUREWOUNDSRESULT3 : "Tiny" "holes" "in" target APOSS "shield" "are"
+    CUREWOUNDSRESULT3 : "Tiny" "holes" "in" TARGET APOSS "shield" "are"
         "sealed" "up"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /Cure (Light|Heavy) Wounds/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $targetname;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "Tiny holes in ${targetname}'s shield are sealed up";
     }
@@ -1420,13 +2148,56 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     LIGHTNINGBOLTRESULT2 : "A" "bolt" "of" "lightning" "arcs" "to" "the"
         "ground"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /Lightning/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} =~ /nobody/i;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "A bolt of lightning arcs to the ground";
     }
 
-    LIGHTNINGBOLTRESULT3 : "Lightning" "sparks" "all" "around" target APOSS
+    LIGHTNINGBOLTRESULT3 : "Lightning" "sparks" "all" "around" TARGET APOSS
         "shield"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /Lightning/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $targetname;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "Lightning sparks all around ${targetname}'s shield";
     }
@@ -1434,13 +2205,36 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     INVISRESULT2 : "There" "is" "a" "flash" PUNCT "and" PLAYERNAME
         "disappears"
     {
-        $return = "There is a flash, and $item{PLAYERNAME} disappears";
+        my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
+        $return = "There is a flash, and $playername disappears";
     }
 
-    PERMANENCYEFFECT3 : "The" "permanent" "enchantment" "on" target
+    PERMANENCYEFFECT3 : "The" "permanent" "enchantment" "on" TARGET
         "overrides" "the" SPELLNAME "effect"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq $item{SPELLNAME};
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $targetname;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "The permanent enchantment on $targetname overrides" .
             " the $item{SPELLNAME} effect";
@@ -1449,13 +2243,15 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     BLINDNESSRESULT2 : "Scales" "start" "to" "grow" "over" PLAYERNAME APOSS
         "eyes"
     {
-        $return = "Scales start to grow over $item{PLAYERNAME}'s eyes";
+        my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
+        $return = "Scales start to grow over ${playername}'s eyes";
     }
 
     BLINDNESSEFFECT : "The" "scales" "are" "removed" "from" PLAYERNAME APOSS
         "eyes"
     {
-        $return = "The scales are removed from $item{PLAYERNAME}'s eyes";
+        my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
+        $return = "The scales are removed from ${playername}'s eyes";
     }
 
     TIMESTOPEFFECT : "This" "turn" "took" "place" "outside" "of" "time"
@@ -1466,46 +2262,128 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     DISPELMAGICRESULT : "All" "magical" "effects" "are" "erased" PUNCT "All"
         "other" "spells" "fail"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next if $spell eq 'Dispel Magic';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        $spell_info->{success} = 0;
+                    }
+                }
+            }
+        }
+
         $return = "All magical effects are erased! All other spells fail";
     }
 
-    FIREBALLRESULT : "A" "fireball" "strikes" target PUNCT "burning" "him"
+    FIREBALLRESULT : "A" "fireball" "strikes" TARGET PUNCT "burning" "him"
         "for" INTEGER "damage"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
         $return = "A fireball strikes $targetname, burning him for" .
             " $item{INTEGER} damage";
     }
 
     FIREBALLRESULT2 : "A" "fireball" "strikes" PUNCT "and" "flames" "roar"
-        "all" "around" target APOSS "shield"
+        "all" "around" TARGET APOSS "shield"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Fireball';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $targetname;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "A fireball strikes, and flames roar all around" .
             " ${targetname}'s shield";
     }
 
     FIREBALLRESULT3 : "A" "fireball" "strikes" PUNCT "and" "flames" "roar"
-        "around" target PUNCT "He" "stands" "calmly" "in" "the" "inferno"
+        "around" TARGET PUNCT "He" "stands" "calmly" "in" "the" "inferno"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Fireball';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} eq $targetname;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
 
         $return = "A fireball strikes, and flames roar around" .
-            " ${targetname}. He stands calmly in the inferno";
+            " $targetname. He stands calmly in the inferno";
     }
 
     FIREBALLRESULT4 : "A" "fireball" "flies" "into" "the" "distance" "and"
         "burns" "itself" "out"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Fireball';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} =~ /nobody/i;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "A fireball flies into the distance and burns itself out";
     }
 
     MAGICMIRRORRESULT2 : "The" SPELLNAME "spell" "is" "reflected" "from"
-        target APOSS "Magic" "Mirror"
+        TARGET APOSS "Magic" "Mirror"
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
         $return = "The $item{SPELLNAME} spell is reflected from" .
             " ${targetname}'s Magic Mirror";
@@ -1513,6 +2391,28 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     MAGICMIRRORRESULT3 : "A" "Magic" "Mirror" "dissipates" "into" "the" "air"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell eq 'Magic Mirror';
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        next unless $spell_info->{target} =~ /nobody/i;
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                            last;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "A Magic Mirror dissipates into the air";
     }
 
@@ -1524,12 +2424,52 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     ICESTORMRESULT6 : "Fire" "and" "Ice" "storms" "cancel" "each" "other"
         "out" PUNCT "leaving" "just" "a" "gentle" "breeze"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /Storm/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "Fire and Ice storms cancel each other out, leaving just" .
             " a gentle breeze";
     }
 
     SUMMONFIRERESULT8 : "Opposing" "Elementals" "destroy" "each" "other"
     {
+        my $turn = $globals->{current_turn};
+        my $turnlist = $globals->{turnlist};
+
+        foreach my $player (keys %{$turnlist->[$turn]}) {
+            next if $player eq 'gametext';
+            my $spell_list = $turnlist->[$turn]{$player}{spells};
+            if ($spell_list) {
+                foreach my $spell (keys %{$spell_list}) {
+                    next unless $spell =~ /Summon (\w+) Elemental/;
+                    my $slength = scalar @{$spell_list->{$spell}};
+                    while ($slength) {
+                        my $spell_info = $spell_list->{$spell}->[--$slength];
+                        if ($spell_info->{success}) {
+                            $spell_info->{success} = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         $return = "Opposing Elementals destroy each other";
     }
 
@@ -1568,15 +2508,16 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "No Warlocks remaining. An ignominious end to a battle";
     }
 
-    TARGETOUTCOME : target POSSIBLEOUTCOME
+    TARGETOUTCOME : TARGET POSSIBLEOUTCOME
     {
-        my ($is_player, $targetname) = split /:/, $item{target};
+        my ($is_player, $targetname) = split /:/, $item{TARGET};
 
-        if (grep {$_ eq $targetname} @{$globals->{players}}) {
-            if ($item{possibleoutcome} =~ /victorious/) {
+        if ($is_player == 1 && grep {$_ eq $targetname} @{$globals->{players}}) {
+            $globals->{$targetname}{num_turns} = $globals->{current_turn};
+            if ($item{POSSIBLEOUTCOME} =~ /victorious/) {
                 $globals->{$targetname}{winner} = 1;
                 $globals->{winner} = $targetname;
-            } elsif ($item{possibleoutcome} =~ /dies/) {
+            } elsif ($item{POSSIBLEOUTCOME} =~ /dies/) {
                 $globals->{$targetname}{died} = 1;
             } else {
                 $globals->{$targetname}{surrendered} = 1;
@@ -1596,10 +2537,10 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     PUNCT : /[.!,]/
 
     MONSTERLIST : MONSTERNAME HEALTH DASH(?) AFFECTEDBYITEM(s?) "Owned" "by"
-        COLON PLAYERTARGET "Attacking" COLON target
+        COLON PLAYERTARGET "Attacking" COLON TARGET
     {
         my $dash = $item{DASH} ? ' - ' : '';
-        my ($is_player_target, $targetname) = split /:/, $item{target};
+        my ($is_player_target, $targetname) = split /:/, $item{TARGET};
         my ($is_player_owner, $playername) = split /:/, $item{PLAYERTARGET};
 
         $return = $item{MONSTERNAME} . " " . $item{HEALTH} . $dash;
@@ -1635,13 +2576,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     PLAYERLIST : LISTOFPLAYERS
 
-    LISTOFPLAYERS : "-ShOuLdNeVeRmAtCh-"
-
     PLAYERLINES : PLAYERREGISTERED(?) PLAYERNAME PARENDS INTEGER PARENDS
         SURRENDERORDEAD(?) HEALTH(?) DASH(?) AFFECTEDBYITEM(s?) BANKEDSPELL(?)
         TURNLIST PLAYERGESTURES
     {
-        my $player = $item{PLAYERNAME};
+        my ($is_player, $player) = split /:/, $item{PLAYERNAME};
         my $gestures = $item{PLAYERGESTURES};
 
         ($globals->{$player}{gestures}{left}) =
@@ -1655,7 +2594,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             $return = "";
         }
 
-        $return .= $item{PLAYERNAME} . "(" . $item{INTEGER} . ")";
+        $return .= $player . "(" . $item{INTEGER} . ")";
         if ($item{SURRENDERORDEAD}) {
             $return .= " $item{SURRENDERORDEAD}";
         }
@@ -1733,6 +2672,8 @@ sub new
 
 sub get_data
 {
+    delete $globals->{actor_is_player};
+    delete $globals->{actor};
     return $globals;
 }
 

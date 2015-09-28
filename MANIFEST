@@ -2,6 +2,7 @@ Changes
 MANIFEST
 Makefile.PL
 LICENSE
+MANIFEST.SKIP
 README
 README.md
 lib/WavingHands/Parser.pm

@@ -109,7 +109,7 @@ class WavingHands::Parser {
     has $!parser is ro;
     has $!cache is ro;
 
-    method _resetParser {
+    method _resetParser() {
         $!parser->reset_data() if $!parser;
 
         my $module = File::Spec->catfile('WavingHands', 'Parser', 'Grammar', $!gametype . '.pm');
@@ -117,6 +117,7 @@ class WavingHands::Parser {
         require $module;
 
         $!parser = $classname->new();
+        $::RD_WARN = undef;
 
         if ($!trace) {
             $!parser->trace(1);
@@ -178,7 +179,7 @@ class WavingHands::Parser {
         }
     }
 
-    method parse {
+    method parse() {
         $self->_resetParser();
         my $result;
         my $good = 0;
@@ -197,7 +198,7 @@ class WavingHands::Parser {
 
             my $TRACE;
             if ($!trace) {
-                my $tracefile = untaint_str(File::Spec->catfile($!tracedir, 'trace.txt'));
+                my $tracefile = untaint_str(File::Spec->catfile($!tracedir, 'trace_' . $self->queue_size() . '.txt'));
                 open $TRACE, '>', $tracefile;
                 local *STDERR = $TRACE;
                 $result = $!parser->parse($buffer);
@@ -214,13 +215,12 @@ class WavingHands::Parser {
             @{$!queue} = qw() if $!bail && !$result;
 
             if ($good) {
-                $self->dump() if $ENV{WHP_DEBUG_DUMP};
+                $self->dump() if $ENV{WHP_DEBUG_DUMP} // $!dumpdir;
                 if ($!cachefile) {
                   open my $CACHEFILE, '>>', $!cachefile;
                   print $CACHEFILE "$filename\n";
                   close $CACHEFILE;
                 }
-                warn "Success: $filename parsed correctly." if $ENV{WHP_DEBUG};
             } else {
                 warn "Warning: $filename did not parse correctly.";
             }
@@ -241,7 +241,7 @@ class WavingHands::Parser {
         if ($!dumpdir) {
             my $data = $!parser->get_data();
             my $json = JSON->new->allow_nonref->pretty;
-            my $dumpfile = untaint_str(File::Spec->catfile($!dumpdir, "dump_$data->{gameid}.json"));
+            my $dumpfile = untaint_str(File::Spec->catfile($!dumpdir, "$data->{gameid}.json"));
 
             open my $DUMP, '>', $dumpfile or die "ERROR: Unable to open $dumpfile: $!";
             print $DUMP $json->encode($data);
@@ -253,4 +253,4 @@ class WavingHands::Parser {
 
 1;
 
-# vi: softtabstop=4 shiftwidth=4 et!: #
+# vi: softtabstop=4 shiftwidth=4 et:
