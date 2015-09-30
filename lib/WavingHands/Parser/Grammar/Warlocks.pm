@@ -141,7 +141,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         foreach my $monster (keys %{$globals->{monsters}}) {
             next if $globals->{monsters}{$monster}{killed_by} ne '';
             my $currentowner = $globals->{monsters}{$monster}{current_owner};
-            $currentowner = 'none' if $currentowner eq "";
+            $currentowner = 'nobody' if $currentowner eq "";
             $globals->{monsters}{$monster}{owned_by_length}{$currentowner} += 1;
         }
     }
@@ -769,18 +769,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
-        if ($globals->{actor_is_player} == 2) {
-            if (exists $globals->{monsters}{$actor}) {
-                $globals->{monsters}{$actor}{killed_by} = $item{ELEMENTALNAME};
-            } else {
-                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
-                if (exists $globals->{monsters}{$actor}) {
-                  $globals->{monsters}{$actor}{killed_by} = $item{ELEMENTALNAME};
-                } else {
-                    warn "DEZ(2): hmm, couldn't find $globals->{actor}\n";
-                }
-            }
-        }
+        # Don't set killed_by for the summoned creature, it never really existed.
 
         $return = "is summoned inside $item{ELEMENTALNAME}, and is" .
             " consumed instantly";
@@ -1715,7 +1704,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     {
         my $turn = $globals->{current_turn};
         my $actor = $globals->{actor};
-        my $playername = 'none';
+        my $playername = 'nobody';
 
         $globals->{monsters}{$actor}{original_owner} = $playername;
         $globals->{monsters}{$actor}{owned_by_length}{$playername} += 1;
@@ -1948,7 +1937,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     {
         my $turn = $globals->{current_turn};
         my $actor = $globals->{actor};
-        my $playername = 'none';
+        my $playername = 'nobody';
 
         $globals->{monsters}{$actor}{original_owner} = $playername;
         $globals->{monsters}{$actor}{owned_by_length}{$playername} += 1;

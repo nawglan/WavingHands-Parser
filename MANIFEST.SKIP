@@ -1,4 +1,6 @@
 RD_TRACE
+.git/
+.gitignore
 t/data/11937.json
 t/data/12813.json
 t/data/12826.json
@@ -8,4 +10,4 @@ t/data/19970.json
 t/data/23553.json
 t/data/34276.json
 t/data/53333.json
-t/data/80702.json
+t/data/15114.json
