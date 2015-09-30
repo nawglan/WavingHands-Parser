@@ -1,0 +1,263 @@
+
+   Log out Dubber
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 17 in Friendly Battle 15114
+
+   Turn 0
+
+     Dubber bows.
+     lordjed bows.
+
+   Turn 1
+
+     Dubber says "Greetings, lordjed".
+     lordjed says "hey dubber. :)".
+     Dubber points the digit of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Shield at himself.
+     lordjed proffers the palm of his left hand.
+     lordjed waves his right hand.
+     lordjed casts Shield at himself.
+     Dubber is covered by a shimmering shield.
+     lordjed is covered by a shimmering shield.
+
+   Turn 2
+
+     Dubber proffers the palm of his left hand.
+     Dubber snaps the fingers of his right hand.
+     Dubber casts Shield at himself.
+     lordjed snaps the fingers of his left hand.
+     lordjed proffers the palm of his right hand.
+     lordjed casts Shield at himself.
+     Dubber is covered by a shimmering shield.
+     lordjed is covered by a shimmering shield.
+
+   Turn 3
+
+     Dubber proffers the palm of his left hand.
+     Dubber points the digit of his right hand.
+     Dubber casts Amnesia at lordjed.
+     Dubber casts Magic Missile at lordjed.
+     lordjed wiggles the fingers of his left hand.
+     lordjed proffers the palm of his right hand.
+     lordjed casts Counter Spell at himself.
+     lordjed is covered by a magical glowing shield.
+     lordjed's shield blurs for a moment.
+     A magic missile bounces off lordjed's shield.
+
+   Turn 4
+
+     Dubber proffers the palm of his left hand.
+     Dubber points the digit of his right hand.
+     Dubber casts Shield at himself.
+     Dubber casts Charm Monster at the monster lordjed is summoning with his
+     left hand.
+     lordjed waves his left hand.
+     lordjed waves his right hand.
+     lordjed casts Summon Ogre at himself.
+     Crazy Ogre is summoned to serve lordjed.
+     Crazy Ogre looks, glassy-eyed, at Dubber.
+     Dubber is covered by a shimmering shield.
+     Dubber directs Crazy Ogre to attack lordjed.
+     Crazy Ogre attacks lordjed for 2 damage.
+
+   Turn 5
+
+     Dubber waves his left hand.
+     Dubber waves his right hand.
+     lordjed snaps the fingers of his left hand.
+     lordjed snaps the fingers of his right hand.
+     lordjed casts Invisibility at himself.
+     lordjed begins to shimmer.
+     Crazy Ogre attacks lordjed for 2 damage.
+     There is a flash, and lordjed disappears!
+
+   Turn 6
+
+     Dubber snaps the fingers of his left hand.
+     Dubber snaps the fingers of his right hand.
+     Dubber casts Invisibility at himself.
+     Dubber begins to shimmer.
+     Crazy Ogre is hit by a Magic Missile, for 1 damage.
+     Crazy Ogre swings wildly for lordjed, but misses.
+     There is a flash, and Dubber disappears!
+
+   Turn 7
+
+     Dubber snaps the fingers of his left hand.
+     Dubber snaps the fingers of his right hand.
+     Ugly Goblin is summoned to serve Dubber.
+     Crazy Ogre swings wildly for lordjed, but misses.
+     Ugly Goblin swings wildly for lordjed, but misses.
+
+   Turn 8
+
+     lordjed says "ey what happened there? how did u gain control of the
+     ogre?".
+     Dubber proffers the palm of his left hand.
+     Dubber snaps the fingers of his right hand.
+     Dubber casts Shield at himself.
+     The haze of an enchantment spell drifts aimlessly over the circle, and
+     dissipates.
+     Dubber is covered by a shimmering shield.
+     lordjed is covered by a shimmering shield.
+     Crazy Ogre swings wildly for lordjed, but misses.
+     Ugly Goblin swings wildly for lordjed, but misses.
+     lordjed fades back into visibility.
+
+   Turn 9
+
+     Dubber says "I charmed it in turn 4 as you summoned it :)".
+     Dubber wiggles the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Delay Effect at himself.
+     lordjed flailingly half-claps with his left hand.
+     lordjed waves his right hand.
+     lordjed casts Summon Goblin at himself.
+     Fat Goblin is summoned to serve lordjed.
+     Dubber begins glowing faintly.
+     lordjed directs Fat Goblin to attack the monster Dubber is summoning with
+     his left hand.
+     Crazy Ogre attacks lordjed for 2 damage.
+     Ugly Goblin attacks lordjed for 1 damage.
+     Fat Goblin swings wildly for the monster Dubber is summoning with his left
+     hand, but misses.
+     Dubber fades back into visibility.
+
+   Turn 10
+
+     lordjed says "darn it, i lost my rhythm...".
+     Dubber banks a spell for later.
+     Dubber proffers the palm of his left hand.
+     Dubber wiggles the fingers of his right hand.
+     lordjed points the digit of his left hand.
+     lordjed proffers the palm of his right hand.
+     lordjed casts Shield at himself.
+     lordjed is covered by a shimmering shield.
+     Dubber directs Ugly Goblin to attack Fat Goblin.
+     lordjed directs Fat Goblin to attack Ugly Goblin.
+     Crazy Ogre attacks lordjed, but is deflected by a shield.
+     Ugly Goblin attacks Fat Goblin for 1 damage.
+     Fat Goblin attacks Ugly Goblin for 1 damage.
+     Fat Goblin dies.
+     Ugly Goblin dies.
+
+   Turn 11
+
+     lordjed says "what does "Banked:Anti-spell" means".
+     Dubber snaps the fingers of his left hand.
+     Dubber proffers the palm of his right hand.
+     Dubber casts Anti-spell at lordjed.
+     lordjed wiggles the fingers of his left hand.
+     lordjed proffers the palm of his right hand.
+     lordjed casts Counter Spell at himself.
+     lordjed is covered by a magical glowing shield.
+     lordjed's shield fizzles slightly.
+     Crazy Ogre attacks lordjed, but is deflected by a shield.
+
+   Turn 12
+
+     Dubber says "means I can cast it when ever I want to :)".
+     Dubber points the digit of his left hand.
+     Dubber snaps the fingers of his right hand.
+     Dubber casts Magic Missile at lordjed.
+     Dubber casts his banked Anti-spell at lordjed.
+     lordjed proffers the palm of his left hand.
+     lordjed snaps the fingers of his right hand.
+     lordjed casts Shield at himself.
+     lordjed's half-done spells fizzle and die.
+     lordjed is covered by a shimmering shield.
+     A magic missile bounces off lordjed's shield.
+     Crazy Ogre attacks lordjed, but is deflected by a shield.
+
+   Turn 13
+
+     lordjed says "how do you do that?".
+     Dubber waves his left hand.
+     Dubber points the digit of his right hand.
+     Dubber casts Permanency at himself.
+     Dubber casts Magic Missile at lordjed.
+     lordjed wiggles the fingers of his left hand.
+     lordjed proffers the palm of his right hand.
+     lordjed casts Shield at himself.
+     Dubber begins glowing faintly.
+     lordjed is covered by a shimmering shield.
+     A magic missile bounces off lordjed's shield.
+     Crazy Ogre attacks lordjed, but is deflected by a shield.
+
+   Turn 14
+
+     Dubber says "anti-spell (SPFP) or Delay (DWSSSP)?".
+     Dubber points the digit of his left hand.
+     Dubber wiggles the fingers of his right hand.
+     Dubber casts Charm Person at lordjed.
+     Dubber makes the spell permanent!
+     lordjed wiggles the fingers of his left hand.
+     lordjed proffers the palm of his right hand.
+     lordjed casts Shield at himself.
+     lordjed looks intrigued by Dubber.
+     lordjed is covered by a shimmering shield.
+     Crazy Ogre attacks lordjed, but is deflected by a shield.
+
+   Turn 15
+
+     lordjed is charmed into making the wrong gesture with his left hand.
+     lordjed says "waaa, im gona lose".
+     Dubber points the digit of his left hand.
+     Dubber waves his right hand.
+     Dubber casts Cure Light Wounds at himself.
+     lordjed makes no gesture with his left hand.
+     lordjed snaps the fingers of his right hand.
+     Dubber is healed.
+     Crazy Ogre attacks lordjed for 2 damage.
+
+   Turn 16
+
+     lordjed is charmed into making the wrong gesture with his right hand.
+     lordjed says "death befalls lord jed... : (".
+     Dubber claps.
+     Dubber casts Clap of Lightning at lordjed.
+     lordjed stabs with his left hand.
+     lordjed proffers the palm of his right hand.
+     lordjed casts Shield at himself.
+     lordjed is covered by a shimmering shield.
+     lordjed is hit by a bolt of lightning, for 5 damage.
+     lordjed attacks Crazy Ogre for 1 damage.
+     Crazy Ogre attacks lordjed, but is deflected by a shield.
+     Crazy Ogre dies.
+
+   Turn 17
+
+     lordjed is charmed into making the wrong gesture with his left hand.
+     Dubber says "here's your opportunity to not die?".
+     lordjed stops his heart through force of will alone.
+     Dubber waves his left hand.
+     Dubber makes no gesture with his right hand.
+     lordjed proffers the palm of his left hand.
+     lordjed makes no gesture with his right hand.
+     lordjed casts Shield at himself.
+     lordjed is covered by a shimmering shield.
+     lordjed dies.
+     Dubber is victorious!
+
+   lordjed(0) Dead. - Charmed(permanent)
+   Turn:012345678901234567
+     LH:BPSFWS???CDF-FF->P
+     RH:BWPPWS???WPP-PPSP-
+
+   Registered!  Dubber(3) Health:16
+   Turn:012345678901234567
+     LH:BDPPPWSSPFPSDWDDCW
+     RH:BPSDDWSSSPFPSDFWC-

@@ -174,27 +174,37 @@ class WavingHands::Parser {
                     }
                 }
                 close $CACHEFILE;
-                warn "Loaded $cachecount cached results\n" if $ENV{WHP_DEBUG} && $cachecount;
+                warn "Loaded $cachecount cached results\n" if $ENV{WHP_VERBOSE} && $cachecount;
             }
         }
     }
 
-    method parse() {
+    method parse($game_text) {
         $self->_resetParser();
         my $result;
         my $good = 0;
+        my $buffer;
+        my $filename = 'Game';
 
-        if ($self->queue_has_items()) {
-            my $filename = shift @{$!queue};
-            return 1 if $!cache->{$filename};
+        if ($game_text || $self->queue_has_items()) {
+            if ($game_text) {
+                $buffer = $game_text;
+            } else {
+                $filename = shift @{$!queue};
+                if ($!cache->{$filename}) {
+                    warn "Skipping $filename\n" if $ENV{WHP_VERBOSE};
+                    return 1;
+                } else {
+                    warn "Processing $filename\n" if $ENV{WHP_VERBOSE};
+                }
 
-            open my $INPUT, '<', $filename or die ("Unable to open $filename : $!\n");
-            my $buffer;
-            do {
-                local $/;
-                $buffer = <$INPUT>;
-            };
-            close $INPUT;
+                open my $INPUT, '<', $filename or die ("Unable to open $filename : $!\n");
+                do {
+                    local $/;
+                    $buffer = <$INPUT>;
+                };
+                close $INPUT; 
+            }
 
             my $TRACE;
             if ($!trace) {
@@ -239,7 +249,7 @@ class WavingHands::Parser {
 
     method dump() {
         if ($!dumpdir) {
-            my $data = $!parser->get_data();
+            my ($data, $game_text) = $!parser->get_data();
             my $json = JSON->new->allow_nonref->pretty;
             my $dumpfile = untaint_str(File::Spec->catfile($!dumpdir, "$data->{gameid}.json"));
 
@@ -249,6 +259,9 @@ class WavingHands::Parser {
         }
     }
 
+    method get() {
+        return $!parser->get_data();
+    }
 }
 
 1;

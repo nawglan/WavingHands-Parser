@@ -15,6 +15,7 @@ our $globals = {};
 
 use Parse::RecDescent;
 use WavingHands::Parser;
+use Data::Dumper;
 
 undef $::RD_WARN;
 
@@ -73,8 +74,8 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     {
         $return = $item{TURNSINGAME} . " " . $item{GAMETYPE};
 
-        if ($item{MODIFIER}) {
-            $return .= " " . $item{MODIFIER};
+        if (@{$item{'MODIFIER(s?)'}}) {
+            $return .= " " . join(' ', @{$item{'MODIFIER(s?)'}});
         }
 
         $return .= " Battle " . $item{GAMEID};
@@ -98,7 +99,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     MODIFIER : PARAFCOPT | PARAFDFOPT | MALADROITOPT
     {
-        push @{$globals->{game_modifiers}}, $item[1];
+        $globals->{game_modifiers}{$item[1]} = 1;
 
         $return = $item[1];
     }
@@ -123,7 +124,6 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     GAMEID : INTEGER
     {
         $globals->{gameid} = $item{INTEGER};
-        warn "Processing Game $globals->{gameid}\n" if defined $ENV{WHP_VERBOSE};
         $return = $item{INTEGER};
     }
 
@@ -132,10 +132,17 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     TURNSECTION : TURNLINE TURNBODY(s?)
     {
         $return = $item{TURNLINE} . "\n";
-        if ($item{TURNBODY}) {
-            $return .= join("\n", @{$item{TURNBODY}});
+        if ($item{'TURNBODY(s?)'}) {
+            $return .= join("\n", @{$item{'TURNBODY(s?)'}});
         } else {
             $return = 1;
+        }
+
+        foreach my $monster (keys %{$globals->{monsters}}) {
+            next if $globals->{monsters}{$monster}{killed_by} ne '';
+            my $currentowner = $globals->{monsters}{$monster}{current_owner};
+            $currentowner = 'none' if $currentowner eq "";
+            $globals->{monsters}{$monster}{owned_by_length}{$currentowner} += 1;
         }
     }
 
@@ -167,6 +174,8 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         $globals->{turnlist}[$turn] = {};
         $globals->{current_turn} = $turn;
+        $globals->{actor} = "";
+        $globals->{actor_is_player} = 0;
 
         $return = "Turn $turn";
     }
@@ -203,15 +212,10 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my ($is_player, $actorname) = split /:/, $item{ACTOR};
 
         $return = '';
-        $return .= "$item{OUTSIDETIME} " if $item{OUTSIDETIME};
-        $return .= "$item{BURSTOFSPEED} " if $item{BURSTOFSPEED};
+        $return .= $item{'OUTSIDETIME(?)'}[0] . " " if $item{'OUTSIDETIME(?)'}[0];
+        $return .= $item{'BURSTOFSPEED(?)'}[0] . " " if $item{'BURSTOFSPEED(?)'}[0];
         $return .= "$actorname $item{TURNBODYLINETYPES}";
-
-        if ($is_player == 2) {
-            my $currentowner = $globals->{monsters}{$actorname}{current_owner};
-            $currentowner = 'none' if $currentowner == "";
-            $globals->{monsters}{$actorname}{owned_by_length}{$currentowner} += 1;
-        }
+        $return =~ s/ 's/'s/g; # fix Dubber 's -> Dubber's
     }
 
     OUTSIDETIME : "Outside" "time" PUNCT
@@ -272,8 +276,8 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     {
         $return = "";
 
-        if ($item{VERY}) {
-          $return .= join(' ', @{$item{VERY}}) . ' ';
+        if (@{$item{'VERY(s?)'}}) {
+          $return .= join(' ', @{$item{'VERY(s?)'}}) . ' ';
         }
 
         $return .= $item{MONSTERTYPENAME};
@@ -284,41 +288,41 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     MONSTERTYPENAME : GOBLINNAME | OGRENAME | TROLLNAME | GIANTNAME |
         ELEMENTALNAME
 
-    GOBLINNAME : ARTICLE(?) GOBLINADJ "Goblin"
+    GOBLINADJ : "Bearded" | "Belligerent" | "Fat" | "Green" | "Grey" |
+        "Horrid" | "Malodorous" | "Nasty" | "Ratty" | "Small" | "Smelly" |
+        "Tricky" | "Ugly"
+
+    GOBLINNAME : ARTICLE(?) GOBLINADJ(?) "Goblin"
     {
-        my $art = $item{ARTICLE} ? "$item{ARTICLE} " : "";
-        my $adj = $item{GOBLINADJ} ? "$item{GOBLINADJ} " : "";
+        my $art = $item{'ARTICLE(?)'}[0] ? $item{'ARTICLE(?)'}[0] . " " : "";
+        my $adj = $item{'GOBLINADJ(?)'}[0] ? $item{'GOBLINADJ(?)'}[0] . " " : "";
 
         $return = $art . $adj . "Goblin";
     }
 
     ARTICLE : /(the|an|a)\b/i
 
-    GOBLINADJ : "Bearded" | "Belligerent" | "Fat" | "Green" | "Grey" |
-        "Horrid" | "Malodorous" | "Nasty" | "Ratty" | "Small" | "Smelly" |
-        "Tricky" | "Ugly" | #nothing
-
-    OGRENAME : ARTICLE(?) OGREADJ "Ogre"
+    OGRENAME : ARTICLE(?) OGREADJ(?) "Ogre"
     {
-        my $art = $item{ARTICLE} ? "$item{ARTICLE} " : "";
-        my $adj = $item{OGREADJ} ? "$item{OGREADJ} " : "";
+        my $art = $item{'ARTICLE(?)'}[0] ? $item{'ARTICLE(?)'}[0] . " " : "";
+        my $adj = $item{'OGREADJ(?)'}[0] ? $item{'OGREADJ(?)'}[0] . " " : "";
 
         $return = $art . $adj . "Ogre";
     }
 
     OGREADJ : "Angry" | "Black" | "Burnt" | "Crazy" | "Monstrous" |
-        "Obtuse" | "Ochre" | "Stinking" | "Terrible" | "Yellow" | #nothing
+        "Obtuse" | "Ochre" | "Stinking" | "Terrible" | "Yellow"
 
-    TROLLNAME : ARTICLE(?) TROLLADJ "Troll"
+    TROLLNAME : ARTICLE(?) TROLLADJ(?) "Troll"
     {
-        my $art = $item{ARTICLE} ? "$item{ARTICLE} " : "";
-        my $adj = $item{TROLLADJ} ? "$item{TROLLADJ} " : "";
+        my $art = $item{'ARTICLE(?)'}[0] ? $item{'ARTICLE(?)'}[0] . " " : "";
+        my $adj = $item{'TROLLADJ(?)'}[0] ? $item{'TROLLADJ(?)'}[0] . " " : "";
 
         $return = $art . $adj . "Troll";
     }
 
     TROLLADJ : "Bridge" | "Green" | "Hairy" | HAMFISTED | "Irate" |
-        "Loud" | "Mailing-list" | "Obnoxious" | "Stupid" | "Tall" | #nothing
+        "Loud" | "Mailing-list" | "Obnoxious" | "Stupid" | "Tall"
 
     HAMFISTED : "Ham" DASH "fisted"
     {
@@ -327,21 +331,21 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     DASH : "-"
 
-    GIANTNAME : ARTICLE(?) GIANTADJ "Giant"
+    GIANTNAME : ARTICLE(?) GIANTADJ(?) "Giant"
     {
-        my $art = $item{ARTICLE} ? "$item{ARTICLE} " : "";
-        my $adj = $item{GIANTADJ} ? "$item{GIANTADJ} " : "";
+        my $art = $item{'ARTICLE(?)'}[0] ? $item{'ARTICLE(?)'}[0] . " " : "";
+        my $adj = $item{'GIANTADJ(?)'}[0] ? $item{'GIANTADJ(?)'}[0] . " " : "";
 
         $return = $art . $adj . "Giant";
     }
 
-    GIANTADJ : /Beanstalk|Big|Gaunt|Golden|Hungry|Large|Norse/ | #nothing
+    GIANTADJ : "Beanstalk" | "Big" | "Gaunt" | "Golden" | "Hungry" | "Large" | "Norse"
 
     ELEMENTALNAME : ARTICLE(?) STORMTYPE "Elemental"
     {
-        my $article = $item{ARTICLE} ? "$item{ARTICLE} " : "";
+        my $art = $item{'ARTICLE(?)'}[0] ? $item{'ARTICLE(?)'}[0] . " " : "";
 
-        $return = $article . $item{STORMTYPE} . " Elemental";
+        $return = $art . $item{STORMTYPE} . " Elemental";
     }
 
     STORMTYPE : "Ice" | "Fire"
@@ -422,6 +426,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     HANDED : "left" | "right"
 
+    HISBANKED : "his" "banked"
+    {
+        $return = "his banked";
+    }
+
     PLAYERCAST : "casts" HISBANKED(?) SPELLNAME ATON TARGET BUTMISSES(?)
     {
         my $turn = $globals->{current_turn};
@@ -433,37 +442,31 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my $hisbanked = " ";
         my $butmisses = "";
 
-        if ($item{HISBANKED}) {
-            $globals->{$player}{spells}{banked}{$spell}{count}++;
-            push @{$pturn->{spells}{banked}{$spell}}, {
-                success => $success,
-                target => $targetname,
-                target_type => $is_player
-            };
-        } else {
-            $globals->{$player}{spells}{$spell}{count}++;
+        if ($item{'HISBANKED(?)'}[0]) {
+            $globals->{$player}{banked_spells}{$spell} += 1;
             push @{$pturn->{spells}{$spell}}, {
+                banked  => 1,
+                success => $success,
+                target => $targetname,
+                target_type => $is_player
+            };
+            $hisbanked = " his banked ";
+        } else {
+            $globals->{$player}{spells}{$spell} += 1;
+            push @{$pturn->{spells}{$spell}}, {
+                banked => 0,
                 success => $success,
                 target => $targetname,
                 target_type => $is_player
             };
         }
 
-        if ($item{HISBANKED}) {
-            $hisbanked = " his banked ";
-        }
-
-        if ($item{BUTMISSES}) {
-            $butmisses = " $item{BUTMISSES}";
+        if ($item{'BUTMISSES(?)'}[0]) {
+            $butmisses = " " . $item{'BUTMISSES(?)'};
         }
 
         $return = "casts${hisbanked}${spell} $item{ATON}" .
             " ${targetname}${butmisses}";
-    }
-
-    HISBANKED : "his" "banked"
-    {
-        $return = "his banked";
     }
 
     # these are in order by likelyhood of being cast
@@ -620,7 +623,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     MISSMISSES : "misses" MISSREASON(?)
     {
-        $return = "misses" . ($item{MISSREASON} ? " $item{MISSREASON}" : "");
+        $return = "misses" . ($item{'MISSREASON(?)'}[0] ? " " . $item{'MISSREASON(?)'} : "");
     }
 
     MISSREASON : "due" "to" BLINDORINVIS
@@ -767,7 +770,16 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         }
 
         if ($globals->{actor_is_player} == 2) {
-          $globals->{monsters}{$actor}{killed_by} = $item{ELEMENTALNAME};
+            if (exists $globals->{monsters}{$actor}) {
+                $globals->{monsters}{$actor}{killed_by} = $item{ELEMENTALNAME};
+            } else {
+                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
+                if (exists $globals->{monsters}{$actor}) {
+                  $globals->{monsters}{$actor}{killed_by} = $item{ELEMENTALNAME};
+                } else {
+                    warn "DEZ(2): hmm, couldn't find $globals->{actor}\n";
+                }
+            }
         }
 
         $return = "is summoned inside $item{ELEMENTALNAME}, and is" .
@@ -778,8 +790,18 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         "starts" "coming" "apart" "at" "the" "seams"
     {
         my $actor = $globals->{actor};
+
         if ($globals->{actor_is_player} == 2) {
-          $globals->{monsters}{$actor}{killed_by} = 'Remove Enchantment';
+            if (exists $globals->{monsters}{$actor}) {
+                $globals->{monsters}{$actor}{killed_by} = 'Remove Enchantment';
+            } else {
+                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
+                if (exists $globals->{monsters}{$actor}) {
+                  $globals->{monsters}{$actor}{killed_by} = 'Remove Enchantment';
+                } else {
+                    warn "DEZ(3): hmm, couldn't find $globals->{actor}\n";
+                }
+            }
         }
 
         $return = "is hit by Remove Enchantment, and starts coming apart" .
@@ -813,10 +835,10 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         SUMMONFIRERESULT4 | SUMMONFIRERESULT5 | SUMMONFIRERESULT6 |
         SUMMONFIRERESULT7 | SUMMONFIRERESULT10 | FINGEROFDEATHRESULT |
         RESISTCOLDRESULT | FIRESTORMRESULT2 | FIRESTORMRESULT3 |
-        FIRESTORMRESULT4 | FIRESTORMRESULT5 | POISONRESULT | POISONRESULT2 |
+        FIRESTORMRESULT5 | POISONRESULT | POISONRESULT2 |
         POISONEFFECT | HASTERESULT | HASTERESULT2 | SUMMONICERESULT |
         SUMMONICERESULT2 | SUMMONICERESULT3 | SUMMONICERESULT4 |
-        SUMMONICERESULT5 | SUMMONICERESULT6 | SUMMONICERESULT8 |
+        SUMMONICERESULT5 | SUMMONICERESULT8 |
         DELAYEFFECTRESULT | PLAYERSUICIDE
 
     # RESULTS are text the same turn as the spell is cast
@@ -1047,7 +1069,6 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             my $spell_list = $turnlist->[$turn]{$player}{spells};
             if ($spell_list) {
                 foreach my $spell (keys %{$spell_list}) {
-                    next if $spell =~ /Elemental/;
                     my ($mtype) = ($spell =~ /Summon (\w+)/);
                     next unless $actor =~ /$mtype/;
                     my $slength = scalar @{$spell_list->{$spell}};
@@ -1057,6 +1078,19 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                             $spell_info->{success} = 0;
                         }
                     }
+                }
+            }
+        }
+
+        if ($globals->{actor_is_player} == 2) {
+            if (exists $globals->{monsters}{$actor}) {
+                $globals->{monsters}{$actor}{killed_by} = 'Invisibility';
+            } else {
+                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
+                if (exists $globals->{monsters}{$actor}) {
+                  $globals->{monsters}{$actor}{killed_by} = 'Invisibility';
+                } else {
+                    warn "DEZ(4): hmm, couldn't find $globals->{actor}\n";
                 }
             }
         }
@@ -1087,6 +1121,19 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                             $spell_info->{success} = 0;
                         }
                     }
+                }
+            }
+        }
+
+        if ($globals->{actor_is_player} == 2) {
+            if (exists $globals->{monsters}{$actor}) {
+                $globals->{monsters}{$actor}{killed_by} = 'Counter Spell';
+            } else {
+                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
+                if (exists $globals->{monsters}{$actor}) {
+                  $globals->{monsters}{$actor}{killed_by} = 'Counter Spell';
+                } else {
+                    warn "DEZ(5): hmm, couldn't find $globals->{actor}\n";
                 }
             }
         }
@@ -1219,7 +1266,6 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
 
         $globals->{monsters}{$actor}{current_owner} = $playername;
-        $globals->{monsters}{$actor}{owned_by_length}{$playername} += 1;
         $return = "looks, glassy-eyed, at $playername";
     }
 
@@ -1285,7 +1331,6 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             my $spell_list = $turnlist->[$turn]{$player}{spells};
             if ($spell_list) {
                 foreach my $spell (keys %{$spell_list}) {
-#DEZ                    next unless $spell eq '';
                     my $slength = scalar @{$spell_list->{$spell}};
                     while ($slength) {
                         my $spell_info = $spell_list->{$spell}->[--$slength];
@@ -1446,9 +1491,20 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         "is" "annihilated" "by" "the" "magical" "overload"
     {
         my $actor = $globals->{actor};
+
         if ($globals->{actor_is_player} == 2) {
-          $globals->{monsters}{$actor}{killed_by} = 'Blindness';
+            if (exists $globals->{monsters}{$actor}) {
+                $globals->{monsters}{$actor}{killed_by} = 'Blindness';
+            } else {
+                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
+                if (exists $globals->{monsters}{$actor}) {
+                  $globals->{monsters}{$actor}{killed_by} = 'Blindness';
+                } else {
+                    warn "DEZ(6): hmm, couldn't find $globals->{actor}\n";
+                }
+            }
         }
+
         $return = "is hit by a Blindness spell, and is annihilated by the" .
             " magical overload";
     }
@@ -1520,9 +1576,20 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     RESISTHEATRESULT2 : "is" "destroyed" "by" "a" "Resist" "Heat" "spell"
     {
         my $actor = $globals->{actor};
+
         if ($globals->{actor_is_player} == 2) {
-          $globals->{monsters}{$actor}{killed_by} = 'Resist Heat';
+            if (exists $globals->{monsters}{$actor}) {
+                $globals->{monsters}{$actor}{killed_by} = 'Resist Heat';
+            } else {
+                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
+                if (exists $globals->{monsters}{$actor}) {
+                  $globals->{monsters}{$actor}{killed_by} = 'Resist Heat';
+                } else {
+                    warn "DEZ(7): hmm, couldn't find $globals->{actor}\n";
+                }
+            }
         }
+
         $return = "is destroyed by a Resist Heat spell";
     }
 
@@ -1602,6 +1669,21 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     DISEASEEFFECT8 : APOSS "Disease" "is" "fatal"
     {
+        my $actor = $globals->{actor};
+
+        if ($globals->{actor_is_player} == 2) {
+            if (exists $globals->{monsters}{$actor}) {
+                $globals->{monsters}{$actor}{killed_by} = 'Disease';
+            } else {
+                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
+                if (exists $globals->{monsters}{$actor}) {
+                  $globals->{monsters}{$actor}{killed_by} = 'Disease';
+                } else {
+                    warn "DEZ(8): hmm, couldn't find $globals->{actor}\n";
+                }
+            }
+        }
+
         $return = "'s Disease is fatal";
     }
 
@@ -1631,11 +1713,32 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     SUMMONFIRERESULT : "appears" "in" "a" "furious" "roar" "of" "flame"
     {
+        my $turn = $globals->{current_turn};
+        my $actor = $globals->{actor};
+        my $playername = 'none';
+
+        $globals->{monsters}{$actor}{original_owner} = $playername;
+        $globals->{monsters}{$actor}{owned_by_length}{$playername} += 1;
+        $globals->{monsters}{$actor}{current_owner} = $playername;
+        $globals->{monsters}{$actor}{turn_summoned} = $turn;
+        $globals->{monsters}{$actor}{damage_done} = {} unless exists $globals->{monsters}{$actor};
+        $globals->{monsters}{$actor}{killed_by} = "";
+
         $return = "appears in a furious roar of flame";
     }
 
     SUMMONFIRERESULT2 : "flies" "away" "with" "the" "storm"
     {
+        my $actor = $globals->{actor};
+
+        if ($globals->{actor_is_player} == 2) {
+            if ($actor =~ /Ice/) {
+                $globals->{monsters}{'Ice Elemental'}{killed_by} = 'Ice Storm';
+            } else {
+                $globals->{monsters}{'Fire Elemental'}{killed_by} = 'Fire Storm';
+            }
+        }
+
         $return = "flies away with the storm";
     }
 
@@ -1669,6 +1772,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     {
         my $turn = $globals->{current_turn};
         my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
 
         foreach my $player (keys %{$turnlist->[$turn]}) {
             next if $player eq 'gametext';
@@ -1687,6 +1791,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        if ($globals->{actor_is_player} == 2) {
+            if (exists $globals->{monsters}{'Fire Elemental'}) {
+                $globals->{monsters}{'Fire Elemental'}{killed_by} = 'Ice Storm';
+            }
+        }
+
         $return = "melts the oncoming Ice Storm, and is destroyed by the" .
             " ensuing water";
     }
@@ -1701,6 +1811,21 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     FINGEROFDEATHRESULT : "is" "touched" "with" "the" "Finger" "of" "Death"
     {
+        my $actor = $globals->{actor};
+
+        if ($globals->{actor_is_player} == 2) {
+            if (exists $globals->{monsters}{$actor}) {
+                $globals->{monsters}{$actor}{killed_by} = 'Finger of Death';
+            } else {
+                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
+                if (exists $globals->{monsters}{$actor}) {
+                  $globals->{monsters}{$actor}{killed_by} = 'Finger of Death';
+                } else {
+                    warn "DEZ(10): hmm, couldn't find $globals->{actor}\n";
+                }
+            }
+        }
+
         $return = "is touched with the Finger of Death";
     }
 
@@ -1719,11 +1844,6 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     FIRESTORMRESULT3 : "basks" "in" "the" "heat" "of" "the" "Fire" "Storm"
     {
         $return = "basks in the heat of the Fire Storm";
-    }
-
-    FIRESTORMRESULT4 : "flies" "away" "with" "the" "storm"
-    {
-        $return = "flies away with the storm";
     }
 
     FIRESTORMRESULT5 : "melts" PUNCT "calming" "and" "cooling" "the" "Fire"
@@ -1826,6 +1946,17 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     SUMMONICERESULT : "appears" "in" "a" "sudden" "rush" "of" "arctic" "wind"
     {
+        my $turn = $globals->{current_turn};
+        my $actor = $globals->{actor};
+        my $playername = 'none';
+
+        $globals->{monsters}{$actor}{original_owner} = $playername;
+        $globals->{monsters}{$actor}{owned_by_length}{$playername} += 1;
+        $globals->{monsters}{$actor}{current_owner} = $playername;
+        $globals->{monsters}{$actor}{turn_summoned} = $turn;
+        $globals->{monsters}{$actor}{damage_done} = {} unless exists $globals->{monsters}{$actor};
+        $globals->{monsters}{$actor}{killed_by} = "";
+
         $return = "appears in a sudden rush of arctic wind";
     }
 
@@ -1853,15 +1984,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "'s shield keeps the Ice Elemental at bay";
     }
 
-    SUMMONICERESULT6 : "flies" "away" "with" "the" "storm"
-    {
-        $return = "flies away with the storm";
-    }
-
     SUMMONICERESULT8 : "is" "destroyed" "by" "a" "Resist" "Cold" "spell"
     {
         my $turn = $globals->{current_turn};
         my $turnlist = $globals->{turnlist};
+        my $actor = $globals->{actor};
 
         foreach my $player (keys %{$turnlist->[$turn]}) {
             next if $player eq 'gametext';
@@ -1877,6 +2004,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                         }
                     }
                 }
+            }
+        }
+
+        if ($globals->{actor_is_player} == 2) {
+            if (exists $globals->{monsters}{'Ice Elemental'}) {
+                $globals->{monsters}{'Ice Elemental'}{killed_by} = 'Resist Cold';
             }
         }
 
@@ -1905,8 +2038,8 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         FIREBALLRESULT2 | FIREBALLRESULT3 | FIREBALLRESULT4 |
         MAGICMIRRORRESULT2 | MAGICMIRRORRESULT3 | ICESTORMRESULT |
         ICESTORMRESULT6 | SUMMONFIRERESULT8 | SUMMONFIRERESULT9 |
-        FIRESTORMRESULT | HASTEEFFECT | HASTEEFFECT2 | SUMMONICERESULT |
-        SUMMONICERESULT3 | SUMMONICERESULT7
+        FIRESTORMRESULT | HASTEEFFECT | HASTEEFFECT2 |
+        SUMMONICERESULT7
 
     SHIELDRESULT2 : "The" "shimmer" "of" "a" "shield" "briefly" "covers"
         "the" "circle" PUNCT "then" "dissolves"
@@ -1932,6 +2065,8 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                 }
             }
         }
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
 
         $return = "The shimmer of a shield briefly covers the circle," .
             " then dissolves"
@@ -1962,6 +2097,8 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                 }
             }
         }
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
 
         $return = "A magic missile bounces off ${targetname}'s shield";
     }
@@ -1991,6 +2128,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "A magic missile flies off into the distance";
     }
 
@@ -2017,6 +2157,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                 }
             }
         }
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
 
         $return = "A " . $item{SPELLNAME} . " drifts away aimlessly";
     }
@@ -2047,6 +2190,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "A summoned creature, finding no master, returns from" .
             " whence it came";
     }
@@ -2076,6 +2222,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "The haze of an enchantment spell drifts aimlessly" .
             " over the circle, and dissipates";
     }
@@ -2083,6 +2232,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     CAUSEWOUNDSRESULT : "Wounds" "appear" "all" "over" TARGET APOSS "body"
     {
         my ($is_player, $targetname) = split /:/, $item{TARGET};
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "Wounds appear all over ${targetname}'s body";
     }
 
@@ -2111,6 +2263,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                 }
             }
         }
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
 
         $return = "Holes open up in ${targetname}'s shield, but then close" .
             " up again";
@@ -2142,6 +2297,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "Tiny holes in ${targetname}'s shield are sealed up";
     }
 
@@ -2169,6 +2327,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                 }
             }
         }
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
 
         $return = "A bolt of lightning arcs to the ground";
     }
@@ -2199,6 +2360,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "Lightning sparks all around ${targetname}'s shield";
     }
 
@@ -2206,6 +2370,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         "disappears"
     {
         my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "There is a flash, and $playername disappears";
     }
 
@@ -2236,6 +2403,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "The permanent enchantment on $targetname overrides" .
             " the $item{SPELLNAME} effect";
     }
@@ -2244,6 +2414,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         "eyes"
     {
         my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "Scales start to grow over ${playername}'s eyes";
     }
 
@@ -2251,11 +2424,17 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         "eyes"
     {
         my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "The scales are removed from ${playername}'s eyes";
     }
 
     TIMESTOPEFFECT : "This" "turn" "took" "place" "outside" "of" "time"
     {
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "This turn took place outside of time";
     }
 
@@ -2280,6 +2459,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "All magical effects are erased! All other spells fail";
     }
 
@@ -2287,6 +2469,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         "for" INTEGER "damage"
     {
         my ($is_player, $targetname) = split /:/, $item{TARGET};
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
 
         $return = "A fireball strikes $targetname, burning him for" .
             " $item{INTEGER} damage";
@@ -2318,6 +2503,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "A fireball strikes, and flames roar all around" .
             " ${targetname}'s shield";
     }
@@ -2348,6 +2536,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "A fireball strikes, and flames roar around" .
             " $targetname. He stands calmly in the inferno";
     }
@@ -2377,6 +2568,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "A fireball flies into the distance and burns itself out";
     }
 
@@ -2384,6 +2578,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         TARGET APOSS "Magic" "Mirror"
     {
         my ($is_player, $targetname) = split /:/, $item{TARGET};
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
 
         $return = "The $item{SPELLNAME} spell is reflected from" .
             " ${targetname}'s Magic Mirror";
@@ -2413,11 +2610,17 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "A Magic Mirror dissipates into the air";
     }
 
     ICESTORMRESULT : "An" "Ice" "Storm" "rages" "through" "the" "circle"
     {
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "An Ice Storm rages through the circle";
     }
 
@@ -2443,6 +2646,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
                 }
             }
         }
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
 
         $return = "Fire and Ice storms cancel each other out, leaving just" .
             " a gentle breeze";
@@ -2470,33 +2676,51 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
+
         $return = "Opposing Elementals destroy each other";
     }
 
     SUMMONFIRERESULT9 : "Two" "Fire" "Elementals" "merge" "into" "one"
     {
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "Two Fire Elementals merge into one";
     }
 
     FIRESTORMRESULT : "A" "Fire" "Storm" "rages" "through" "the" "circle"
     {
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "A Fire Storm rages through the circle";
     }
 
     HASTEEFFECT : "Fast" "players" "sneak" "in" "an" "extra" "set" "of"
         "gestures"
     {
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "Fast players sneak in an extra set of gestures";
     }
 
     HASTEEFFECT2 : "Fast" "warlocks" "sneak" "in" "an" "extra" "set" "of"
         "gestures"
     {
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "Fast warlocks sneak in an extra set of gestures";
     }
 
     SUMMONICERESULT7 : "Two" "Ice" "Elementals" "merge" "into" "one"
     {
+
+        $globals->{actor} = '';
+        $globals->{actor_is_player} = 0;
         $return = "Two Ice Elementals merge into one";
     }
 
@@ -2522,6 +2746,18 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             } else {
                 $globals->{$targetname}{surrendered} = 1;
             }
+        } elsif ($is_player == 2) {
+            my $actor = $targetname;
+            if (exists $globals->{monsters}{$actor}) {
+                $globals->{monsters}{$actor}{killed_by} = 'damage';
+            } else {
+                ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
+                if (exists $globals->{monsters}{$actor}) {
+                  $globals->{monsters}{$actor}{killed_by} = 'damage';
+                } else {
+                    warn "DEZ(1): hmm, couldn't find $targetname\n";
+                }
+            }
         }
 
         $return = $targetname . " " . $item{POSSIBLEOUTCOME};
@@ -2539,13 +2775,13 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     MONSTERLIST : MONSTERNAME HEALTH DASH(?) AFFECTEDBYITEM(s?) "Owned" "by"
         COLON PLAYERTARGET "Attacking" COLON TARGET
     {
-        my $dash = $item{DASH} ? ' - ' : '';
+        my $dash = $item{'DASH(?)'}[0] ? ' - ' : '';
         my ($is_player_target, $targetname) = split /:/, $item{TARGET};
         my ($is_player_owner, $playername) = split /:/, $item{PLAYERTARGET};
 
         $return = $item{MONSTERNAME} . " " . $item{HEALTH} . $dash;
-        if ($item{AFFECTEDBYITEM}) {
-            $return .= join(' ', @{$item{AFFECTEDBYITEM}});
+        if (@{$item{'AFFECTEDBYITEM(s?)'}}) {
+            $return .= join(' ', @{$item{'AFFECTEDBYITEM(s?)'}});
         }
         $return .= " Owned by : $playername Attacking : $targetname";
 
@@ -2553,7 +2789,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     HEALTH : PARENDS(?) "Health" COLON INTEGER PARENDS(?)
     {
-        if ($item{PARENDS}) {
+        if ($item{'PARENDS(?)'}[0]) {
             $return = "(Health: " . $item{INTEGER} . ")";
         } else {
             $return = "Health: " . $item{INTEGER};
@@ -2588,27 +2824,27 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         ($globals->{$player}{gestures}{right}) =
             ($gestures =~ /RH[:]B(.*?)\n+/s);
 
-        if ($item{PLAYERREGESTERED}) {
+        if ($item{'PLAYERREGESTERED(?)'}[0]) {
             $return = "Registered! ";
         } else {
             $return = "";
         }
 
         $return .= $player . "(" . $item{INTEGER} . ")";
-        if ($item{SURRENDERORDEAD}) {
-            $return .= " $item{SURRENDERORDEAD}";
+        if ($item{'SURRENDERORDEAD(?)'}[0]) {
+            $return .= " " . $item{'SURRENDERORDEAD(?)'}[0];
         }
-        if ($item{HEALTH}) {
-            $return .= " $item{HEALTH}";
+        if ($item{'HEALTH(?)'}[0]) {
+            $return .= " " . $item{'HEALTH(?)'}[0];
         }
-        if ($item{DASH}) {
-            $return .= " $item{DASH}";
+        if ($item{'DASH'}[0]) {
+            $return .= " $item{'DASH'}[0]";
         }
-        if ($item{AFFECTEDBYITEM}) {
-            $return .= join(' ', @{$item{AFFECTEDBYITEM}});
+        if (@{$item{'AFFECTEDBYITEM(s?)'}}) {
+            $return .= join(' ', @{$item{'AFFECTEDBYITEM(s?)'}});
         }
-        if ($item{BANKEDSPELL}) {
-            $return .= " $item{BANKEDSPELL}";
+        if ($item{'BANKEDSPELL(?)'}[0]) {
+            $return .= " $item{'BANKEDSPELL(?)'}[0]";
         }
         $return .= "\n$item{TURNLIST}";
         $return .= "\n$item{PLAYERGESTURES}";
@@ -2674,17 +2910,20 @@ sub get_data
 {
     delete $globals->{actor_is_player};
     delete $globals->{actor};
-    return $globals;
+    return ($globals, $self->{game_text});
 }
 
 sub reset_data
 {
     $globals = {};
     $globals->{turnlist} = [];
+    delete $self->{game_text};
 }
 
 sub parse
 {
+    my ($self, $game_text) = @_;
+    $self->{game_text} = $game_text;
     my $parser;
 
     eval {
@@ -2695,7 +2934,7 @@ sub parse
         die($@);
     }
 
-    return $parser->startrule($_[1]);
+    return $parser->startrule($game_text);
 }
 
 sub trace
@@ -2715,4 +2954,4 @@ sub trace
 
 1;
 
-# vi: set shiftwidth=4 softtabstop=4 et!: #
+# vi: set shiftwidth=4 softtabstop=4 et:
