@@ -83,7 +83,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
     TURNSINGAME : /(?:.*?)Turn \d+ in/ms
 
-    GAMETYPE : FORMONEY | FORPRIDE
+    GAMETYPE : (FORMONEY | FORPRIDE)
     {
         $globals->{gametype} = $item[1];
     }
@@ -97,7 +97,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         $return = "Very Friendly";
     }
 
-    MODIFIER : PARAFCOPT | PARAFDFOPT | MALADROITOPT
+    MODIFIER : (PARAFCOPT | PARAFDFOPT | MALADROITOPT)
     {
         $globals->{game_modifiers}{$item[1]} = 1;
 
@@ -238,13 +238,6 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     }
 
     TARGET : PLAYERTARGET | MONSTERTARGET
-    {
-        if ($item{PLAYERTARGET}) {
-            $return = $item{PLAYERTARGET};
-        } else {
-            $return = $item{MONSTERTARGET};
-        }
-    }
 
     PLAYERTARGET : GENERICTARGET | PLAYERNAME
 
@@ -252,15 +245,16 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     {
         if ($item[1] =~ /himself|someone|everyone/) {
             $return = "1:$item[1]";
+        } elsif ($item[1] eq 'nobody') {
+            $return = "0:$item[1]";
         } else {
             $return = "2:$item[1]";
         }
     }
 
-    MONSTERTARGET : POTENTIALMONSTER | MONSTERNAME
+    MONSTERTARGET : (POTENTIALMONSTER | MONSTERNAME)
     {
-        $return = "2:$item{POTENTIALMONSTER}" if $item{POTENTIALMONSTER};
-        $return = "2:$item{MONSTERNAME}" if $item{MONSTERNAME};
+        $return = "2:$item[1]";
     }
 
     POTENTIALMONSTER : "the" "monster" PLAYERNAME "is" "summoning" "with"
