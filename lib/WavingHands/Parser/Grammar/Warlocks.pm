@@ -139,10 +139,10 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         }
 
         foreach my $monster (keys %{$globals->{monsters}}) {
-            next if $globals->{monsters}{$monster}{killed_by} ne '';
-            my $currentowner = $globals->{monsters}{$monster}{current_owner};
+            next if $globals->{monsters}{$monster}[0]{killed_by} ne '';
+            my $currentowner = $globals->{monsters}{$monster}[0]{current_owner};
             $currentowner = 'nobody' if $currentowner eq "";
-            $globals->{monsters}{$monster}{owned_by_length}{$currentowner} += 1;
+            $globals->{monsters}{$monster}[0]{owned_by_length}{$currentowner} += 1;
         }
     }
 
@@ -691,7 +691,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my $damage = $item{INTEGER};
 
         if ($globals->{actor_is_player} == 2) {
-          $globals->{monsters}{$actor}{damage_done}{$targetname} += $damage;
+          $globals->{monsters}{$actor}[0]{damage_done}{$targetname} += $damage;
         }
 
         $return = "does $damage damage to $targetname";
@@ -776,11 +776,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if (exists $globals->{monsters}{$actor}) {
-                $globals->{monsters}{$actor}{killed_by} = 'Remove Enchantment';
+                $globals->{monsters}{$actor}[0]{killed_by} = 'Remove Enchantment';
             } else {
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
-                if (exists $globals->{monsters}{$actor}) {
-                  $globals->{monsters}{$actor}{killed_by} = 'Remove Enchantment';
+                if ($actor) {
+                  $globals->{monsters}{$actor}[0]{killed_by} = 'Remove Enchantment';
                 } else {
                     warn "DEZ(3): hmm, couldn't find $globals->{actor}\n";
                 }
@@ -998,12 +998,14 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
         my $actor = $globals->{actor};
 
-        $globals->{monsters}{$actor}{original_owner} = $playername;
-        $globals->{monsters}{$actor}{owned_by_length}{$playername} = 1;
-        $globals->{monsters}{$actor}{current_owner} = $playername;
-        $globals->{monsters}{$actor}{turn_summoned} = $turn;
-        $globals->{monsters}{$actor}{damage_done} = {};
-        $globals->{monsters}{$actor}{killed_by} = "";
+        unshift @{$globals->{monsters}{$actor}}, {
+            original_owner => $playername,
+            owned_by_length => {$playername => 1},
+            current_owner => $playername,
+            turn_summoned => $turn,
+            damage_done => {},
+            killed_by => ""
+        };
 
         $return = "is summoned to serve $playername";
     }
@@ -1067,11 +1069,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if (exists $globals->{monsters}{$actor}) {
-                $globals->{monsters}{$actor}{killed_by} = 'Invisibility';
+                $globals->{monsters}{$actor}[0]{killed_by} = 'Invisibility';
             } else {
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
-                if (exists $globals->{monsters}{$actor}) {
-                  $globals->{monsters}{$actor}{killed_by} = 'Invisibility';
+                if ($actor) {
+                  $globals->{monsters}{$actor}[0]{killed_by} = 'Invisibility';
                 } else {
                     warn "DEZ(4): hmm, couldn't find $globals->{actor}\n";
                 }
@@ -1110,11 +1112,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if (exists $globals->{monsters}{$actor}) {
-                $globals->{monsters}{$actor}{killed_by} = 'Counter Spell';
+                $globals->{monsters}{$actor}[0]{killed_by} = 'Counter Spell';
             } else {
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
-                if (exists $globals->{monsters}{$actor}) {
-                  $globals->{monsters}{$actor}{killed_by} = 'Counter Spell';
+                if ($actor) {
+                  $globals->{monsters}{$actor}[0]{killed_by} = 'Counter Spell';
                 } else {
                     warn "DEZ(5): hmm, couldn't find $globals->{actor}\n";
                 }
@@ -1131,7 +1133,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my $damage = $item{INTEGER};
 
         if ($globals->{actor_is_player} == 2) {
-            $globals->{monsters}{$actor}{damage_done}{$targetname} += $damage;
+            $globals->{monsters}{$actor}[0]{damage_done}{$targetname} += $damage;
         }
 
         $return = "attacks $targetname for $damage damage";
@@ -1248,7 +1250,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my $actor = $globals->{actor};
         my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
 
-        $globals->{monsters}{$actor}{current_owner} = $playername;
+        $globals->{monsters}{$actor}[0]{current_owner} = $playername;
         $return = "looks, glassy-eyed, at $playername";
     }
 
@@ -1477,11 +1479,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if (exists $globals->{monsters}{$actor}) {
-                $globals->{monsters}{$actor}{killed_by} = 'Blindness';
+                $globals->{monsters}{$actor}[0]{killed_by} = 'Blindness';
             } else {
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
-                if (exists $globals->{monsters}{$actor}) {
-                  $globals->{monsters}{$actor}{killed_by} = 'Blindness';
+                if ($actor) {
+                  $globals->{monsters}{$actor}[0]{killed_by} = 'Blindness';
                 } else {
                     warn "DEZ(6): hmm, couldn't find $globals->{actor}\n";
                 }
@@ -1562,11 +1564,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if (exists $globals->{monsters}{$actor}) {
-                $globals->{monsters}{$actor}{killed_by} = 'Resist Heat';
+                $globals->{monsters}{$actor}[0]{killed_by} = 'Resist Heat';
             } else {
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
-                if (exists $globals->{monsters}{$actor}) {
-                  $globals->{monsters}{$actor}{killed_by} = 'Resist Heat';
+                if ($actor) {
+                  $globals->{monsters}{$actor}[0]{killed_by} = 'Resist Heat';
                 } else {
                     warn "DEZ(7): hmm, couldn't find $globals->{actor}\n";
                 }
@@ -1656,11 +1658,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if (exists $globals->{monsters}{$actor}) {
-                $globals->{monsters}{$actor}{killed_by} = 'Disease';
+                $globals->{monsters}{$actor}[0]{killed_by} = 'Disease';
             } else {
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
-                if (exists $globals->{monsters}{$actor}) {
-                  $globals->{monsters}{$actor}{killed_by} = 'Disease';
+                if ($actor) {
+                  $globals->{monsters}{$actor}[0]{killed_by} = 'Disease';
                 } else {
                     warn "DEZ(8): hmm, couldn't find $globals->{actor}\n";
                 }
@@ -1700,12 +1702,14 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my $actor = $globals->{actor};
         my $playername = 'nobody';
 
-        $globals->{monsters}{$actor}{original_owner} = $playername;
-        $globals->{monsters}{$actor}{owned_by_length}{$playername} += 1;
-        $globals->{monsters}{$actor}{current_owner} = $playername;
-        $globals->{monsters}{$actor}{turn_summoned} = $turn;
-        $globals->{monsters}{$actor}{damage_done} = {} unless exists $globals->{monsters}{$actor};
-        $globals->{monsters}{$actor}{killed_by} = "";
+        unshift @{$globals->{monsters}{'Fire Elemental'}}, {
+            original_owner => $playername,
+            owned_by_length => {$playername => 1},
+            current_owner => $playername,
+            turn_summoned => $turn,
+            damage_done => {},
+            killed_by => ""
+        };
 
         $return = "appears in a furious roar of flame";
     }
@@ -1716,9 +1720,9 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if ($actor =~ /Ice/) {
-                $globals->{monsters}{'Ice Elemental'}{killed_by} = 'Ice Storm';
+                $globals->{monsters}{'Ice Elemental'}[0]{killed_by} = 'Ice Storm';
             } else {
-                $globals->{monsters}{'Fire Elemental'}{killed_by} = 'Fire Storm';
+                $globals->{monsters}{'Fire Elemental'}[0]{killed_by} = 'Fire Storm';
             }
         }
 
@@ -1745,7 +1749,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     {
         my $actor = $globals->{actor};
         my $damage = $item{INTEGER};
-        $globals->{monsters}{'Fire Elemental'}{damage_done}{$actor} += $damage;
+        $globals->{monsters}{'Fire Elemental'}[0]{damage_done}{$actor} += $damage;
 
         $return = "is burnt for $damage damage";
     }
@@ -1776,7 +1780,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if (exists $globals->{monsters}{'Fire Elemental'}) {
-                $globals->{monsters}{'Fire Elemental'}{killed_by} = 'Ice Storm';
+                $globals->{monsters}{'Fire Elemental'}[0]{killed_by} = 'Ice Storm';
             }
         }
 
@@ -1798,11 +1802,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if (exists $globals->{monsters}{$actor}) {
-                $globals->{monsters}{$actor}{killed_by} = 'Finger of Death';
+                $globals->{monsters}{$actor}[0]{killed_by} = 'Finger of Death';
             } else {
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
-                if (exists $globals->{monsters}{$actor}) {
-                  $globals->{monsters}{$actor}{killed_by} = 'Finger of Death';
+                if ($actor) {
+                  $globals->{monsters}{$actor}[0]{killed_by} = 'Finger of Death';
                 } else {
                     warn "DEZ(10): hmm, couldn't find $globals->{actor}\n";
                 }
@@ -1933,12 +1937,14 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my $actor = $globals->{actor};
         my $playername = 'nobody';
 
-        $globals->{monsters}{$actor}{original_owner} = $playername;
-        $globals->{monsters}{$actor}{owned_by_length}{$playername} += 1;
-        $globals->{monsters}{$actor}{current_owner} = $playername;
-        $globals->{monsters}{$actor}{turn_summoned} = $turn;
-        $globals->{monsters}{$actor}{damage_done} = {} unless exists $globals->{monsters}{$actor};
-        $globals->{monsters}{$actor}{killed_by} = "";
+        unshift @{$globals->{monsters}{'Ice Elemental'}}, {
+            original_owner => $playername,
+            owned_by_length => {$playername => 1},
+            current_owner => $playername,
+            turn_summoned => $turn,
+            damage_done => {},
+            killed_by => ""
+        };
 
         $return = "appears in a sudden rush of arctic wind";
     }
@@ -1957,7 +1963,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     {
         my $actor = $globals->{actor};
         my $damage = $item{INTEGER};
-        $globals->{monsters}{'Ice Elemental'}{damage_done}{$actor} += $damage;
+        $globals->{monsters}{'Ice Elemental'}[0]{damage_done}{$actor} += $damage;
         $return = "is frozen for $damage damage";
     }
 
@@ -1992,7 +1998,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
 
         if ($globals->{actor_is_player} == 2) {
             if (exists $globals->{monsters}{'Ice Elemental'}) {
-                $globals->{monsters}{'Ice Elemental'}{killed_by} = 'Resist Cold';
+                $globals->{monsters}{'Ice Elemental'}[0]{killed_by} = 'Resist Cold';
             }
         }
 
@@ -2442,6 +2448,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
+        # all monsters die too
+        foreach my $monster (keys %{$globals->{monsters}}) {
+            next if $globals->{monsters}{$monster}[0]{killed_by} ne "";
+            $globals->{monsters}{$monster}[0]{killed_by} = "Dispel Magic";
+        }
+
         $globals->{actor} = '';
         $globals->{actor_is_player} = 0;
 
@@ -2712,6 +2724,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
     IGNOBLEEND : "No" "Warlocks" "remaining" PUNCT "An" "ignominious" "end"
         "to" "a" "battle"
     {
+        $globals->{no_winner} = 1;
         $return = "No Warlocks remaining. An ignominious end to a battle";
     }
 
@@ -2732,11 +2745,11 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         } elsif ($is_player == 2) {
             my $actor = $targetname;
             if (exists $globals->{monsters}{$actor}) {
-                $globals->{monsters}{$actor}{killed_by} = 'damage';
+                $globals->{monsters}{$actor}[0]{killed_by} = 'Damage';
             } else {
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
-                if (exists $globals->{monsters}{$actor}) {
-                  $globals->{monsters}{$actor}{killed_by} = 'damage';
+                if ($actor) {
+                  $globals->{monsters}{$actor}[0]{killed_by} = 'Damage';
                 } else {
                     warn "DEZ(1): hmm, couldn't find $targetname\n";
                 }
