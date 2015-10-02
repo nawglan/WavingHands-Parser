@@ -38,8 +38,13 @@ while ($parser->queue_has_items()) {
     $num_tests++;
     $total_games++;
     my $good = $parser->parse();
+    my ($data, $game_text) = $parser->get();
     $total_good += $good;
     is ($good == 1, 1, 'Game parsed successfuly.');
+    $num_tests++;
+    is (defined $data, 1, 'Data is defined.');
+    $num_tests++;
+    is (defined $game_text, 1, 'Text is defined.');
     last unless $good == 1;
 }
 

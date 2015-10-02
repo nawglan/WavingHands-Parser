@@ -778,6 +778,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Remove Enchantment';
             } else {
+                $actor =~ s/^(A|An|The) //; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Remove Enchantment';
@@ -1071,6 +1072,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Invisibility';
             } else {
+                $actor =~ s/^(A|An|The) //; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Invisibility';
@@ -1114,6 +1116,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Counter Spell';
             } else {
+                $actor =~ s/^(A|An|The) //; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Counter Spell';
@@ -1481,6 +1484,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Blindness';
             } else {
+                $actor =~ s/^(A|An|The) //; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Blindness';
@@ -1566,6 +1570,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Resist Heat';
             } else {
+                $actor =~ s/^(A|An|The) //; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Resist Heat';
@@ -1660,6 +1665,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Disease';
             } else {
+                $actor =~ s/^(A|An|The) //; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Disease';
@@ -1804,6 +1810,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Finger of Death';
             } else {
+                $actor =~ s/^(A|An|The) //; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Finger of Death';
@@ -2747,6 +2754,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Damage';
             } else {
+                $actor =~ s/^(A|An|The) //; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Damage';
@@ -2906,20 +2914,19 @@ sub get_data
 {
     delete $globals->{actor_is_player};
     delete $globals->{actor};
-    return ($globals, $self->{game_text});
+    return $globals;
 }
 
 sub reset_data
 {
     $globals = {};
     $globals->{turnlist} = [];
-    delete $self->{game_text};
+    $self->{game_text};
 }
 
 sub parse
 {
     my ($self, $game_text) = @_;
-    $self->{game_text} = $game_text;
     my $parser;
 
     eval {

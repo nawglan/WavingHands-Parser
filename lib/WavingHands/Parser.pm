@@ -108,6 +108,7 @@ class WavingHands::Parser {
     has $!queue is ro;
     has $!parser is ro;
     has $!cache is ro;
+    has $!gametext is rw;
 
     method _resetParser() {
         $!parser->reset_data() if $!parser;
@@ -188,7 +189,7 @@ class WavingHands::Parser {
 
         if ($game_text || $self->queue_has_items()) {
             if ($game_text) {
-                $buffer = $game_text;
+                $!gametext = $game_text;
             } else {
                 $filename = shift @{$!queue};
                 if ($!cache->{$filename}) {
@@ -201,7 +202,7 @@ class WavingHands::Parser {
                 open my $INPUT, '<', $filename or die ("Unable to open $filename : $!\n");
                 do {
                     local $/;
-                    $buffer = <$INPUT>;
+                    $!gametext = <$INPUT>;
                 };
                 close $INPUT; 
             }
@@ -211,10 +212,10 @@ class WavingHands::Parser {
                 my $tracefile = untaint_str(File::Spec->catfile($!tracedir, 'trace_' . $self->queue_size() . '.txt'));
                 open $TRACE, '>', $tracefile;
                 local *STDERR = $TRACE;
-                $result = $!parser->parse($buffer);
+                $result = $!parser->parse($!gametext);
                 close $TRACE;
             } else {
-                $result = $!parser->parse($buffer);
+                $result = $!parser->parse($!gametext);
             }
 
             if (defined $result) {
@@ -260,7 +261,8 @@ class WavingHands::Parser {
     }
 
     method get() {
-        return $!parser->get_data();
+        my $game_data = $!parser->get_data();
+        return ($game_data, $!gametext);
     }
 }
 
