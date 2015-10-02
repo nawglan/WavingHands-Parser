@@ -1,0 +1,628 @@
+
+   Log out surial
+
+Rules
+
+Status
+
+Challenges
+
+Players
+
+RavenBlack Games
+
+                                                          Spell Reference
+
+Turn 62 in Very Friendly Battle 17220
+
+   Turn 0
+
+     obsidiaaan bows.
+     surial bows.
+
+   Turn 1
+
+     obsidiaaan says "Test match".
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+
+   Turn 2
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 3
+
+     obsidiaaan snaps the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+
+   Turn 4
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 5
+
+     obsidiaaan waves his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Summon Goblin at himself.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin is summoned to serve obsidiaaan.
+     obsidiaaan directs Grey Goblin to attack Nobody.
+     Grey Goblin doesn't attack anyone.
+
+   Turn 6
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial claps.
+     surial casts Haste at himself.
+     surial speeds up!
+     obsidiaaan directs Grey Goblin to attack surial.
+     Grey Goblin attacks surial for 1 damage.
+
+   Turn 7
+
+     Fast players sneak in an extra set of gestures.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+
+   Turn 8
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+     obsidiaaan directs Grey Goblin to attack Nobody.
+     Grey Goblin doesn't attack anyone.
+
+   Turn 9
+
+     Fast players sneak in an extra set of gestures.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 10
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 11
+
+     Fast players sneak in an extra set of gestures.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 12
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan proffers the palm of his right hand.
+     obsidiaaan casts Paralysis at Grey Goblin.
+     obsidiaaan casts Shield at himself.
+     surial claps.
+     surial casts Haste at Grey Goblin.
+     Grey Goblin speeds up!
+     Grey Goblin's hands start to stiffen.
+     obsidiaaan is covered by a shimmering shield.
+     Grey Goblin wanders around aimlessly.
+     Grey Goblin runs around wildly, looking for someone to hit.
+
+   Turn 13
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan proffers the palm of his right hand.
+     obsidiaaan casts Paralysis at Grey Goblin.
+     obsidiaaan casts Shield at himself.
+     surial snaps the fingers of his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin's hands start to stiffen.
+     obsidiaaan is covered by a shimmering shield.
+     obsidiaaan directs Grey Goblin to attack obsidiaaan.
+     Grey Goblin can't move to attack.
+     In a burst of speed, Grey Goblin can't move to attack.
+
+   Turn 14
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at Nobody.
+     The shimmer of a shield briefly covers the circle, then dissolves.
+     Grey Goblin attacks obsidiaaan for 1 damage.
+     In a burst of speed, Grey Goblin attacks obsidiaaan for 1 damage.
+
+   Turn 15
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+     obsidiaaan directs Grey Goblin to attack Nobody.
+     Grey Goblin doesn't attack anyone.
+
+   Turn 16
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 17
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 18
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 19
+
+     obsidiaaan proffers the palm of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Shield at himself.
+     surial claps.
+     surial casts Haste at Grey Goblin.
+     Grey Goblin speeds up!
+     obsidiaaan is covered by a shimmering shield.
+     obsidiaaan directs Grey Goblin to attack obsidiaaan.
+     Grey Goblin attacks obsidiaaan, but is deflected by a shield.
+     In a burst of speed, Grey Goblin attacks obsidiaaan, but is deflected by a
+     shield.
+
+   Turn 20
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial snaps the fingers of his left hand.
+     surial makes no gesture with his right hand.
+     obsidiaaan directs Grey Goblin to attack Grey Goblin.
+     Grey Goblin attacks Grey Goblin for 1 damage.
+     Grey Goblin dies.
+
+   Turn 21
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+
+   Turn 22
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 23
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+
+   Turn 24
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 25
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 26
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Paralysis at surial.
+     surial claps.
+     surial casts Haste at himself.
+     surial speeds up!
+     surial's hands start to stiffen.
+
+   Turn 27
+
+     Fast players sneak in an extra set of gestures.
+     surial snaps the fingers of his left hand.
+     surial snaps the fingers of his right hand.
+
+   Turn 28
+
+     surial's left hand is paralysed.
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Paralysis at surial.
+     surial points the digit of his left hand.
+     surial snaps the fingers of his right hand.
+     surial casts Magic Missile at obsidiaaan.
+     surial's hands start to stiffen.
+     obsidiaaan is hit by a Magic Missile, for 1 damage.
+
+   Turn 29
+
+     Fast players sneak in an extra set of gestures.
+     surial snaps the fingers of his left hand.
+     surial snaps the fingers of his right hand.
+
+   Turn 30
+
+     surial's right hand is paralysed.
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Paralysis at surial.
+     surial proffers the palm of his left hand.
+     surial points the digit of his right hand.
+     surial casts Shield at himself.
+     surial casts Magic Missile at obsidiaaan.
+     surial's hands start to stiffen.
+     surial is covered by a shimmering shield.
+     obsidiaaan is hit by a Magic Missile, for 1 damage.
+
+   Turn 31
+
+     Fast players sneak in an extra set of gestures.
+     surial makes no gesture with his left hand.
+     surial proffers the palm of his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+
+   Turn 32
+
+     surial's right hand is paralysed.
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial proffers the palm of his right hand.
+     surial casts Amnesia at obsidiaaan.
+     obsidiaaan starts to look blank.
+
+   Turn 33
+
+     obsidiaaan forgets what he's doing, and makes the same gestures as last
+     round!
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial snaps the fingers of his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 34
+
+     obsidiaaan waves his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 35
+
+     obsidiaaan waves his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 36
+
+     obsidiaaan snaps the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Counter Spell at himself.
+     surial claps.
+     surial casts Fire Storm at obsidiaaan.
+     obsidiaaan is covered by a magical glowing shield.
+     A Fire Storm rages through the circle!
+     obsidiaaan is protected by a magical shield.
+     surial is burnt in the raging Fire Storm, for 5 damage.
+
+   Turn 37
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 38
+
+     obsidiaaan waves his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial snaps the fingers of his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 39
+
+     obsidiaaan waves his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial snaps the fingers of his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 40
+
+     obsidiaaan snaps the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Counter Spell at himself.
+     surial waves his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Summon Fire Elemental at obsidiaaan.
+     obsidiaaan is covered by a magical glowing shield.
+     The Fire Elemental is absorbed by obsidiaaan's counter spell.
+
+   Turn 41
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial snaps the fingers of his left hand.
+     surial makes no gesture with his right hand.
+
+   Turn 42
+
+     obsidiaaan snaps the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+
+   Turn 43
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+
+   Turn 44
+
+     obsidiaaan waves his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Summon Goblin at himself.
+     surial wiggles the fingers of his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin is summoned to serve obsidiaaan.
+     obsidiaaan directs Grey Goblin to attack Nobody.
+     Grey Goblin doesn't attack anyone.
+
+   Turn 45
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Anti-spell at obsidiaaan.
+     obsidiaaan's half-done spells fizzle and die.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 46
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial snaps the fingers of his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 47
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial points the digit of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Magic Missile at Nobody.
+     A magic missile flies off into the distance.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 48
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial proffers the palm of his right hand.
+     surial casts Permanency at himself.
+     surial casts Shield at himself.
+     surial begins glowing faintly.
+     surial is covered by a shimmering shield.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 49
+
+     obsidiaaan proffers the palm of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Shield at himself.
+     surial makes no gesture with his left hand.
+     surial snaps the fingers of his right hand.
+     obsidiaaan is covered by a shimmering shield.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 50
+
+     obsidiaaan snaps the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial makes no gesture with his left hand.
+     surial points the digit of his right hand.
+     surial casts Magic Missile at Nobody.
+     A magic missile flies off into the distance.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 51
+
+     obsidiaaan points the digit of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Magic Missile at Nobody.
+     surial makes no gesture with his left hand.
+     surial points the digit of his right hand.
+     surial casts Charm Monster at Grey Goblin.
+     surial makes the spell permanent!
+     Grey Goblin looks, glassy-eyed, at surial.
+     A magic missile flies off into the distance.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 52
+
+     obsidiaaan points the digit of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Charm Monster at Grey Goblin.
+     surial makes no gesture with his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin looks, glassy-eyed, at obsidiaaan.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 53
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial snaps the fingers of his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 54
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 55
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial wiggles the fingers of his left hand.
+     surial makes no gesture with his right hand.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 56
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial proffers the palm of his left hand.
+     surial makes no gesture with his right hand.
+     surial casts Anti-spell at obsidiaaan.
+     obsidiaaan's half-done spells fizzle and die.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 57
+
+     obsidiaaan makes no gesture with his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial snaps the fingers of his left hand.
+     surial proffers the palm of his right hand.
+     surial casts Shield at himself.
+     surial is covered by a shimmering shield.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 58
+
+     obsidiaaan proffers the palm of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Shield at himself.
+     surial points the digit of his left hand.
+     surial snaps the fingers of his right hand.
+     surial casts Magic Missile at Nobody.
+     obsidiaaan is covered by a shimmering shield.
+     A magic missile flies off into the distance.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 59
+
+     obsidiaaan snaps the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     surial waves his left hand.
+     surial points the digit of his right hand.
+     surial casts Permanency at himself.
+     surial casts Magic Missile at Nobody.
+     surial begins glowing faintly.
+     A magic missile flies off into the distance.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 60
+
+     obsidiaaan points the digit of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Magic Missile at Nobody.
+     surial makes no gesture with his left hand.
+     surial points the digit of his right hand.
+     surial casts Charm Monster at himself.
+     surial makes the spell permanent!
+     surial ignores surial's appeal to his baser instincts.
+     A magic missile flies off into the distance.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 61
+
+     obsidiaaan wiggles the fingers of his left hand.
+     obsidiaaan makes no gesture with his right hand.
+     obsidiaaan casts Charm Person at surial.
+     surial makes no gesture with his left hand.
+     surial makes no gesture with his right hand.
+     surial looks intrigued by obsidiaaan.
+     Grey Goblin wanders around aimlessly.
+
+   Turn 62
+
+     surial is charmed, but ends up making the gestures he intended anyway!
+     surial says "end of test game.".
+     obsidiaaan proffers the palm of his left hand.
+     obsidiaaan proffers the palm of his right hand.
+     obsidiaaan casts Shield at himself.
+     obsidiaaan casts Shield at himself.
+     surial proffers the palm of his left hand.
+     surial proffers the palm of his right hand.
+     surial casts Shield at himself.
+     surial casts Shield at himself.
+     obsidiaaan is covered by a shimmering shield.
+     obsidiaaan is covered by a shimmering shield.
+     surial is covered by a shimmering shield.
+     surial is covered by a shimmering shield.
+     Grey Goblin wanders around aimlessly.
+     surial surrenders.
+     obsidiaaan surrenders.
+     No Warlocks remaining. An ignominious end to a battle.
+
+   Grey Goblin          Health:1
+   Owned by: obsidiaaan Attacking: Nobody
+
+   obsidiaaan(0) Surrendered. (Health: 11)
+   Turn:012345678901234567890123456789012345678901234567890123456789012
+     LH:B--SFW- F F FF-----P----FFF F F --WWS-WWS-SFW----PSDD-----PSDFP
+     RH:B------ - - PP------------- - - ------------------------------P
+
+   Registered!  surial(8) Surrendered. (Health: 9)
+   Turn:012345678901234567890123456789012345678901234567890123456789012
+     LH:BPWPWWCPWPWWCSPWPWWCSPWPWWCSDSP-WSWWCWSSWSP FPSDW----SPFPSDW--P
+     RH:B-----C-----C------C------CSSSDPP---C------ ----PSDD-----PSDD-P
