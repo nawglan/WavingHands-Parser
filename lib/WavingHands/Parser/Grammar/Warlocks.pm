@@ -778,12 +778,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Remove Enchantment';
             } else {
-                ($actor) = ($globals->{actor} =~ /^\S+\s*(.*)/); # strip off any article
+                $actor =~ s/The\s|An\s|A\s//; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Remove Enchantment';
                 } else {
-                    die "DEZ(1): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals->{monsters});
+                    die "DEZ(1): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals);
                 }
             }
         }
@@ -999,6 +999,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my ($is_player, $playername) = split /:/, $item{PLAYERNAME};
         my $actor = $globals->{actor};
 
+        $globals->{monsters}{$actor} = [] unless defined $globals->{monsters}{$actor};
         unshift @{$globals->{monsters}{$actor}}, {
             original_owner => $playername,
             owned_by_length => {$playername => 1},
@@ -1072,12 +1073,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Invisibility';
             } else {
-                ($actor) = ($globals->{actor} =~ /^\S+\s*(.*)/); # strip off any article
+                $actor =~ s/The\s|An\s|A\s//; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Invisibility';
                 } else {
-                    die "DEZ(2): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals->{monsters});
+                    die "DEZ(2): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals);
                 }
             }
         }
@@ -1472,12 +1473,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Blindness';
             } else {
-                ($actor) = ($globals->{actor} =~ /^\S+\s*(.*)/); # strip off any article
+                $actor =~ s/The\s|An\s|A\s//; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Blindness';
                 } else {
-                    die "DEZ(3): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals->{monsters});
+                    die "DEZ(3): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals);
                 }
             }
         }
@@ -1558,12 +1559,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Resist Heat';
             } else {
-                ($actor) = ($globals->{actor} =~ /^\S+\s*(.*)/); # strip off any article
+                $actor =~ s/The\s|An\s|A\s//; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Resist Heat';
                 } else {
-                    die "DEZ(4): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals->{monsters});
+                    die "DEZ(4): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals);
                 }
             }
         }
@@ -1653,12 +1654,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Disease';
             } else {
-                ($actor) = ($globals->{actor} =~ /^\S+\s*(.*)/); # strip off any article
+                $actor =~ s/The\s|An\s|A\s//; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Disease';
                 } else {
-                    die "DEZ(5): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals->{monsters});
+                    die "DEZ(5): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals);
                 }
             }
         }
@@ -1696,6 +1697,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my $actor = $globals->{actor};
         my $playername = 'nobody';
 
+        $globals->{monsters}{'Fire Elemental'} = [] unless defined $globals->{monsters}{'Fire Elemental'};
         unshift @{$globals->{monsters}{'Fire Elemental'}}, {
             original_owner => $playername,
             owned_by_length => {$playername => 1},
@@ -1798,12 +1800,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Finger of Death';
             } else {
-                ($actor) = ($globals->{actor} =~ /^\S+\s*(.*)/); # strip off any article
+                $actor =~ s/The\s|An\s|A\s//; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Finger of Death';
                 } else {
-                    die "DEZ(6): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals->{monsters});
+                    die "DEZ(6): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals);
                 }
             }
         }
@@ -1932,6 +1934,7 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
         my $actor = $globals->{actor};
         my $playername = 'nobody';
 
+        $globals->{monsters}{'Ice Elemental'} = [] unless defined $globals->{monsters}{'Ice Elemental'};
         unshift @{$globals->{monsters}{'Ice Elemental'}}, {
             original_owner => $playername,
             owned_by_length => {$playername => 1},
@@ -2742,12 +2745,12 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             if (exists $globals->{monsters}{$actor}) {
                 $globals->{monsters}{$actor}[0]{killed_by} = 'Damage';
             } else {
-                ($actor) = ($globals->{actor} =~ /^\S+\s*(.*)/); # strip off any article
+                $actor =~ s/The\s|An\s|A\s//; # strip off any article
                 ($actor) = grep {$_ =~ /$actor/} keys %{$globals->{monsters}};
                 if ($actor) {
                   $globals->{monsters}{$actor}[0]{killed_by} = 'Damage';
                 } else {
-                    die "DEZ(7): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals->{monsters});
+                    die "DEZ(7): hmm, couldn't find $globals->{actor}\n" . Data::Dumper::Dumper($globals);
                 }
             }
         }
