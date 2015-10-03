@@ -1122,8 +1122,6 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             }
         }
 
-        # monster never exists so don't set killed by
-
         $return = "is absorbed by ${targetname}'s counter spell";
     }
 
