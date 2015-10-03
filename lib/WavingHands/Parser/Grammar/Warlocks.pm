@@ -138,11 +138,20 @@ use constant GRAMMAR => << '_EOGRAMMAR_'
             $return = 1;
         }
 
+        # update owned by statistics for any monsters alive
         foreach my $monster (keys %{$globals->{monsters}}) {
             next if $globals->{monsters}{$monster}[0]{killed_by} ne '';
             my $currentowner = $globals->{monsters}{$monster}[0]{current_owner};
             $currentowner = 'nobody' if $currentowner eq "";
             $globals->{monsters}{$monster}[0]{owned_by_length}{$currentowner} += 1;
+        }
+
+        # update gestures for players that are invis
+        my $turn = $globals->{turnlist}[$globals->{current_turn}];
+        foreach my $player (@{$globals->{players}}) {
+            next if ($globals->{$player}{died} || $globals->{$player}{surrendered});
+            $turn->{$player}{gesture}{left} = '?' unless exists $turn->{$player}{gesture}{left};
+            $turn->{$player}{gesture}{right} = '?' unless exists $turn->{$player}{gesture}{right};
         }
     }
 
